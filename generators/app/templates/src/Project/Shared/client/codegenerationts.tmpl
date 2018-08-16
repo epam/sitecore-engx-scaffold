@@ -1,0 +1,49 @@
+// tslint:disable:no-commented-code
+// tslint:disable:no-empty-interface
+// tslint:disable:no-consecutive-blank-lines
+{{#each options.modules}}
+import * as {{this.Name}} from '{{this.Path}}';
+{{/each}}
+{{#each templates}}
+
+// Path: {{this.Path}}
+// ID: {{this.ID}}
+export interface {{this.AsClass}}DataSource{ // extends ReactJssModule.BaseDataSourceItem {
+
+    {{#each this.Fields}}
+    /// The {{this.Name}} field.
+    /// Field Type: {{this.Type}}
+    /// Field ID: {{this.ID}}
+    {{this.AsProperty}}: {{{this.AsPropertyType}}};
+
+    {{/each}}
+}
+
+// Path: {{this.Path}}
+// ID: {{this.ID}}
+export interface {{this.AsClass}}RenderingParams{ // extends ReactJssModule.BaseRenderingParam {
+
+    {{#each this.Fields}}
+    /// The {{this.Name}} field.
+    /// Field Type: {{this.Type}}
+    /// Field ID: {{this.ID}}
+    {{this.AsProperty}}: string;
+
+    {{/each}}
+}
+
+// Path: {{this.Path}}
+// ID: {{this.ID}}
+export const {{this.AsClass}}Template = {
+    templateId: '{{this.ID}}',
+
+    {{#each this.Fields}}
+    /// The {{this.Name}} field.
+    /// <para>Field Type: {{this.Type}}</para>
+    /// <para>Field ID: {{this.ID}}</para>
+    {{this.AsProperty}}FieldId: '{{this.ID}}',
+    {{this.AsProperty}}FieldName: '{{this.Name}}',
+
+    {{/each}}
+};
+{{/each}}

@@ -1,0 +1,94 @@
+{
+	"Foundation": [{
+		"name": "Branch",
+		"id": "e3689be4-ca41-4ede-a758-c7e8f6028bfd"
+	},
+	{
+		"name": "Layout",
+		"id": "dec6afd4-412f-4009-a897-d252b327dad5"
+	},
+	{
+		"name": "Model",
+		"id": "30052cd7-7982-4062-9d01-9b02a262ffeb"
+	},
+	{
+		"name": "PlaceholderSetting",
+		"id": "a5a0091c-c054-4189-a2d6-ba612352b8a5"
+	},
+	{
+		"name": "Rendering",
+		"id": "d6a1aa65-1c77-4bb4-8848-2ca15ae39e22"
+	},
+	{
+		"name": "Setting",
+		"id": "441ff12d-0754-4eb2-b842-2862ffa3891c"
+	},
+	{
+		"name": "Template",
+		"id": "583858b9-8282-415c-b28d-5e412e672335"
+	}],
+	"Feature": [{
+		"name": "Branch",
+		"id": "7b3ecaf5-24fc-45a1-b765-e9cc7445e275"
+	},
+	{
+		"name": "Layout",
+		"id": "cf508194-ca66-42a1-93f0-f8d5f204092e"
+	},
+	{
+		"name": "Media",
+		"id": "f25f13cf-32ab-40ab-a0d1-403152a6e940"
+	},
+	{
+		"name": "Model",
+		"id": "bf20c4c3-3214-484e-b911-584b4e2a52d6"
+	},
+	{
+		"name": "PlaceholderSetting",
+		"id": "7b3e68bf-4724-43b7-b937-c096e3577264"
+	},
+	{
+		"name": "Rendering",
+		"id": "81c99d29-85a8-4534-8679-bb7408dc1d25"
+	},
+	{
+		"name": "Setting",
+		"id": "74c3a511-d920-445c-9faf-285397aefd27"
+	},
+	{
+		"name": "Template",
+		"id": "d26fa660-53ef-4c91-af95-99394705f5cd"
+	}],
+	"Project": [{
+		"name": "Branch",
+		"id": "8aca38c5-ff92-46f1-a165-ad64b3c5c7e9"
+	},
+	{
+		"name": "Layout",
+		"id": "e86a40a7-0aed-4dcf-92cb-e502ebe74330"
+	},
+	{
+		"name": "Media",
+		"id": "d938519c-9970-4cc4-bbc3-e81481010788"
+	},
+	{
+		"name": "Model",
+		"id": "fcf0bc63-72d2-46db-8173-4c793665fad0"
+	},
+	{
+		"name": "PlaceholderSetting",
+		"id": "6f2629d6-b08b-4d47-b3de-f1a148929f0d"
+	},
+	{
+		"name": "Rendering",
+		"id": "e42acb3f-32cc-4019-a580-85320850986b"
+	},
+	{
+		"name": "Setting",
+		"id": "79192324-9bf9-4ba3-9ae6-5195d6baccab"
+	},
+	{
+		"name": "Template",
+		"id": "ff524afc-0f25-45a4-a203-fe1ae72027af"
+	}]
+}

@@ -1,4 +1,6 @@
-﻿# Sitecore EngX Scaffold
+# Sitecore EngX Scaffold
+
+[![npm version](https://badge.fury.io/js/generator-sitecore-engx-scaffold.svg)](https://badge.fury.io/js/generator-sitecore-engx-scaffold)
 
 ## OVERVIEW
 The scaffold is a generator based on [Yeoman](http://yeoman.io/). It is designed to simplify and unify initial solution setup. It can save you time on configuration on early stages of the project.

@@ -1,6 +1,6 @@
 {
   "name": "generator-sitecore-engx-scaffold",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "EPAM Sitecore EngX Scaffold - Sitecore Helix solution generator",
   "repository": "https://github.com/epam/sitecore-engx-scaffold",
   "files": [

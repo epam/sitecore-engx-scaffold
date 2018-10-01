@@ -1,6 +1,8 @@
 ﻿namespace SolutionX.Foundation.GlassMapper.Infrastructure
 {
     using Glass.Mapper.Sc;
+    using Glass.Mapper.Sc.Web;
+    using Glass.Mapper.Sc.Web.Mvc;
 
     using Microsoft.Extensions.DependencyInjection;
 
@@ -10,7 +12,9 @@
     {
         public void Configure(IServiceCollection serviceCollection)
         {
-            serviceCollection.AddTransient<ISitecoreContext>(provider => new SitecoreContext());
+            serviceCollection.AddTransient<ISitecoreService>(provider => new SitecoreService(Sitecore.Context.Database));
+            serviceCollection.AddTransient<IRequestContext>(provider => new RequestContext(provider.GetService<ISitecoreService>()));
+            serviceCollection.AddTransient<IMvcContext>(provider => new MvcContext(provider.GetService<ISitecoreService>()));
             serviceCollection.AddTransient<IGlassHtml, GlassHtml>();
         }
     }

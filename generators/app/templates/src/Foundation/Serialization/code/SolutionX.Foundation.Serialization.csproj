@@ -52,20 +52,20 @@
     <Reference Include="MicroCHAP">
       <HintPath>..\..\..\packages\MicroCHAP.1.2.2.2\lib\net45\MicroCHAP.dll</HintPath>
     </Reference>
-    <Reference Include="Rainbow, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Rainbow.Core.2.0.0\lib\net452\Rainbow.dll</HintPath>
+    <Reference Include="Rainbow, Version=2.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Rainbow.Core.2.0.2\lib\net452\Rainbow.dll</HintPath>
     </Reference>
-    <Reference Include="Rainbow.Storage.Sc, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Rainbow.Storage.Sc.2.0.0\lib\net452\Rainbow.Storage.Sc.dll</HintPath>
+    <Reference Include="Rainbow.Storage.Sc, Version=2.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Rainbow.Storage.Sc.2.0.2\lib\net452\Rainbow.Storage.Sc.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Rainbow.Storage.Yaml, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Rainbow.Storage.Yaml.2.0.0\lib\net452\Rainbow.Storage.Yaml.dll</HintPath>
+    <Reference Include="Rainbow.Storage.Yaml, Version=2.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Rainbow.Storage.Yaml.2.0.2\lib\net452\Rainbow.Storage.Yaml.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="Unicorn, Version=4.0.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Unicorn.Core.4.0.3\lib\net452\Unicorn.dll</HintPath>
+    <Reference Include="Unicorn, Version=4.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Unicorn.Core.4.0.4\lib\net452\Unicorn.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

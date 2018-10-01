@@ -114,11 +114,11 @@
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="Rainbow">
-      <HintPath>..\\..\\..\\packages\\Rainbow.Core.2.0.0\\lib\\net452\\Rainbow.dll</HintPath>
+      <HintPath>..\\..\\..\\packages\\Rainbow.Core.2.0.2\\lib\\net452\\Rainbow.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Rainbow.Storage.Yaml">
-      <HintPath>..\\..\\..\\packages\\Rainbow.Storage.Yaml.2.0.0\\lib\\net452\\Rainbow.Storage.Yaml.dll</HintPath>
+      <HintPath>..\\..\\..\\packages\\Rainbow.Storage.Yaml.2.0.2\\lib\\net452\\Rainbow.Storage.Yaml.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>

@@ -1,7 +1,6 @@
 module.exports = {
   // all paths below should be assigned relative to src root
   rootDir: './../../',
-  mapCoverage: true,
   coverageReporters: ['json', 'html', 'cobertura', 'text-summary'],
   // this path is duplicated in the build.cake for xUnit tests
   coverageDirectory: './../output/tests/coverage/jest',

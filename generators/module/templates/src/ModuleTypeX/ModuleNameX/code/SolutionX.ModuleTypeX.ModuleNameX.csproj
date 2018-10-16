@@ -133,7 +133,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\unicorn\" />
     <Folder Include="Controllers\" />
     <Folder Include="dist\" />
     <Folder Include="Models\" />
@@ -155,7 +154,7 @@
     <Content Include="dist/**/*.*" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data/unicorn/**/*.*" />
+    <Content Include="App_Data/unicorn-SolutionUriX/**/*.*" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Foundation\GlassMapper\code\SolutionX.Foundation.GlassMapper.csproj">

@@ -4,7 +4,7 @@
 project = 'SolutionX'
 vagrant_root = File.dirname(__FILE__)
 host_serialization_root = "#{vagrant_root}/src" # host opprating system, which is hosting Vagrant and VirtualBox
-guest_serialization_root = '/inetpub/wwwroot/sc9.local/App_Data/unicorn' # VM that you creating
+guest_serialization_root = '/inetpub/wwwroot/sc9.local/App_Data/unicorn-SolutionUriX' # VM that you creating
 
 Vagrant.configure('2') do |config|
   config.vm.box = 'VagrantBoxNameX'

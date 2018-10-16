@@ -81,7 +81,9 @@ module.exports = class HelixGenerator extends Generator {
           self.options.sitecoreUpdate.value :
           self.options.sitecoreUpdate
         ).vagrantBoxName;
-
+	    
+		self.options.solutionNameUri = self.options.solutionName.replace(/[^a-z0-9\-]/ig, '-');
+		
         self.async();
       });
   }
@@ -91,6 +93,7 @@ module.exports = class HelixGenerator extends Generator {
 
     self.options.solutionSettings = JSON.stringify({
       solutionName: self.options.solutionName,
+	  solutionNameUri: self.options.solutionNameUri,
       sitecoreVersion: self.options.sitecoreVersion,
       sitecoreUpdate: self.options.sitecoreUpdate,
     });
@@ -180,6 +183,7 @@ module.exports = class HelixGenerator extends Generator {
     return content
       .replace(/SolutionSettingsX/g, options.solutionSettings)
       .replace(/SolutionX/g, options.solutionName)
-      .replace(/VagrantBoxNameX/g, options.vagrantBoxName);
+      .replace(/VagrantBoxNameX/g, options.vagrantBoxName)
+	  .replace(/SolutionUriX/g, options.solutionNameUri);
   }
 };

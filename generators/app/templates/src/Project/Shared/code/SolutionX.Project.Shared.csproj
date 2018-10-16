@@ -79,7 +79,7 @@
     <Content Include="dist/**/*.*" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data/unicorn/**/*.*" />
+    <Content Include="App_Data/unicorn-SolutionUriX/**/*.*" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

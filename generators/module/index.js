@@ -54,6 +54,10 @@ module.exports = class extends Generator {
       this.options.solutionName = this.options.solutionSettings.solutionName;
     }
 
+    if (this.options.solutionSettings && this.options.solutionSettings.solutionNameUri) {
+      this.options.solutionNameUri = this.options.solutionSettings.solutionNameUri;
+    }
+
     if (this.options.solutionSettings && this.options.solutionSettings.sitecoreVersion) {
       this.options.sitecoreVersion = this.options.solutionSettings.sitecoreVersion;
     }
@@ -275,6 +279,7 @@ module.exports = class extends Generator {
       .replace(/(ModuleNameX)/g, options.moduleName)
       .replace(/(ModuleTypeX)/g, options.moduleType)
       .replace(/(SolutionSettingsX)/g, options.solutionSettings)
-      .replace(/(SolutionX)/g, options.solutionName);
+      .replace(/(SolutionX)/g, options.solutionName)
+	  .replace(/SolutionUriX/g, options.solutionNameUri);
   };
 };

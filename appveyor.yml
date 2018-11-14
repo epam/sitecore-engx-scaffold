@@ -1,0 +1,32 @@
+version: 1.0.{build}
+pull_requests:
+  do_not_increment_build_number: true
+branches:
+  only:
+  - master
+skip_tags: true
+image: Visual Studio 2017
+environment:
+  npm_auth_token:
+    secure: mEmpg1wl8Un7kHXMxjCCdmX2J/XEw9iVugDlLIzK/i54B5mOWjmxEtH3pOwk3WNw
+  nodejs_version: "8.11.3"
+install:
+- ps: >-
+    Install-Product node $env:nodejs_version
+nuget:
+  disable_publish_on_pr: true
+build_script:
+- ps: >-
+    npm install --loglevel=error
+
+    npm version %APPVEYOR_BUILD_VERSION% --no-git-tag-version --force
+        
+    npm pack --loglevel=error
+test: off
+artifacts:
+- path: generator-sitecore-engx-scaffold*
+deploy_script:
+- ps: >-
+    "//registry.npmjs.org/:_authToken=$env:npm_auth_token`n" | out-file "$env:userprofile\.npmrc" -Encoding ASCII
+
+    npm publish --loglevel=error

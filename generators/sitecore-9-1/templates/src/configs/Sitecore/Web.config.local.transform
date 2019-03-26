@@ -1,0 +1,36 @@
+<configuration xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
+  <configSections>
+    <section name="packageInstallation" type="Sitecore.Ship.Infrastructure.Configuration.PackageInstallationConfiguration, Sitecore.Ship.Infrastructure" xdt:Transform="Insert" />
+  </configSections>
+  <appSettings>
+    <add key="role:define" xdt:Locator="Match(key)" value="Standalone" xdt:Transform="SetAttributes(value)" />
+    <add key="env:define" xdt:Locator="Match(key)" value="Local" xdt:Transform="SetAttributes(value)" />
+  </appSettings>
+  <system.webServer>
+    <modules>
+      <add name="ApplicationInsightsWebTracking" xdt:Locator="Match(name)" xdt:Transform="Remove" />
+    </modules>
+    <security>
+      <ipSecurity xdt:Transform="Remove" />
+    </security>
+    <rewrite xdt:Transform="Remove" />
+    <staticContent xdt:Transform="Remove" />
+  </system.webServer>
+  <system.web>
+    <compilation debug="true" xdt:Transform="SetAttributes(debug)" />
+    <httpModules xdt:Transform="Remove" />
+  </system.web>
+  <runtime>
+    <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
+      <dependentAssembly xdt:Locator="Condition(23)" xdt:Transform="Remove" />
+      <dependentAssembly xdt:Locator="Condition(22)" xdt:Transform="Remove" />
+    </assemblyBinding>
+  </runtime>
+  <system.diagnostics xdt:Transform="Remove" />
+  <packageInstallation enabled="true" allowRemote="true" allowPackageStreaming="false" recordInstallationHistory="true" xdt:Transform="Insert" />
+  <system.net>
+    <settings>
+      <httpWebRequest useUnsafeHeaderParsing="true" />
+    </settings>
+  </system.net>
+</configuration>

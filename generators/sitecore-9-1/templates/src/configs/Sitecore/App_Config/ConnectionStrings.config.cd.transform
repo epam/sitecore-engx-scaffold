@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<connectionStrings xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
+  <!-- 
+    Sitecore connection strings.
+    All database connections for Sitecore are configured here.
+  -->
+  <add name="core" connectionString="__cd.core__" xdt:Transform="Replace" xdt:Locator="Match(name)"/>
+  <add name="master" xdt:Transform="Remove" xdt:Locator="Match(name)"/>
+  <add name="web" connectionString="__cd.web__" xdt:Transform="Replace" xdt:Locator="Match(name)"/>
+  <add name="xconnect.collection" connectionString="__cd.xconnect.collection__" xdt:Transform="Replace" xdt:Locator="Match(name)"/>
+  <add name="xconnect.collection.certificate" connectionString="__cd.xconnect.collection.certificate__"  xdt:Transform="Replace" xdt:Locator="Match(name)"/>
+  <add name="xdb.referencedata" xdt:Transform="Remove" xdt:Locator="Match(name)"/>
+  <add name="xdb.referencedata.client" connectionString="__cd.xdb.referencedata.client__" xdt:Transform="Replace" xdt:Locator="Match(name)"/>
+  <add name="xdb.referencedata.client.certificate" connectionString="__cd.xdb.referencedata.client.certificate__" xdt:Transform="Replace" xdt:Locator="Match(name)"/>
+  <add name="xdb.processing.pools" xdt:Transform="Remove" xdt:Locator="Match(name)"/>
+  <add name="reporting" xdt:Transform="Remove" xdt:Locator="Match(name)"/>
+  <add name="xdb.processing.tasks" xdt:Transform="Remove" xdt:Locator="Match(name)"/>
+  <add name="xdb.marketingautomation" xdt:Transform="Remove" xdt:Locator="Match(name)"/>
+  <add name="xdb.marketingautomation.reporting.client" xdt:Transform="Remove" xdt:Locator="Match(name)"/>
+  <add name="xdb.marketingautomation.reporting.client.certificate" xdt:Transform="Remove" xdt:Locator="Match(name)"/>
+  <add name="xdb.marketingautomation.operations.client" connectionString="__cd.xdb.marketingautomation.operations.client__" xdt:Transform="Replace" xdt:Locator="Match(name)"/>
+  <add name="xdb.marketingautomation.operations.client.certificate" connectionString="__cd.xdb.marketingautomation.operations.client.certificate__" xdt:Transform="Replace" xdt:Locator="Match(name)"/>
+  <add name="experienceforms" connectionString="__cd.experienceforms__" xdt:Transform="Replace" xdt:Locator="Match(name)"/>
+  <add name="appinsights.instrumentationkey"  connectionString="__cd.appinsights.instrumentationkey__" xdt:Transform="InsertAfter(/connectionStrings/add[@name='experienceforms'])"/>
+  <add name="cloud.search" connectionString="__cd.cloud.search__" xdt:Transform="Insert"/>
+  <add name="redis.sessions" connectionString="__cd.redis.sessions__" xdt:Transform="Insert"/>
+</connectionStrings>

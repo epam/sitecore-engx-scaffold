@@ -1,0 +1,18 @@
+﻿---
+ID: "8eac46e1-aa2a-4ddc-9548-e50f9f9527b8"
+Parent: "504ae189-9f36-4c62-9767-66d73d6c3084"
+Template: "0a2847e6-9885-450b-b61e-f9e6528480ef"
+Path: /sitecore/system/Dictionary/SolutionX
+DB: master
+SharedFields:
+- ID: "cd72e892-d8bb-487c-9eb1-6a57c48c72cc"
+  Hint: Fallback Domain
+  Value: 
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20180129T093517:636528153179828296Z"

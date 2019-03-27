@@ -1,0 +1,107 @@
+#OS junk files
+[Tt]humbs.db
+*.DS_Store
+
+#Visual Studio files
+src/**/*.[Oo]bj
+src/**/*.user
+src/**/*.aps
+src/**/*.pch
+src/**/*.vspscc
+src/**/*.vssscc
+src/**/*_i.c
+src/**/*_p.c
+src/**/*.ncb
+src/**/*.suo
+src/**/*.tlb
+src/**/*.tlh
+src/**/*.bak
+src/**/*.[Cc]ache
+src/**/*.ilk
+src/**/*.log
+src/**/*.lib
+src/**/*.sbr
+src/**/*.sdf
+src/**/*.opensdf
+src/**/*.unsuccessfulbuild
+src/**/ipch/
+src/**/obj/
+src/**/[Bb]in
+src/**/[Dd]ebug*/
+src/**/[Rr]elease*/
+src/**/Ankh.NoLoad
+.vs/
+
+#MonoDevelop
+*.pidb
+*.userprefs
+
+#Tooling
+_ReSharper*/
+*.resharper
+[Tt]est[Rr]esult*
+*.sass-cache
+
+#Project files
+.[Bb]uild/
+.[Bb]uilds/
+
+#Subversion files
+.svn
+
+# Office Temp Files
+~$*
+
+#NuGet
+!libs/packages
+src/**/packages
+src/**/localPackages
+
+#ncrunch
+*ncrunch*
+*crunch*.local.xml
+
+# visual studio database projects
+*.dbmdl
+
+#Test files
+*.testsettings
+
+# logging
+Logs/
+
+*.Cache
+*.loadtest
+*.ltrar
+*.testsettings
+*.trx
+*.vspscc
+*.webtest
+*.webtestresult
+Load test results
+
+#Sitecore
+/src/.sitecore
+/src/.builds
+
+#SKIP package folders
+/src/*.Master/packages
+/src/*.Core/packages
+CopiedFiles_*.txt
+DeployedFiles_*.txt
+
+#nodejs and client resources
+node_modules
+bower_components
+_res/
+tools/nodejs/
+Code Generation Templates/*.tt
+
+#Virtual machine
+/.vagrant
+
+#Sitecore license file
+/src/license.xml
+/license.xml
+
+# libs

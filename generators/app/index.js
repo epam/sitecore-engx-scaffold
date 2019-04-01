@@ -34,7 +34,7 @@ module.exports = class HelixGenerator extends Generator {
   }
 
   // yeoman events
-  initializing() {
+  initializing() {   
     this.log(yosay('Welcome to ' + chalk.red.bold('Sitecore EngX Accelerator') + ' generator!'));
 
     this.log('');
@@ -58,7 +58,7 @@ module.exports = class HelixGenerator extends Generator {
           choices: versions,
         },
       ])
-      .then(function (answers) {
+      .then(function (answers) {      
         self.options = Object.assign({}, self.options, answers);
         return self.prompt([{
           type: 'list',
@@ -71,18 +71,23 @@ module.exports = class HelixGenerator extends Generator {
       .then(function (answers) {
         self.options = Object.assign({}, self.options, answers);
         // Nuget version update
-        self.options.nuget = [{
-          old: '9.0.171219',
-          new: (self.options.sitecoreUpdate.value ? self.options.sitecoreUpdate.value : self.options.sitecoreUpdate)
-            .nugetVersion,
-        }, ];
+        var newNugetVersion = (self.options.sitecoreUpdate.value ?
+          self.options.sitecoreUpdate.value :
+          self.options.sitecoreUpdate).nugetVersion
+        if (newNugetVersion && newNugetVersion !== "") {
+          self.options.nuget = [{
+            old: '9.0.171219',
+            new: (self.options.sitecoreUpdate.value ? self.options.sitecoreUpdate.value : self.options.sitecoreUpdate)
+              .nugetVersion,
+          }, ];
+        }
 
         self.options.vagrantBoxName = (self.options.sitecoreUpdate.value ?
           self.options.sitecoreUpdate.value :
           self.options.sitecoreUpdate
         ).vagrantBoxName;
 	    
-		self.options.solutionNameUri = self.options.solutionName.replace(/[^a-z0-9\-]/ig, '-');
+		    self.options.solutionNameUri = self.options.solutionName.replace(/[^a-z0-9\-]/ig, '-');
 		
         self.async();
       });
@@ -93,7 +98,7 @@ module.exports = class HelixGenerator extends Generator {
 
     self.options.solutionSettings = JSON.stringify({
       solutionName: self.options.solutionName,
-	  solutionNameUri: self.options.solutionNameUri,
+	    solutionNameUri: self.options.solutionNameUri,
       sitecoreVersion: self.options.sitecoreVersion,
       sitecoreUpdate: self.options.sitecoreUpdate,
     });
@@ -120,7 +125,7 @@ module.exports = class HelixGenerator extends Generator {
       ],
     };
 
-    self.fs.copy(self.templatePath('**/*'), self.destinationPath(), {
+    self.fs.copy(self.templatePath('**/*'), self.destinationPath(self.options.solutionName), {
       globOptions,
       process: function (content, path) {
         if (typeof content === 'undefined') {
@@ -133,12 +138,18 @@ module.exports = class HelixGenerator extends Generator {
 
         var result = self._replaceTokens(content, self.options);
 
-        self.options.nuget.forEach((id) => {
-          result = result.replace(new RegExp(utils.escapeRegExp(id.old), 'g'), id.new);
-        });
+        if (self.options.nuget) {
+          self.options.nuget.forEach((id) => {
+            result = result.replace(new RegExp(utils.escapeRegExp(id.old), 'g'), id.new);
+          });
+        }
 
-        replacements[self.options.sitecoreUpdate.name].forEach((pair) => {
-          result = result.replace(new RegExp(utils.escapeRegExp(pair.old), 'g'), pair.new);
+        replacements[self.options.sitecoreUpdate.name].forEach((replacement) => {
+          if (replacement.filePartsFilter && path.includes(replacement.filePartsFilter)) {
+            result = result.replace(replacement.old, replacement.new);
+          } else if (!replacement.filePartsFilter) {
+            result = result.replace(new RegExp(utils.escapeRegExp(replacement.old), 'g'), replacement.new);
+          }
         });
 
         // scope to modifications of rainbow YAML fils only

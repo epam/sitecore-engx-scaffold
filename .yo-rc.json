@@ -1,0 +1,9 @@
+{
+  "generator-node": {
+    "promptValues": {
+      "authorName": "EPAM",
+      "authorEmail": "epam@epam.com",
+      "authorUrl": ""
+    }
+  }
+}

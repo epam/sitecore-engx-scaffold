@@ -33,6 +33,7 @@ As Sitecore is pretty heavy system you should have around **i5+ with 4+ logical 
     2. [Manual]
         * Clone repository or update to current version, if you have it already.
         * In repository root following run Powershell (as Administrator) command `npm link`
+		* when a problems with npm link: https://catalin.me/how-to-fix-node-js-gyp-err-cant-find-python-executable-python-on-windows/
 3. Navigate to a location where you usually store your projects. Create a directory with a customer name (by default folder name would be used as a solution name. Do not include spaces or any special characters in it)
 4. Inside the folder run following PS command (again as Administrator) and follow instructions of the generator.
 

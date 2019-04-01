@@ -3,5 +3,565 @@
     "Sitecore Experience Platform 9.0 rev. 180604 (9.0 Update-2)": [{
         "old": "<assemblyIdentity name=\"System.Interactive.Async\" publicKeyToken=\"94bc3704cddfc263\" culture=\"neutral\" ",
         "new": "<assemblyIdentity name=\"System.ComponentModel.TypeConverter\" publicKeyToken=\"b03f5f7f11d50a3a\"\n           xmlns=\"urn:schemas-microsoft-com:asm.v1\"/>\n        <bindingRedirect oldVersion=\"4.0.0.0\" newVersion=\"4.1.0.0\" \n          xmlns=\"urn:schemas-microsoft-com:asm.v1\"/>\n      </dependentAssembly>\n      <dependentAssembly>\n        <assemblyIdentity name=\"System.Interactive.Async\" publicKeyToken=\"94bc3704cddfc263\" culture=\"neutral\""
-    }]
+    }],
+    "Sitecore.NET 9.1.0 (rev. 001564)": [
+        {
+            "old": "<TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>",
+            "new": "<TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>"
+        },
+        {
+            "old": "<Reference Include=\"System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL\">",
+            "new": "<Reference Include=\"System.Net.Http.Formatting\">"
+        },
+        {
+            "old": "<HintPath>..\\..\\..\\packages\\Microsoft.AspNet.WebApi.Client.5.2.3\\lib\\net45\\System.Net.Http.Formatting.dll</HintPath>",
+            "new": "<HintPath>..\\..\\..\\packages\\Microsoft.AspNet.WebApi.Client.5.2.6\\lib\\net45\\System.Net.Http.Formatting.dll</HintPath>"
+        },
+        {
+            "old": "<Reference Include=\"System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL\">",
+            "new": "<Reference Include=\"System.Web.Helpers\">"
+        },
+        {
+            "old": "<HintPath>..\\..\\..\\packages\\Microsoft.AspNet.WebPages.3.2.3\\lib\\net45\\System.Web.Helpers.dll</HintPath>",
+            "new": "<HintPath>..\\..\\..\\packages\\Microsoft.AspNet.WebPages.3.2.6\\lib\\net45\\System.Web.Helpers.dll</HintPath>"
+        },
+        {
+            "old": "<Reference Include=\"System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL\">",
+            "new": "<Reference Include=\"System.Web.Http\">"
+        },
+        {
+            "old": "<HintPath>..\\..\\..\\packages\\Microsoft.AspNet.WebApi.Core.5.2.3\\lib\\net45\\System.Web.Http.dll</HintPath>",
+            "new": "<HintPath>..\\..\\..\\packages\\Microsoft.AspNet.WebApi.Core.5.2.6\\lib\\net45\\System.Web.Http.dll</HintPath>"
+        },
+        {
+            "old": "<Reference Include=\"System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL\">",
+            "new": "<Reference Include=\"System.Web.Mvc\">"
+        },
+        {
+            "old": "<HintPath>..\\..\\..\\packages\\Microsoft.AspNet.Mvc.5.2.3\\lib\\net45\\System.Web.Mvc.dll</HintPath>",
+            "new": "<HintPath>..\\..\\..\\packages\\Microsoft.AspNet.Mvc.5.2.4\\lib\\net45\\System.Web.Mvc.dll</HintPath>"
+        },
+        {
+            "old": "<Reference Include=\"System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL\">",
+            "new": "<Reference Include=\"System.Web.Razor\">"
+        },
+        {
+            "old": "<HintPath>..\\..\\..\\packages\\Microsoft.AspNet.Razor.3.2.3\\lib\\net45\\System.Web.Razor.dll</HintPath>",
+            "new": "<HintPath>..\\..\\..\\packages\\Microsoft.AspNet.Razor.3.2.6\\lib\\net45\\System.Web.Razor.dll</HintPath>"
+        },
+        {
+            "old": "<Reference Include=\"System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL\">",
+            "new": "<Reference Include=\"System.Web.WebPages\">"
+        },
+        {
+            "old": "<HintPath>..\\..\\..\\packages\\Microsoft.AspNet.WebPages.3.2.3\\lib\\net45\\System.Web.WebPages.dll</HintPath>",
+            "new": "<HintPath>..\\..\\..\\packages\\Microsoft.AspNet.WebPages.3.2.6\\lib\\net45\\System.Web.WebPages.dll</HintPath>"
+        },
+        {
+            "old": "<Reference Include=\"System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL\">",
+            "new": "<Reference Include=\"System.Web.WebPages.Deployment\">"
+        },
+        {
+            "old": "<HintPath>..\\..\\..\\packages\\Microsoft.AspNet.WebPages.3.2.3\\lib\\net45\\System.Web.WebPages.Deployment.dll</HintPath>",
+            "new": "<HintPath>..\\..\\..\\packages\\Microsoft.AspNet.WebPages.3.2.6\\lib\\net45\\System.Web.WebPages.Deployment.dll</HintPath>"
+        },
+        {
+            "old": "<Reference Include=\"System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL\">",
+            "new": "<Reference Include=\"System.Web.WebPages.Razor\">"
+        },
+        {
+            "old": "<HintPath>..\\..\\..\\packages\\Microsoft.AspNet.WebPages.3.2.3\\lib\\net45\\System.Web.WebPages.Razor.dll</HintPath>",
+            "new": "<HintPath>..\\..\\..\\packages\\Microsoft.AspNet.WebPages.3.2.6\\lib\\net45\\System.Web.WebPages.Razor.dll</HintPath>"
+        },
+        {
+            "old": "<Reference Include=\"Microsoft.Extensions.DependencyInjection, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL\">",
+            "new": "<Reference Include=\"Microsoft.Extensions.DependencyInjection\">"
+        },
+        {
+            "old": "<HintPath>..\\..\\..\\packages\\Microsoft.Extensions.DependencyInjection.1.0.0\\lib\\netstandard1.1\\Microsoft.Extensions.DependencyInjection.dll</HintPath>",
+            "new": "<HintPath>..\\..\\..\\packages\\Microsoft.Extensions.DependencyInjection.2.1.1\\lib\\net461\\Microsoft.Extensions.DependencyInjection.dll</HintPath>"
+        },
+        {
+            "old": "<Reference Include=\"Microsoft.Extensions.DependencyInjection.Abstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL\">",
+            "new": "<Reference Include=\"Microsoft.Extensions.DependencyInjection.Abstractions\">"
+        },
+        {
+            "old": "<HintPath>..\\..\\..\\packages\\Microsoft.Extensions.DependencyInjection.Abstractions.1.0.0\\lib\\netstandard1.0\\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>",
+            "new": "<HintPath>..\\..\\..\\packages\\Microsoft.Extensions.DependencyInjection.Abstractions.2.1.1\\lib\\netstandard2.0\\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>"
+        },
+        {
+            "old": "<Reference Include=\"Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL\">",
+            "new": "<Reference Include=\"Microsoft.Web.Infrastructure\">"
+        },
+        {
+            "old": "<Reference Include=\"Microsoft.Win32.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL\">",
+            "new": "<Reference Include=\"Microsoft.Win32.Primitives\">"
+        },
+        {
+            "old": "<Reference Include=\"Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL\">",
+            "new": "<Reference Include=\"Newtonsoft.Json\">"
+        },
+        {
+            "old": "<HintPath>..\\..\\..\\packages\\Newtonsoft.Json.9.0.1\\lib\\net45\\Newtonsoft.Json.dll</HintPath>",
+            "new": "<HintPath>..\\..\\..\\packages\\Newtonsoft.Json.11.0.2\\lib\\net45\\Newtonsoft.Json.dll</HintPath>"
+        },
+        {
+            "old": "<Reference Include=\"Sitecore.FakeDb, Version=1.7.2.0, Culture=neutral, processorArchitecture=MSIL\">",
+            "new": "<Reference Include=\"Sitecore.FakeDb\">"
+        },
+        {
+            "old": "<HintPath>..\\..\\..\\packages\\Sitecore.FakeDb.1.7.2\\lib\\net45\\Sitecore.FakeDb.dll</HintPath>",
+            "new": "<HintPath>..\\..\\..\\packages\\Sitecore.FakeDb.1.7.4\\lib\\net45\\Sitecore.FakeDb.dll</HintPath>"
+        },
+        {
+            "old": "<Reference Include=\"Sitecore.Kernel, Version=11.1.0.0, Culture=neutral, processorArchitecture=MSIL\">",
+            "new": "<Reference Include=\"Sitecore.Kernel\">"
+        },
+        {
+            "old": "<HintPath>..\\..\\..\\packages\\Sitecore.Kernel.NoReferences.9.0.171219\\lib\\NET462\\Sitecore.Kernel.dll</HintPath>",
+            "new": "<HintPath>..\\..\\..\\packages\\Sitecore.Kernel.12.0.0\\lib\\net471\\Sitecore.Kernel.dll</HintPath>"
+        },
+        {
+            "old": "<Reference Include=\"Glass.Mapper, Version=5.0.8.0, Culture=neutral, processorArchitecture=MSIL\">",
+            "new": "<Reference Include=\"Glass.Mapper\">"
+        },
+        {
+            "old": "<HintPath>..\\..\\..\\packages\\Glass.Mapper.Sc.90.Core.5.0.8\\lib\\net462\\Glass.Mapper.dll</HintPath>",
+            "new": "<HintPath>..\\..\\..\\packages\\Glass.Mapper.Sc.91.Core.5.3.15\\lib\\net471\\Glass.Mapper.dll</HintPath>"
+        },
+        {
+            "old": "<Reference Include=\"Glass.Mapper.Sc, Version=5.0.8.0, Culture=neutral, processorArchitecture=MSIL\">",
+            "new": "<Reference Include=\"Glass.Mapper.Sc\">"
+        },
+        {
+            "old": "<HintPath>..\\..\\..\\packages\\Glass.Mapper.Sc.90.Core.5.0.8\\lib\\net462\\Glass.Mapper.Sc.dll</HintPath>",
+            "new": "<HintPath>..\\..\\..\\packages\\Glass.Mapper.Sc.91.Core.5.3.15\\lib\\net471\\Glass.Mapper.Sc.dll</HintPath>"
+        },
+        {
+            "old": "<Reference Include=\"Glass.Mapper.Sc.Mvc, Version=5.0.8.0, Culture=neutral, processorArchitecture=MSIL\">",
+            "new": "<Reference Include=\"Glass.Mapper.Sc.Mvc\">"
+        },
+        {
+            "old": "<HintPath>..\\..\\..\\packages\\Glass.Mapper.Sc.90.Mvc.5.0.8\\lib\\net462\\Glass.Mapper.Sc.Mvc.dll</HintPath>",
+            "new": "<HintPath>..\\..\\..\\packages\\Glass.Mapper.Sc.91.Mvc.5.3.15\\lib\\net471\\Glass.Mapper.Sc.Mvc.dll</HintPath>"
+        },
+        {
+            "filePartsFilter": "SolutionX.Foundation.GlassMapper.csproj",
+            "old": "<Reference Include=\"System.Xml.Linq\" />",
+            "new": "<Reference Include=\"System.Xml.Linq\" />\n<Reference Include=\"Microsoft.Practices.EnterpriseLibrary.Common\">\n<HintPath>..\\..\\..\\packages\\EnterpriseLibrary.Common.6.0.1304.0\\lib\\NET45\\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>\n</Reference>\n<Reference Include=\"Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling\">\n<HintPath>..\\..\\..\\packages\\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\\lib\\portable-net45+win+wp8\\Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.dll</HintPath>\n</Reference>\n<Reference Include=\"Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Caching\">\n<HintPath>..\\..\\..\\packages\\EnterpriseLibrary.TransientFaultHandling.Caching.6.0.1304.0\\lib\\NET45\\Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Caching.dll</HintPath>\n</Reference>\n<Reference Include=\"Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration\">\n<HintPath>..\\..\\..\\packages\\EnterpriseLibrary.TransientFaultHandling.Configuration.6.0.1304.0\\lib\\NET45\\Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.dll</HintPath>\n</Reference>\n<Reference Include=\"Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Data\">\n<HintPath>..\\..\\..\\packages\\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\\lib\\NET45\\Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Data.dll</HintPath>\n</Reference>\n<Reference Include=\"Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.ServiceBus\">\n<HintPath>..\\..\\..\\packages\\EnterpriseLibrary.TransientFaultHandling.ServiceBus.6.0.1304.0\\lib\\NET45\\Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.ServiceBus.dll</HintPath>\n</Reference>\n<Reference Include=\"Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.WindowsAzure.Storage\">\n<HintPath>..\\..\\..\\packages\\EnterpriseLibrary.TransientFaultHandling.WindowsAzure.Storage.6.0.1304.0\\lib\\NET45\\Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.WindowsAzure.Storage.dll</HintPath>\n</Reference><Reference Include=\"System.Data.DataSetExtensions\" />\n<Reference Include=\"System.Web.ApplicationServices\" />\n<Reference Include=\"System.Web.DynamicData\" />\n<Reference Include=\"System.Web.Entity\" />\n<Reference Include=\"System.Web.Extensions\" />"
+        },
+        {
+            "filePartsFilter": "SolutionX.Foundation.Serialization.csproj",
+            "old": "<Reference Include=\"System\" />",
+            "new": "<Reference Include=\"System\" />\n<Reference Include=\"System.Data.DataSetExtensions\" />\n<Reference Include=\"System.Web.ApplicationServices\" />\n<Reference Include=\"System.Web.DynamicData\" />\n<Reference Include=\"System.Web.Entity\" />\n<Reference Include=\"System.Web.Extensions\" />\n<Reference Include=\"System.Xml.Linq\"/>"
+        },
+        {
+            "old": "<package id=\"Microsoft.AspNet.Mvc\" version=\"5.2.3\" targetFramework=\"net462\" />",
+            "new": "<package id=\"Microsoft.AspNet.Mvc\" version=\"5.2.4\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"Microsoft.AspNet.Razor\" version=\"3.2.3\" targetFramework=\"net462\" />",
+            "new": "<package id=\"Microsoft.AspNet.Razor\" version=\"3.2.6\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"Microsoft.AspNet.WebApi.Client\" version=\"5.2.3\" targetFramework=\"net462\" />",
+            "new": "<package id=\"Microsoft.AspNet.WebApi.Client\" version=\"5.2.6\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"Microsoft.AspNet.WebApi.Core\" version=\"5.2.3\" targetFramework=\"net462\" />",
+            "new": "<package id=\"Microsoft.AspNet.WebApi.Core\" version=\"5.2.6\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"Microsoft.AspNet.WebPages\" version=\"3.2.3\" targetFramework=\"net462\" />",
+            "new": "<package id=\"Microsoft.AspNet.WebPages\" version=\"3.2.6\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"Microsoft.Extensions.DependencyInjection\" version=\"1.0.0\" targetFramework=\"net462\" />",
+            "new": "<package id=\"Microsoft.Extensions.DependencyInjection\" version=\"2.1.1\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"Microsoft.Extensions.DependencyInjection.Abstractions\" version=\"1.0.0\" targetFramework=\"net462\" />",
+            "new": "<package id=\"Microsoft.Extensions.DependencyInjection.Abstractions\" version=\"2.1.1\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"Microsoft.NETCore.Platforms\" version=\"1.1.0\" targetFramework=\"net462\" />",
+            "new": "<package id=\"Microsoft.NETCore.Platforms\" version=\"1.1.0\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"Microsoft.Web.Infrastructure\" version=\"1.0.0.0\" targetFramework=\"net462\" />",
+            "new": "<package id=\"Microsoft.Web.Infrastructure\" version=\"1.0.0.0\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"Microsoft.Win32.Primitives\" version=\"4.0.1\" targetFramework=\"net462\" />",
+            "new": "<package id=\"Microsoft.Win32.Primitives\" version=\"4.0.1\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"NETStandard.Library\" version=\"2.0.0\" targetFramework=\"net462\" />",
+            "new": "<package id=\"NETStandard.Library\" version=\"2.0.0\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"Newtonsoft.Json\" version=\"9.0.1\" targetFramework=\"net462\" />",
+            "new": "<package id=\"Newtonsoft.Json\" version=\"11.0.2\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"Sitecore.Kernel.NoReferences\" version=\"9.0.171219\" targetFramework=\"net462\" developmentDependency=\"true\" />",
+            "new": "<package id=\"Sitecore.Kernel\" version=\"12.0.0\" targetFramework=\"net471\" developmentDependency=\"true\" />"
+        },
+        {
+            "old": "<package id=\"System.AppContext\" version=\"4.1.0\" targetFramework=\"net462\" />",
+            "new": "<package id=\"System.AppContext\" version=\"4.1.0\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"System.Collections\" version=\"4.0.11\" targetFramework=\"net462\" />",
+            "new": "<package id=\"System.Collections\" version=\"4.0.11\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"System.Collections.Concurrent\" version=\"4.0.12\" targetFramework=\"net462\" />",
+            "new": "<package id=\"System.Collections.Concurrent\" version=\"4.0.12\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"System.ComponentModel\" version=\"4.0.1\" targetFramework=\"net462\" />",
+            "new": "<package id=\"System.ComponentModel\" version=\"4.0.1\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"System.Console\" version=\"4.0.1\" targetFramework=\"net462\" />",
+            "new": "<package id=\"System.Console\" version=\"4.0.1\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"System.Diagnostics.Debug\" version=\"4.0.11\" targetFramework=\"net462\" />",
+            "new": "<package id=\"System.Diagnostics.Debug\" version=\"4.0.11\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"System.Diagnostics.DiagnosticSource\" version=\"4.0.0\" targetFramework=\"net462\" />",
+            "new": "<package id=\"System.Diagnostics.DiagnosticSource\" version=\"4.0.0\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"System.Diagnostics.Tools\" version=\"4.0.1\" targetFramework=\"net462\" />",
+            "new": "<package id=\"System.Diagnostics.Tools\" version=\"4.0.1\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"System.Diagnostics.Tracing\" version=\"4.1.0\" targetFramework=\"net462\" />",
+            "new": "<package id=\"System.Diagnostics.Tracing\" version=\"4.1.0\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"System.Globalization\" version=\"4.0.11\" targetFramework=\"net462\" />",
+            "new": "<package id=\"System.Globalization\" version=\"4.0.11\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"System.Globalization.Calendars\" version=\"4.0.1\" targetFramework=\"net462\" />",
+            "new": "<package id=\"System.Globalization.Calendars\" version=\"4.0.1\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"System.IO\" version=\"4.1.0\" targetFramework=\"net462\" />",
+            "new": "<package id=\"System.IO\" version=\"4.1.0\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"System.IO.Compression\" version=\"4.1.0\" targetFramework=\"net462\" />",
+            "new": "<package id=\"System.IO.Compression\" version=\"4.1.0\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"System.IO.Compression.ZipFile\" version=\"4.0.1\" targetFramework=\"net462\" />",
+            "new": "<package id=\"System.IO.Compression.ZipFile\" version=\"4.0.1\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"System.IO.FileSystem\" version=\"4.0.1\" targetFramework=\"net462\" />",
+            "new": "<package id=\"System.IO.FileSystem\" version=\"4.0.1\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"System.IO.FileSystem.Primitives\" version=\"4.0.1\" targetFramework=\"net462\" />",
+            "new": "<package id=\"System.IO.FileSystem.Primitives\" version=\"4.0.1\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"System.Linq\" version=\"4.1.0\" targetFramework=\"net462\" />",
+            "new": "<package id=\"System.Linq\" version=\"4.1.0\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"System.Linq.Expressions\" version=\"4.1.0\" targetFramework=\"net462\" />",
+            "new": "<package id=\"System.Linq.Expressions\" version=\"4.1.0\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"System.Net.Http\" version=\"4.1.3\" targetFramework=\"net462\" />",
+            "new": "<package id=\"System.Net.Http\" version=\"4.1.3\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"System.Net.Primitives\" version=\"4.0.11\" targetFramework=\"net462\" />",
+            "new": "<package id=\"System.Net.Primitives\" version=\"4.0.11\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"System.Net.Sockets\" version=\"4.1.0\" targetFramework=\"net462\" />",
+            "new": "<package id=\"System.Net.Sockets\" version=\"4.1.0\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"System.ObjectModel\" version=\"4.0.12\" targetFramework=\"net462\" />",
+            "new": "<package id=\"System.ObjectModel\" version=\"4.0.12\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"System.Reflection\" version=\"4.1.0\" targetFramework=\"net462\" />",
+            "new": "<package id=\"System.Reflection\" version=\"4.1.0\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"System.Reflection.Extensions\" version=\"4.0.1\" targetFramework=\"net462\" />",
+            "new": "<package id=\"System.Reflection.Extensions\" version=\"4.0.1\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"System.Reflection.Primitives\" version=\"4.0.1\" targetFramework=\"net462\" />",
+            "new": "<package id=\"System.Reflection.Primitives\" version=\"4.0.1\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"System.Resources.ResourceManager\" version=\"4.0.1\" targetFramework=\"net462\" />",
+            "new": "<package id=\"System.Resources.ResourceManager\" version=\"4.0.1\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"System.Runtime\" version=\"4.1.0\" targetFramework=\"net462\" />",
+            "new": "<package id=\"System.Runtime\" version=\"4.1.0\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"System.Runtime.Extensions\" version=\"4.1.0\" targetFramework=\"net462\" />",
+            "new": "<package id=\"System.Runtime.Extensions\" version=\"4.1.0\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"System.Runtime.Handles\" version=\"4.0.1\" targetFramework=\"net462\" />",
+            "new": "<package id=\"System.Runtime.Handles\" version=\"4.0.1\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"System.Runtime.InteropServices\" version=\"4.1.0\" targetFramework=\"net462\" />",
+            "new": "<package id=\"System.Runtime.InteropServices\" version=\"4.1.0\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"System.Runtime.InteropServices.RuntimeInformation\" version=\"4.0.0\" targetFramework=\"net462\" />",
+            "new": "<package id=\"System.Runtime.InteropServices.RuntimeInformation\" version=\"4.0.0\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"System.Runtime.Numerics\" version=\"4.0.1\" targetFramework=\"net462\" />",
+            "new": "<package id=\"System.Runtime.Numerics\" version=\"4.0.1\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"System.Security.Cryptography.Algorithms\" version=\"4.2.1\" targetFramework=\"net462\" />",
+            "new": "<package id=\"System.Security.Cryptography.Algorithms\" version=\"4.2.1\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"System.Security.Cryptography.Encoding\" version=\"4.0.0\" targetFramework=\"net462\" />",
+            "new": "<package id=\"System.Security.Cryptography.Encoding\" version=\"4.0.0\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"System.Security.Cryptography.Primitives\" version=\"4.0.0\" targetFramework=\"net462\" />",
+            "new": "<package id=\"System.Security.Cryptography.Primitives\" version=\"4.0.0\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"System.Security.Cryptography.X509Certificates\" version=\"4.1.2\" targetFramework=\"net462\" />",
+            "new": "<package id=\"System.Security.Cryptography.X509Certificates\" version=\"4.1.2\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"System.Text.Encoding\" version=\"4.0.11\" targetFramework=\"net462\" />",
+            "new": "<package id=\"System.Text.Encoding\" version=\"4.0.11\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"System.Text.Encoding.Extensions\" version=\"4.0.11\" targetFramework=\"net462\" />",
+            "new": "<package id=\"System.Text.Encoding.Extensions\" version=\"4.0.11\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"System.Text.RegularExpressions\" version=\"4.1.0\" targetFramework=\"net462\" />",
+            "new": "<package id=\"System.Text.RegularExpressions\" version=\"4.1.0\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"System.Threading\" version=\"4.0.11\" targetFramework=\"net462\" />",
+            "new": "<package id=\"System.Threading\" version=\"4.0.11\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"System.Threading.Tasks\" version=\"4.0.11\" targetFramework=\"net462\" />",
+            "new": "<package id=\"System.Threading.Tasks\" version=\"4.0.11\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"System.Threading.Timer\" version=\"4.0.1\" targetFramework=\"net462\" />",
+            "new": "<package id=\"System.Threading.Timer\" version=\"4.0.1\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"System.Xml.ReaderWriter\" version=\"4.0.12\" targetFramework=\"net462\" />",
+            "new": "<package id=\"System.Xml.ReaderWriter\" version=\"4.0.12\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"System.Xml.XDocument\" version=\"4.0.11\" targetFramework=\"net462\" />",
+            "new": "<package id=\"System.Xml.XDocument\" version=\"4.0.11\" targetFramework=\"net471\" />"
+        },
+        {
+            "filePartsFilter": "\\DependencyInjection\\code\\packages.config",
+            "old": "</packages>",
+            "new": "<package id=\"Microsoft.AspNet.Web.Optimization\" version=\"1.1.3\" targetFramework=\"net471\" />\n<package id=\"Microsoft.AspNet.WebApi\" version=\"5.2.6\" targetFramework=\"net471\" />\n<package id=\"Microsoft.AspNet.WebApi.WebHost\" version=\"5.2.6\" targetFramework=\"net471\" />\n</packages>"
+        },
+        {
+            "old": "<package id=\"Configy\" version=\"1.0.0\" targetFramework=\"net462\" />",
+            "new": "<package id=\"Configy\" version=\"1.0.0\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"Kamsar.WebConsole\" version=\"2.0.1\" targetFramework=\"net462\" />",
+            "new": "<package id=\"Kamsar.WebConsole\" version=\"2.0.1\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"MicroCHAP\" version=\"1.2.2.2\" targetFramework=\"net462\" />",
+            "new": "<package id=\"MicroCHAP\" version=\"1.2.2.2\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"Rainbow.Core\" version=\"2.0.2\" targetFramework=\"net462\" />",
+            "new": "<package id=\"Rainbow.Core\" version=\"2.0.2\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"Rainbow.Storage.Sc\" version=\"2.0.2\" targetFramework=\"net462\" />",
+            "new": "<package id=\"Rainbow.Storage.Sc\" version=\"2.0.2\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"Rainbow.Storage.Yaml\" version=\"2.0.2\" targetFramework=\"net462\" />",
+            "new": "<package id=\"Rainbow.Storage.Yaml\" version=\"2.0.2\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"Unicorn.Core\" version=\"4.0.4\" targetFramework=\"net462\" />",
+            "new": "<package id=\"Unicorn.Core\" version=\"4.0.4\" targetFramework=\"net471\" />"
+        },
+        {
+            "filePartsFilter": "\\GlassMapper\\code\\packages.config",
+            "old": "</packages>",
+            "new": "<package id=\"EnterpriseLibrary.Common\" version=\"6.0.1304.0\" targetFramework=\"net471\" />\n<package id=\"EnterpriseLibrary.TransientFaultHandling\" version=\"6.0.1304.0\" targetFramework=\"net471\" />\n<package id=\"EnterpriseLibrary.TransientFaultHandling.Caching\" version=\"6.0.1304.0\" targetFramework=\"net471\" />\n<package id=\"EnterpriseLibrary.TransientFaultHandling.Configuration\" version=\"6.0.1304.0\" targetFramework=\"net471\" />\n<package id=\"EnterpriseLibrary.TransientFaultHandling.Data\" version=\"6.0.1304.1\" targetFramework=\"net471\" />\n<package id=\"EnterpriseLibrary.TransientFaultHandling.ServiceBus\" version=\"6.0.1304.0\" targetFramework=\"net471\" />\n<package id=\"EnterpriseLibrary.TransientFaultHandling.WindowsAzure.Storage\" version=\"6.0.1304.0\" targetFramework=\"net471\" />\n</packages>"
+        },
+        {
+            "old": "<package id=\"StyleCop.MSBuild\" version=\"5.0.0\" targetFramework=\"net462\" developmentDependency=\"true\" />",
+            "new": "<package id=\"StyleCop.MSBuild\" version=\"5.0.0\" targetFramework=\"net471\" developmentDependency=\"true\" />"
+        },
+        {
+            "old": "<package id=\"Castle.Core\" version=\"4.3.1\" targetFramework=\"net462\" />",
+            "new": "<package id=\"Castle.Core\" version=\"4.3.1\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"Glass.Mapper.Sc.90\" version=\"5.0.8\" targetFramework=\"net462\" />",
+            "new": "<package id=\"Glass.Mapper.Sc.91\" version=\"5.3.15\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"Glass.Mapper.Sc.90.Core\" version=\"5.0.8\" targetFramework=\"net462\" />",
+            "new": "<package id=\"Glass.Mapper.Sc.91.Core\" version=\"5.3.15\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"Glass.Mapper.Sc.90.Mvc\" version=\"5.0.8\" targetFramework=\"net462\" />",
+            "new": "<package id=\"Glass.Mapper.Sc.91.Mvc\" version=\"5.3.15\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"Microsoft.Extensions.Configuration\" version=\"1.0.0\" targetFramework=\"net462\" />",
+            "new": "<package id=\"Microsoft.Extensions.Configuration\" version=\"1.0.0\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"Microsoft.Extensions.Configuration.Abstractions\" version=\"1.0.0\" targetFramework=\"net462\" />",
+            "new": "<package id=\"Microsoft.Extensions.Configuration.Abstractions\" version=\"1.0.0\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"Microsoft.Extensions.Configuration.FileExtensions\" version=\"1.0.0\" targetFramework=\"net462\" />",
+            "new": "<package id=\"Microsoft.Extensions.Configuration.FileExtensions\" version=\"1.0.0\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"Microsoft.Extensions.FileProviders.Abstractions\" version=\"1.0.0\" targetFramework=\"net462\" />",
+            "new": "<package id=\"Microsoft.Extensions.FileProviders.Abstractions\" version=\"1.0.0\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"Microsoft.Extensions.FileProviders.Physical\" version=\"1.0.0\" targetFramework=\"net462\" />",
+            "new": "<package id=\"Microsoft.Extensions.FileProviders.Physical\" version=\"1.0.0\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"Microsoft.Extensions.FileSystemGlobbing\" version=\"1.0.0\" targetFramework=\"net462\" />",
+            "new": "<package id=\"Microsoft.Extensions.FileSystemGlobbing\" version=\"1.0.0\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"Microsoft.Extensions.Logging.Abstractions\" version=\"1.0.0\" targetFramework=\"net462\" />",
+            "new": "<package id=\"Microsoft.Extensions.Logging.Abstractions\" version=\"1.0.0\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"Microsoft.Extensions.Primitives\" version=\"1.0.0\" targetFramework=\"net462\" />",
+            "new": "<package id=\"Microsoft.Extensions.Primitives\" version=\"1.0.0\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"Moq\" version=\"4.10.0\" targetFramework=\"net462\" />",
+            "new": "<package id=\"Moq\" version=\"4.10.0\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"NSubstitute\" version=\"1.10.0.0\" targetFramework=\"net462\" />",
+            "new": "<package id=\"NSubstitute\" version=\"1.10.0.0\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"Sitecore.FakeDb\" version=\"1.7.2\" targetFramework=\"net462\" />",
+            "new": "<package id=\"Sitecore.FakeDb\" version=\"1.7.4\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"System.Collections.NonGeneric\" version=\"4.0.1\" targetFramework=\"net462\" />",
+            "new": "<package id=\"System.Collections.NonGeneric\" version=\"4.0.1\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"System.ComponentModel.Primitives\" version=\"4.1.0\" targetFramework=\"net462\" />",
+            "new": "<package id=\"System.ComponentModel.Primitives\" version=\"4.1.0\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"System.ComponentModel.TypeConverter\" version=\"4.1.0\" targetFramework=\"net462\" />",
+            "new": "<package id=\"System.ComponentModel.TypeConverter\" version=\"4.1.0\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"xunit\" version=\"2.3.1\" targetFramework=\"net462\" />",
+            "new": "<package id=\"xunit\" version=\"2.3.1\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"xunit.abstractions\" version=\"2.0.1\" targetFramework=\"net462\" />",
+            "new": "<package id=\"xunit.abstractions\" version=\"2.0.1\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"xunit.analyzers\" version=\"0.8.0\" targetFramework=\"net462\" />",
+            "new": "<package id=\"xunit.analyzers\" version=\"0.8.0\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"xunit.assert\" version=\"2.3.1\" targetFramework=\"net462\" />",
+            "new": "<package id=\"xunit.assert\" version=\"2.3.1\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"xunit.core\" version=\"2.3.1\" targetFramework=\"net462\" />",
+            "new": "<package id=\"xunit.core\" version=\"2.3.1\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"xunit.extensibility.core\" version=\"2.3.1\" targetFramework=\"net462\" />",
+            "new": "<package id=\"xunit.extensibility.core\" version=\"2.3.1\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"xunit.extensibility.execution\" version=\"2.3.1\" targetFramework=\"net462\" />",
+            "new": "<package id=\"xunit.extensibility.execution\" version=\"2.3.1\" targetFramework=\"net471\" />"
+        },
+        {
+            "old": "<package id=\"xunit.runner.console\" version=\"2.3.1\" targetFramework=\"net462\" developmentDependency=\"true\" />",
+            "new": "<package id=\"xunit.runner.console\" version=\"2.3.1\" targetFramework=\"net471\" developmentDependency=\"true\" />"
+        },
+        {
+            "old": "<package id=\"xunit.runner.msbuild\" version=\"2.3.1\" targetFramework=\"net462\" developmentDependency=\"true\" />",
+            "new": "<package id=\"xunit.runner.msbuild\" version=\"2.3.1\" targetFramework=\"net471\" developmentDependency=\"true\" />"
+        },
+        {
+            "old": "<package id=\"xunit.runner.visualstudio\" version=\"2.3.1\" targetFramework=\"net462\" developmentDependency=\"true\" />",
+            "new": "<package id=\"xunit.runner.visualstudio\" version=\"2.3.1\" targetFramework=\"net471\" developmentDependency=\"true\" />"
+        },
+        {
+            "filePartsFilter": "\\DependencyInjection\\tests\\App.config",
+            "old": "</runtime>",
+            "new": "</runtime>\n<startup>\n<supportedRuntime version=\"v4.0\" sku=\".NETFramework,Version=v4.7.1\" />\n</startup>"
+        },
+        {
+            "filePartsFilter": "\\GlassMapper\\code\\web.config",
+            "old": "<compilation debug=\"true\" targetFramework=\"4.6.2\" />",
+            "new": "<compilation debug=\"true\" targetFramework=\"4.7.1\">\n<assemblies>\n<add assembly=\"netstandard, Version=2.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51\"/>\n</assemblies>\n</compilation>"
+        },
+        {
+            "old": "<compilation debug=\"true\" targetFramework=\"4.6.2\"/>",
+            "new": "<compilation debug=\"true\" targetFramework=\"4.7.1\"/>"
+        },
+        {
+            "old": "<httpRuntime targetFramework=\"4.6.2\" />",
+            "new": "<httpRuntime targetFramework=\"4.7.1\" />"
+        },
+        {
+            "old": "<httpRuntime targetFramework=\"4.6.2\"/>",
+            "new": "<httpRuntime targetFramework=\"4.7.1\" />"
+        },
+        {
+            "old": "<compilation debug=\"true\" targetFramework=\"4.6.2\" />",
+            "new": "<compilation debug=\"true\" targetFramework=\"4.7.1\" />"
+        }
+    ]
 }

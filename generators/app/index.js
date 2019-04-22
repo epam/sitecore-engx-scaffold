@@ -197,7 +197,6 @@ module.exports = class HelixGenerator extends Generator {
   }
 
   _copy(sourcePath, destinationPath, context, globOptions, customOptions) {
-
     this._baseCopy(sourcePath, destinationPath, context, globOptions, customOptions,
       (filePath, destPath) => {
         this.fs.copy(filePath, destPath, globOptions, context);

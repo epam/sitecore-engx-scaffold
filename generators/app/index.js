@@ -100,7 +100,6 @@ module.exports = class HelixGenerator extends Generator {
 
     // // Rename files
     // this.registerTransformStream(getRenameTransformStream(this.options));
-
     const globOptions = {
       dot: true,
       sync: true,
@@ -117,10 +116,12 @@ module.exports = class HelixGenerator extends Generator {
 
         // vs
         '**/.vs*/**/*',
+
+        '**/code/(Web|web|packages).config',
       ],
     };
 
-    self.fs.copy(self.templatePath('**/*'), self.destinationPath(), {
+    self.fs.copy(self.templatePath('**/*'), self.destinationPath(self.options.solutionName), {
       globOptions,
       process: function (content, path) {
         if (typeof content === 'undefined') {
@@ -162,6 +163,20 @@ module.exports = class HelixGenerator extends Generator {
         return self._replaceTokens(path, self.options);
       },
     });
+
+    self.fs.copyTpl(self.templatePath('**/code/(packages|Web|web).config'), self.destinationPath(self.options.solutionName),
+      { 
+        updateVersion: this.options.sitecoreUpdate.updateVersion,
+        majorVersion: this.options.sitecoreUpdate.majorVersion,
+        netFrameworkVersion: this.options.sitecoreUpdate.netFrameworkVersion,
+        kernelVersion: this.options.sitecoreUpdate.kernelVersion
+      },      
+      {
+        dot: true,
+        sync: true,
+        debug: true,
+      }
+    );
   }
 
   end() {

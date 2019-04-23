@@ -19,7 +19,7 @@ module.exports = [
     resolve: {
       extensions: ['.tsx', '.ts', '.js', '.css', '.less'],
       alias: {
-        dataprovideralias: path.resolve(process.cwd(), './Project/SolutionX/client/dataProvider/DataProvider.prod'),
+        dataprovideralias: path.resolve(process.cwd(), './Project/<%= solutionX %>/client/dataProvider/DataProvider.prod'),
         Foundation: path.resolve(process.cwd(), './Foundation/'),
         Project: path.resolve(process.cwd(), './Project/'),
         Feature: path.resolve(process.cwd(), './Feature/'),
@@ -100,10 +100,10 @@ module.exports = [
         tsconfig: './tsconfig.json',
         tslint: './tslint.json',
       }),
-      new ExtractTextPlugin('./Project/SolutionX/client/build/styles.css'),
+      new ExtractTextPlugin('./Project/<%= solutionX %>/client/build/styles.css'),
       new webpack.optimize.CommonsChunkPlugin({
         name: 'vendor.bundle',
-        filename: 'Project\\SolutionX\\client\\build\\vendor.bundle.js',
+        filename: 'Project\\<%= solutionX %>\\client\\build\\vendor.bundle.js',
         minChunks(module, count) {
           var context = module.context;
           return context && context.indexOf('node_modules') >= 0;
@@ -111,7 +111,7 @@ module.exports = [
       }),
       // new webpack.optimize.CommonsChunkPlugin({
       //   name: 'react.bundle',
-      //   filename: 'Project\\SolutionX\\client\\build\\react.bundle.js',
+      //   filename: 'Project\\<%= solutionX %>\\client\\build\\react.bundle.js',
       //   minChunks(module, count) {
       //     var context = module.context;
       //     return context && context.indexOf('node_modules') >= 0 && (context.indexOf('react') >= 0 || context.indexOf('redux') >= 0 || context.indexOf('saga') >= 0);
@@ -132,7 +132,7 @@ module.exports = [
   //   resolve: {
   //     extensions: ['.tsx', '.ts', '.js', '.css', '.less'],
   //     alias: {
-  //       dataprovideralias: path.resolve(process.cwd(), './Project/SolutionX/client/dataProvider/DataProvider.prod'),
+  //       dataprovideralias: path.resolve(process.cwd(), './Project/<%= solutionX %>/client/dataProvider/DataProvider.prod'),
   //       Foundation: path.resolve(process.cwd(), './Foundation/'),
   //       Project: path.resolve(process.cwd(), './Project/'),
   //       Feature: path.resolve(process.cwd(), './Feature/'),
@@ -181,15 +181,15 @@ module.exports = [
   //     }),
   //     new CopyWebpackPlugin([
   //       {
-  //         from: './Project/SolutionX/client/Assets/fonts/*',
-  //         to: './Project/SolutionX/client/build/fonts/',
+  //         from: './Project/<%= solutionX %>/client/Assets/fonts/*',
+  //         to: './Project/<%= solutionX %>/client/build/fonts/',
   //         flatten: true,
   //       },
   //     ]),
   //     new CopyWebpackPlugin([
   //       {
-  //         from: './Project/SolutionX/client/Assets/*.*',
-  //         to: './Project/SolutionX/client/build/',
+  //         from: './Project/<%= solutionX %>/client/Assets/*.*',
+  //         to: './Project/<%= solutionX %>/client/build/',
   //         flatten: true,
   //       },
   //     ]),

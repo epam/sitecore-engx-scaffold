@@ -10,7 +10,7 @@
           "nugetVersion": "9.0.171219",
           "vagrantBoxName": "w16s-sc901",
           "majorVersion": "9.0",
-          "updateVersion": "9.0.1",
+          "exactVersion": "9.0.1",
           "kernelVersion": "9.0.171219",
           "netFrameworkVersion": "4.6.2"
         }
@@ -22,7 +22,7 @@
           "nugetVersion": "9.0.180604",
           "vagrantBoxName": "w16s-sc902",
           "majorVersion": "9.0",
-          "updateVersion": "9.0.2",
+          "exactVersion": "9.0.2",
           "kernelVersion": "9.0.180604",
           "netFrameworkVersion": "4.6.2"
         }
@@ -40,7 +40,7 @@
           "nugetVersion": "",
           "vagrantBoxName": "w16s-sc91",
           "majorVersion": "9.1",
-          "updateVersion": "9.1",
+          "exactVersion": "9.1",
           "kernelVersion": "12.0.0",
           "netFrameworkVersion": "4.7.1"
         }

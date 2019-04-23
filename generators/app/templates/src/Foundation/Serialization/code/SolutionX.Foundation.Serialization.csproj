@@ -93,7 +93,7 @@
     <None Include="Web.config" />
   </ItemGroup>
     <ItemGroup>
-    <Content Include="App_Data/unicorn-SolutionUriX/**/*.*" />
+    <Content Include="App_Data/unicorn-<%= solutionUriX %>/**/*.*" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,0 +1,10 @@
+[
+    "**/code/bin/**/*.*",
+    "**/code/obj/**/*.*",
+    "**/*.user",
+
+    "**/src/packages/**/*",
+    "**/src/node_modules/**/*",
+
+    "**/.vs*/**/*"
+]

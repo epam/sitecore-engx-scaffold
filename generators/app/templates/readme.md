@@ -1,4 +1,4 @@
-# SolutionX solution
+# <%= solutionX %> solution
 
 ## Prerequisites
 
@@ -37,7 +37,7 @@ cd ./src
 _\*\*\* NOTE: You might need to manually install some packages in case of errors with automation. Do following steps and restart step 6 above._
 
 1.  Download package
-1.  Log in to a site http://SolutionX-local.azurewebsites.net/sitecore/shell or http://SolutionX.local and install the package.
+1.  Log in to a site http://<%= solutionX %>-local.azurewebsites.net/sitecore/shell or http://<%= solutionX %>.local and install the package.
     _Note: after installation, you might need to manually update `web.config` with package specific assembly redirects._
 
 #### Using vagrant box

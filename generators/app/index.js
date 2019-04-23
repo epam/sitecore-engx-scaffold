@@ -8,9 +8,9 @@ const path = require('path');
 
 const utils = require('../../lib/utils.js');
 
+const baseIgnore = require('../../config/ignore.json');
 const msg = require('../../config/messages.json');
 const versions = require('../../config/versions.json');
-const replacements = require('../../config/replacements.json');
 
 module.exports = class HelixGenerator extends Generator {
   constructor(args, opts) {
@@ -73,19 +73,13 @@ module.exports = class HelixGenerator extends Generator {
       })
       .then(function (answers) {
         self.options = Object.assign({}, self.options, answers);
-        // Nuget version update
-        self.options.nuget = [{
-          old: '9.0.171219',
-          new: (self.options.sitecoreUpdate.value ? self.options.sitecoreUpdate.value : self.options.sitecoreUpdate)
-            .nugetVersion,
-        },];
 
         self.options.vagrantBoxName = (self.options.sitecoreUpdate.value ?
           self.options.sitecoreUpdate.value :
           self.options.sitecoreUpdate
         ).vagrantBoxName;
 
-        self.options.solutionNameUri = self.options.solutionName.replace(/[^a-z0-9\-]/ig, '-');
+        self.options.solutionNameUri = self.options.solutionName.replace(/[^a-z0-9\-]/ig, '-').toLowerCase();
 
         self.async();
       });
@@ -107,98 +101,70 @@ module.exports = class HelixGenerator extends Generator {
       debug: true,
     };
 
-    const ignoreOptions = [
-      // completely ignore
-      '**/code/bin/**/*.*',
-      '**/code/obj/**/*.*',
-      '**/*.user',
-
-      // packages
-      '**/src/packages/**/*',
-      '**/src/node_modules/**/*',
-
-      // vs
-      '**/.vs*/**/*',
-      
-      '**/(*.config|*.csproj|*cs)',
-    ];
-
-    this._copy(self.templatePath('**/*'), self.destinationPath(self.options.solutionName),
-      { solutionX: this.options.solutionName },
+    /* Copy ymls without solution and guid transforms */
+    this._copy(self.templatePath('**/*.yml'), self.destinationPath(self.options.solutionName),
       {
-        ...baseGlobOptions,
-        ignore: ignoreOptions,
-        process: function (content, path) {
-          if (typeof content === 'undefined') {
-            return;
-          }
-
-          if (path.match(/.*\.dll.*/gi)) {
-            return content;
-          }
-
-          var result = self._replaceTokens(content, self.options);
-
-          self.options.nuget.forEach((id) => {
-            result = result.replace(new RegExp(utils.escapeRegExp(id.old), 'g'), id.new);
-          });
-
-          replacements[self.options.sitecoreUpdate.name].forEach((pair) => {
-            result = result.replace(new RegExp(utils.escapeRegExp(pair.old), 'g'), pair.new);
-          });
-
-          // scope to modifications of rainbow YAML fils only
-          if (path.match(/.*SolutionRoots.*\.yml/gi) ||
-            path.match(/.*serialization\.content.*\.yml/gi)
-          ) {
-            result = utils.generateHashBasedItemIdsInYamlFile(result, path);
-          } else if (path.match(/.*\.yml/gi)) {
-            result = utils.generateHashBasedItemIdsInYamlFile(result, path, true);
-          }
-
-          // Cannot set VM name if it contains periods 
-          if (path.match(/.*Vagrantfile/gi)) {
-            const hostname = self.options.solutionName.replace(/[^a-z0-9\-]/ig, '-').toLowerCase();
-            result = result.replace(new RegExp(utils.escapeRegExp(self.options.solutionName), "g"), hostname);
-          }
-
-          return result;
-        }
+        solutionX: this.options.solutionName
       },
       {
-        preProcessPath: function (destPath) {
-          return destPath.replace('SolutionX', '<%= solutionX %>');
-        }
+        ...baseGlobOptions,
+        process: this._processYmlFile.bind(this)
+      },
+      {
+        preProcessPath: this._processPathSolutionToken
       }
     )
 
-    this._copyTpl(self.templatePath('**/(*.config|*.csproj|*cs)'), self.destinationPath(self.options.solutionName),
+    /* Copy dlls without any transforms */
+    this._copy(self.templatePath('**/*.dll'), self.destinationPath(self.options.solutionName), {}, baseGlobOptions, {});
+
+    /* Copy majority of files with regular template transforms */
+    this._copyTpl(self.templatePath('**/*'), self.destinationPath(self.options.solutionName),
       {
-        updateVersion: this.options.sitecoreUpdate.updateVersion,
+        exactVersion: this.options.sitecoreUpdate.exactVersion,
         majorVersion: this.options.sitecoreUpdate.majorVersion,
         netFrameworkVersion: this.options.sitecoreUpdate.netFrameworkVersion,
         kernelVersion: this.options.sitecoreUpdate.kernelVersion,
-        solutionX: this.options.solutionName
+        solutionX: this.options.solutionName,
+        solutionSettingsX: this.options.solutionName,
+        vagrantBoxNameX: this.options.vagrantBoxName,
+        solutionUriX: this.options.solutionNameUri
       },
-      baseGlobOptions,
       {
-        preProcessPath: function (destPath) {
-          return destPath.replace('SolutionX', '<%= solutionX %>');
-        }
+        ...baseGlobOptions,
+        ignore: [...baseIgnore, ...['**/*.dll', '**/*.yml']]
+      },
+      {
+        preProcessPath: this._processPathSolutionToken
       }
     )
   }
 
-  
+  _processYmlFile(content, path) {
+    let result = content instanceof Buffer ? content.toString('utf8') : content;
+    result = result.replace(/SolutionX/g, this.options.solutionName);
+
+    if (path.match(/.*SolutionRoots.*\.yml/gi) || path.match(/.*serialization\.content.*\.yml/gi)) {
+      result = utils.generateHashBasedItemIdsInYamlFile(result, path);
+    } else if (path.match(/.*\.yml/gi)) {
+      result = utils.generateHashBasedItemIdsInYamlFile(result, path, true);
+    }
+
+    return result;
+  }
+
+  _processPathSolutionToken(destPath) {
+    return destPath.replace('SolutionX', '<%= solutionX %>')
+  };
 
   _copyTpl(sourcePath, destinationPath, ctx, globOptions, customOptions) {
     this._mapFiles(sourcePath, destinationPath, globOptions, customOptions)
-      .forEach(({sourceFilePath, destPath}) => this.fs.copyTpl(sourceFilePath, destPath, ctx, globOptions));
+      .forEach(({ sourceFilePath, destPath }) => this.fs.copyTpl(sourceFilePath, destPath, ctx, globOptions));
   }
 
   _copy(sourcePath, destinationPath, ctx, globOptions, customOptions) {
     this._mapFiles(sourcePath, destinationPath, globOptions, customOptions)
-    .forEach(({sourceFilePath, destPath}) => this.fs.copy(sourceFilePath, destPath, globOptions, ctx));
+      .forEach(({ sourceFilePath, destPath }) => this.fs.copy(sourceFilePath, destPath, globOptions, ctx));
   }
 
   _mapFiles(sourcePath, destinationPath, globOptions, customOptions) {
@@ -207,7 +173,7 @@ module.exports = class HelixGenerator extends Generator {
       var commonPath = utils.geCommonPath(sourcePath);
       var toFile = path.relative(commonPath, sourceFilePath);
       var destPath = path.join(destinationPath, toFile);
-      destPath = customOptions.preProcessPath(destPath);
+      destPath = !customOptions.preProcessPath ? destPath : customOptions.preProcessPath(destPath);
       return { sourceFilePath, destPath };
     });
   }
@@ -219,19 +185,5 @@ module.exports = class HelixGenerator extends Generator {
       console.log('');
       console.log('Solution name ' + chalk.green.bold(self.options.solutionName) + ' has been created.');
     });
-  }
-
-  _replaceTokens(input, options) {
-    if (typeof input === 'undefined') {
-      return input;
-    }
-
-    var content = input instanceof Buffer ? input.toString('utf8') : input;
-
-    return content
-      .replace(/SolutionSettingsX/g, options.solutionSettings)
-      .replace(/SolutionX/g, options.solutionName)
-      .replace(/VagrantBoxNameX/g, options.vagrantBoxName)
-      .replace(/SolutionUriX/g, options.solutionNameUri);
   }
 };

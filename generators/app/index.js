@@ -189,28 +189,24 @@ module.exports = class HelixGenerator extends Generator {
     )
   }
 
-  _copyTpl(sourcePath, destinationPath, context, globOptions, customOptions) {
-    this._baseCopy(sourcePath, destinationPath, context, globOptions, customOptions,
-      (filePath, destPath) => {
-        this.fs.copyTpl(filePath, destPath, context, globOptions);
-      })
+  _copyTpl(sourcePath, destinationPath, ctx, globOptions, customOptions) {
+    this._mapFiles(sourcePath, destinationPath, globOptions, customOptions)
+      .forEach(({sourceFilePath, destPath}) => this.fs.copyTpl(sourceFilePath, destPath, ctx, globOptions));
   }
 
-  _copy(sourcePath, destinationPath, context, globOptions, customOptions) {
-    this._baseCopy(sourcePath, destinationPath, context, globOptions, customOptions,
-      (filePath, destPath) => {
-        this.fs.copy(filePath, destPath, globOptions, context);
-      })
+  _copy(sourcePath, destinationPath, ctx, globOptions, customOptions) {
+    this._mapFiles(sourcePath, destinationPath, globOptions, customOptions)
+    .forEach(({sourceFilePath, destPath}) => this.fs.copy(sourceFilePath, destPath, globOptions, ctx));
   }
 
-  _baseCopy(sourcePath, destinationPath, context, globOptions, customOptions, copyFunc) {
+  _mapFiles(sourcePath, destinationPath, globOptions, customOptions) {
     var diskFiles = globby.sync(sourcePath, globOptions);
-    diskFiles.forEach(filePath => {
+    return diskFiles.map(sourceFilePath => {
       var commonPath = utils.geCommonPath(sourcePath);
-      var toFile = path.relative(commonPath, filePath);
+      var toFile = path.relative(commonPath, sourceFilePath);
       var destPath = path.join(destinationPath, toFile);
       destPath = customOptions.preProcessPath(destPath);
-      copyFunc(filePath, destPath);
+      return { sourceFilePath, destPath };
     });
   }
 

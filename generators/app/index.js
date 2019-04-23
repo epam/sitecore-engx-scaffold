@@ -119,8 +119,8 @@ module.exports = class HelixGenerator extends Generator {
 
       // vs
       '**/.vs*/**/*',
-
-      '**/code/((Web|web|packages).config|*.csproj)',
+      
+      '**/(*.config|*.csproj|*cs)',
     ];
 
     this._copy(self.templatePath('**/*'), self.destinationPath(self.options.solutionName),
@@ -172,7 +172,7 @@ module.exports = class HelixGenerator extends Generator {
       }
     )
 
-    this._copyTpl(self.templatePath('**/code/((Web|web|packages).config|*.csproj)'), self.destinationPath(self.options.solutionName),
+    this._copyTpl(self.templatePath('**/(*.config|*.csproj|*cs)'), self.destinationPath(self.options.solutionName),
       {
         updateVersion: this.options.sitecoreUpdate.updateVersion,
         majorVersion: this.options.sitecoreUpdate.majorVersion,
@@ -188,6 +188,8 @@ module.exports = class HelixGenerator extends Generator {
       }
     )
   }
+
+  
 
   _copyTpl(sourcePath, destinationPath, ctx, globOptions, customOptions) {
     this._mapFiles(sourcePath, destinationPath, globOptions, customOptions)

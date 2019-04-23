@@ -11,8 +11,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SolutionX.Foundation.GlassMapper</RootNamespace>
-    <AssemblyName>SolutionX.Foundation.GlassMapper</AssemblyName>
+    <RootNamespace><%= solutionX %>.Foundation.GlassMapper</RootNamespace>
+    <AssemblyName><%= solutionX %>.Foundation.GlassMapper</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
@@ -69,7 +69,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <SitecoreWebUrl>http://SolutionX.local</SitecoreWebUrl>
+    <SitecoreWebUrl>http://<%= solutionX %>.local</SitecoreWebUrl>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -130,7 +130,7 @@
   <ItemGroup>
     <Content Include="App_Config\Include\Foundation\Glass.Mapper.Sc.config" />
     <Content Include="App_Config\Include\Foundation\Glass.Mapper.Sc.Start.config" />
-    <Content Include="App_Config\Include\Foundation\SolutionX.Foundation.GlassMapper.config" />
+    <Content Include="App_Config\Include\Foundation\<%= solutionX %>.Foundation.GlassMapper.config" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
@@ -171,7 +171,7 @@
           <IISAppRootUrl>http://localhost:61494/</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>True</UseCustomServer>
-          <CustomServerUrl>http://SolutionX-local.azurewebsites.net</CustomServerUrl>
+          <CustomServerUrl>http://<%= solutionX %>-local.azurewebsites.net</CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>

@@ -1,10 +1,9 @@
 'use strict';
-const Generator = require('yeoman-generator');
+//const Generator = require('yeoman-generator');
+const BaseHelixGenerator = require('../../lib/base-helix-generator');
 
-var globby = require('globby');
 const chalk = require('chalk');
 const yosay = require('yosay');
-const path = require('path');
 
 const utils = require('../../lib/utils.js');
 
@@ -12,7 +11,7 @@ const baseIgnore = require('../../config/ignore.json');
 const msg = require('../../config/messages.json');
 const versions = require('../../config/versions.json');
 
-module.exports = class HelixGenerator extends Generator {
+module.exports = class HelixGenerator extends BaseHelixGenerator {
   constructor(args, opts) {
     // Calling the super constructor is important so our generator is correctly set up
     super(args, opts);
@@ -69,8 +68,8 @@ module.exports = class HelixGenerator extends Generator {
           type: 'list',
           name: 'sitecoreUpdate',
           message: msg.sitecoreUpdate.prompt,
-          choices: self.options.sitecoreVersion.value ?
-            self.options.sitecoreVersion.value : self.options.sitecoreVersion,
+          choices: self.options.sitecoreVersion.value ? self.options.sitecoreVersion.value : self.options.sitecoreVersion,
+          store: true,
         },]);
       })
       .then(function (answers) {
@@ -98,7 +97,7 @@ module.exports = class HelixGenerator extends Generator {
     };
 
     /* Copy ymls without solution and guid transforms */
-    this._copy(self.templatePath('**/*.yml'), self.destinationPath(),
+    super._copy(self.templatePath('**/*.yml'), self.destinationPath(),
       {
         solutionX: this.options.solutionName
       },
@@ -112,10 +111,10 @@ module.exports = class HelixGenerator extends Generator {
     )
 
     /* Copy dlls without any transforms */
-    this._copy(self.templatePath('**/*.dll'), self.destinationPath(), {}, baseGlobOptions, {});
+    super._copy(self.templatePath('**/*.dll'), self.destinationPath(), {}, baseGlobOptions, {});
 
     /* Copy majority of files with regular template transforms */
-    this._copyTpl(self.templatePath('**/*'), self.destinationPath(),
+    super._copyTpl(self.templatePath('**/*'), self.destinationPath(),
       {
         exactVersion: this.options.sitecoreUpdate.exactVersion,
         majorVersion: this.options.sitecoreUpdate.majorVersion,
@@ -151,28 +150,7 @@ module.exports = class HelixGenerator extends Generator {
   _processPathSolutionToken(destPath) {
     return destPath.replace('SolutionX', '<%= solutionX %>')
   };
-
-  _copyTpl(sourcePath, destinationPath, ctx, globOptions, customOptions) {
-    this._mapFiles(sourcePath, destinationPath, globOptions, customOptions)
-      .forEach(({ sourceFilePath, destPath }) => this.fs.copyTpl(sourceFilePath, destPath, ctx, globOptions));
-  }
-
-  _copy(sourcePath, destinationPath, ctx, globOptions, customOptions) {
-    this._mapFiles(sourcePath, destinationPath, globOptions, customOptions)
-      .forEach(({ sourceFilePath, destPath }) => this.fs.copy(sourceFilePath, destPath, globOptions, ctx));
-  }
-
-  _mapFiles(sourcePath, destinationPath, globOptions, customOptions) {
-    var diskFiles = globby.sync(sourcePath, globOptions);
-    return diskFiles.map(sourceFilePath => {
-      var commonPath = utils.geCommonPath(sourcePath);
-      var toFile = path.relative(commonPath, sourceFilePath);
-      var destPath = path.join(destinationPath, toFile);
-      destPath = !customOptions.preProcessPath ? destPath : customOptions.preProcessPath(destPath);
-      return { sourceFilePath, destPath };
-    });
-  }
-
+  
   end() {
     const self = this;
 

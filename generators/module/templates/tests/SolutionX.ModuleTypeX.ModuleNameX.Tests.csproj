@@ -14,8 +14,8 @@
     <ProjectTypeGuids>{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SolutionX.ModuleTypeX.ModuleNameX.Tests</RootNamespace>
-    <AssemblyName>SolutionX.ModuleTypeX.ModuleNameX.Tests</AssemblyName>
+    <RootNamespace><%= solutionX %>.<%= moduleTypeX %>.<%= moduleNameX %>.Tests</RootNamespace>
+    <AssemblyName><%= solutionX %>.<%= moduleTypeX %>.<%= moduleNameX %>.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />

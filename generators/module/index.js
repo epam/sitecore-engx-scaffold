@@ -1,6 +1,6 @@
 'use strict';
 const chalk = require('chalk');
-const Generator = require('yeoman-generator');
+const BaseHelixGenerator = require('../../lib/base-helix-generator');
 const uuidv4 = require('uuid/v4');
 
 const utils = require('../../lib/utils.js');
@@ -10,11 +10,13 @@ const versions = require('../../config/versions.json');
 const moduleTypes = require('../../config/moduleTypes.json');
 const settings = require('../../config/projectSettings.json');
 
-module.exports = class extends Generator {
+const baseIgnore = require('../../config/ignore.json');
+
+module.exports = class extends BaseHelixGenerator {
   constructor(args, opts) {
     // Calling the super constructor is important so our generator is correctly set up
     super(args, opts);
-
+    
     this.option('solutionName', {
       type: String,
       required: false,
@@ -41,14 +43,16 @@ module.exports = class extends Generator {
       desc: 'The version of sitecore to use.',
     });
 
-    this.options.unicornSerializationDependenciesX = '';
     var config = this.config.getAll();
 
-    if (config) {
-      this.options.solutionName = config.promptValues && config.promptValues.solutionName;
+    if (config && config.promptValues) {
+      this.options.solutionName = config.promptValues.solutionName;
       this.options.sitecoreVersion = config.promptValues.sitecoreVersion;
-      this.options.solutionNameUri = config.solutionNameUri;
+      this.options.sitecoreUpdate = config.promptValues.sitecoreUpdate;
     }
+
+    this.options.solutionNameUri = config && config.solutionNameUri;
+    this.options.unicornSerializationDependenciesX = '';
   }
 
   prompting() {
@@ -104,15 +108,6 @@ module.exports = class extends Generator {
         },]);
       })
       .then(function (answers) {
-        //self.options = Object.assign({}, self.options, answers);
-
-        // // Nuget version update
-        // self.options.nuget = [{
-        //   old: '9.0.171219',
-        //   new: (self.options.sitecoreUpdate.value ? self.options.sitecoreUpdate.value : self.options.sitecoreUpdate)
-        //     .nugetVersion,
-        // }, ];
-
         self.async();
       });
   }
@@ -120,51 +115,70 @@ module.exports = class extends Generator {
   writing() {
     const self = this;
 
+    const modulePath = 'src/' + self.options.moduleType + '/' + self.options.moduleName;
 
-    const globOptions = {
+    const baseGlobOptions = {
       dot: true,
       sync: true,
       debug: true,
-      ignore: [
-        // completely ignore
-        '**/code/bin/**/*.*',
-        '**/code/obj/**/*.*',
-        '**/*.user',
-
-        // packages
-        '**/src/packages/**/*',
-        '**/src/node_modules/**/*',
-
-        // vs
-        '**/.vs*/**/*',
-      ],
     };
 
-
-    self.fs.copy(self.templatePath('**/*.*'), self.destinationPath('src/' + self.options.moduleType + '/' + self.options.moduleName), {
-      globOptions,
-      process: function (content, path) {
-        var result = self._replaceTokens(content, self.options);
-
-        // // Replace sitecore version
-        // self.options.nuget.forEach((id) => {
-        //   result = result.replace(new RegExp(utils.escapeRegExp(id.old), 'g'), id.new);
-        // });
-
-        result = result.replace(/(UnicornSerializationDependenciesX)/g, self.options.unicornSerializationDependenciesX);
-
-        // scope to modifications of rainbow YAML fils only
-        if (path.match(/.*\.yml/gi)) {
-          result = utils.generateHashBasedItemIdsInYamlFile(result, path, true);
-        }
-
-        return result;
+    /* Copy ymls without solution and guid transforms */
+    super._copy(self.templatePath('**/*.yml'), self.destinationPath(modulePath),
+      {
+        solutionX: this.options.solutionName,
+        moduleTypeX: this.options.moduleType,
+        moduleNameX: this.options.moduleName,
       },
-      processPath: function (path) {
-        return self._replaceTokens(path, self.options);
+      {
+        ...baseGlobOptions,
+        process: this._processYmlFile.bind(this)
+      },
+      {
+        preProcessPath: this._processPathModuleTokens
       }
-    });
+    )
+
+    /* Copy majority of files with regular template transforms */
+    super._copyTpl(self.templatePath('**/*'), self.destinationPath(modulePath),
+      {
+        exactVersion: this.options.sitecoreUpdate.exactVersion,
+        majorVersion: this.options.sitecoreUpdate.majorVersion,
+        netFrameworkVersion: this.options.sitecoreUpdate.netFrameworkVersion,
+        kernelVersion: this.options.sitecoreUpdate.kernelVersion,
+        solutionX: this.options.solutionName,
+        moduleTypeX: this.options.moduleType,
+        moduleNameX: this.options.moduleName,
+        solutionUriX: this.options.solutionNameUri
+      },
+      {
+        ...baseGlobOptions,
+        ignore: [...baseIgnore, ...['**/*.yml']]
+      },
+      {
+        preProcessPath: this._processPathModuleTokens
+      }
+    )
   }
+
+  _processYmlFile(content, path) {
+    var result = this._replaceTokens(content, this.options);
+    result = result.replace(/(UnicornSerializationDependenciesX)/g, this.options.unicornSerializationDependenciesX);
+
+    // scope to modifications of rainbow YAML fils only
+    if (path.match(/.*\.yml/gi)) {
+      result = utils.generateHashBasedItemIdsInYamlFile(result, path, true);
+    }
+
+    return result;
+  }
+
+  _processPathModuleTokens(destPath) {
+    return destPath
+      .replace('SolutionX', '<%= solutionX %>')
+      .replace('ModuleNameX', '<%= moduleNameX %>')
+      .replace('ModuleTypeX', '<%= moduleTypeX %>');
+  };
 
   end() {
     const self = this;
@@ -193,7 +207,10 @@ module.exports = class extends Generator {
       .then(() => {
         console.log(chalk.yellow.bold('Successfully added code project'));
 
-        // Add the test project
+        /* Test project packages and references are yet not adopted. Coming soon */
+
+
+        /*Add the test project
         utils
           .addProject(
             self.options.solutionName,
@@ -216,22 +233,15 @@ module.exports = class extends Generator {
               'Your ' + self.options.moduleType + ' module ' + chalk.green.bold(self.options.solutionName + '.' + self.options.moduleType + '.' + self.options.moduleName
               ) + ' has been created and added to ' + chalk.green.bold(self.options.solutionName)
             );
-          });
+          });*/
       });
   }
 
   _replaceTokens(input, options) {
-    if (typeof input === 'undefined') {
-      return input;
-    }
-
     var content = input instanceof Buffer ? input.toString('utf8') : input;
-
     return content
       .replace(/(ModuleNameX)/g, options.moduleName)
       .replace(/(ModuleTypeX)/g, options.moduleType)
-      .replace(/(SolutionSettingsX)/g, options.solutionSettings)
       .replace(/(SolutionX)/g, options.solutionName)
-      .replace(/SolutionUriX/g, options.solutionNameUri);
   };
 };

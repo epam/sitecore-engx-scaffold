@@ -1,4 +1,4 @@
-namespace SolutionX.ModuleTypeX.ModuleNameX.Tests
+namespace <%= solutionX %>.<%= moduleTypeX %>.<%= moduleNameX %>.Tests
 {
     using Sitecore.FakeDb;
 

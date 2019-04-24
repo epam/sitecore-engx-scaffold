@@ -1,6 +1,6 @@
 'use strict';
 const chalk = require('chalk');
-const Generator = require('yeoman-generator-asmagin');
+const Generator = require('yeoman-generator');
 const uuidv4 = require('uuid/v4');
 
 const utils = require('../../lib/utils.js');
@@ -42,92 +42,51 @@ module.exports = class extends Generator {
     });
 
     this.options.unicornSerializationDependenciesX = '';
-    this.options.unicornSerializationIncludeNames = [];
+    var config = this.config.getAll();
 
-    this.options.solutionSettings = '';
-
-    try {
-      this.options.solutionSettings = require(this.destinationPath('SolutionSettings.json'));
-    } catch (ex) {}
-
-    if (this.options.solutionSettings && this.options.solutionSettings.solutionName) {
-      this.options.solutionName = this.options.solutionSettings.solutionName;
-    }
-
-    if (this.options.solutionSettings && this.options.solutionSettings.solutionNameUri) {
-      this.options.solutionNameUri = this.options.solutionSettings.solutionNameUri;
-    }
-
-    if (this.options.solutionSettings && this.options.solutionSettings.sitecoreVersion) {
-      this.options.sitecoreVersion = this.options.solutionSettings.sitecoreVersion;
-    }
-
-    if (this.options.sitecoreVersion == 'latest') {
-      this.options.sitecoreVersion = versions[0];
-    }
-
-    versions.forEach((version) => {
-      if (this.options.sitecoreVersion == version.name) {
-        this.options.sitecoreVersion = version;
-        return;
-      }
-    });
-
-    if (this.options.solutionSettings && this.options.solutionSettings.sitecoreUpdate) {
-      this.options.sitecoreUpdate = this.options.solutionSettings.sitecoreUpdate;
-    }
-
-    if (this.options.sitecoreUpdate == 'latest') {
-      this.options.sitecoreUpdate = this.options.sitecoreVersion.value[0];
-    }
-
-    if (this.options.sitecoreVersion && this.options.sitecoreVersion.value) {
-      this.options.sitecoreVersion.value.forEach((update) => {
-        if (this.options.sitecoreUpdate == update.name) {
-          this.options.sitecoreUpdate = update;
-          return;
-        }
-      });
+    if (config) {
+      this.options.solutionName = config.promptValues && config.promptValues.solutionName;
+      this.options.sitecoreVersion = config.promptValues.sitecoreVersion;
+      this.options.solutionNameUri = config.solutionNameUri;
     }
   }
 
   prompting() {
     const self = this;
+
     return self
       .prompt([{
-          name: 'solutionName',
-          message: msg.solutionName.prompt,
-          default: this.options.solutionSettings.solutionName || self.appname,
-          when: !self.options.solutionName,
-        },
-        {
-          type: 'list',
-          name: 'moduleType',
-          message: msg.moduleType.prompt,
-          default: 'Feature',
-          choices: moduleTypes,
-          when: !self.options.moduleType,
-        },
-        {
-          name: 'moduleName',
-          message: msg.moduleName.prompt,
-          when: !self.options.moduleName,
-        },
-        {
-          type: 'list',
-          name: 'sitecoreVersion',
-          message: msg.sitecoreVersion.prompt,
-          default: self.options.sitecoreVersion,
-          choices: versions,
-          when: !self.options.sitecoreVersion,
-        },
+        name: 'solutionName',
+        message: msg.solutionName.prompt,
+        default: self.options.solutionName || self.appname,
+        when: !self.options.solutionName,
+      },
+      {
+        type: 'list',
+        name: 'moduleType',
+        message: msg.moduleType.prompt,
+        default: 'Feature',
+        choices: moduleTypes,
+        when: !self.options.moduleType,
+      },
+      {
+        name: 'moduleName',
+        message: msg.moduleName.prompt,
+        when: !self.options.moduleName,
+      },
+      {
+        type: 'list',
+        name: 'sitecoreVersion',
+        message: msg.sitecoreVersion.prompt,
+        default: self.options.sitecoreVersion,
+        choices: versions,
+        when: !self.options.sitecoreVersion,
+      },
       ])
       .then(function (answers) {
         self.options = Object.assign({}, self.options, answers);
 
-        self.options.guidSeed =
-          self.options.solutionName + '.' + self.options.moduleType + '.' + self.options.moduleName;
-
+        self.options.guidSeed = self.options.solutionName + '.' + self.options.moduleType + '.' + self.options.moduleName;
         self.options.codeGuid = utils.guid(self.options.guidSeed);
 
         if (self.options.moduleType == 'Project') {
@@ -140,20 +99,19 @@ module.exports = class extends Generator {
           type: 'list',
           name: 'sitecoreUpdate',
           message: msg.sitecoreUpdate.prompt,
-          choices: self.options.sitecoreVersion.value ?
-            self.options.sitecoreVersion.value : self.options.sitecoreVersion,
-          when: !self.options.sitecoreUpdate,
-        }, ]);
+          choices: self.options.sitecoreVersion.value && self.options.sitecoreVersion.value,
+          when: !self.options.sitecoreVersion,
+        },]);
       })
       .then(function (answers) {
-        self.options = Object.assign({}, self.options, answers);
+        //self.options = Object.assign({}, self.options, answers);
 
-        // Nuget version update
-        self.options.nuget = [{
-          old: '9.0.171219',
-          new: (self.options.sitecoreUpdate.value ? self.options.sitecoreUpdate.value : self.options.sitecoreUpdate)
-            .nugetVersion,
-        }, ];
+        // // Nuget version update
+        // self.options.nuget = [{
+        //   old: '9.0.171219',
+        //   new: (self.options.sitecoreUpdate.value ? self.options.sitecoreUpdate.value : self.options.sitecoreUpdate)
+        //     .nugetVersion,
+        // }, ];
 
         self.async();
       });
@@ -183,15 +141,15 @@ module.exports = class extends Generator {
     };
 
 
-    self.fs.copy(self.templatePath('**/*.*'), self.destinationPath(), {
+    self.fs.copy(self.templatePath('**/*.*'), self.destinationPath('src/' + self.options.moduleType), {
       globOptions,
       process: function (content, path) {
         var result = self._replaceTokens(content, self.options);
 
-        // Replace sitecore version
-        self.options.nuget.forEach((id) => {
-          result = result.replace(new RegExp(utils.escapeRegExp(id.old), 'g'), id.new);
-        });
+        // // Replace sitecore version
+        // self.options.nuget.forEach((id) => {
+        //   result = result.replace(new RegExp(utils.escapeRegExp(id.old), 'g'), id.new);
+        // });
 
         result = result.replace(/(UnicornSerializationDependenciesX)/g, self.options.unicornSerializationDependenciesX);
 
@@ -255,14 +213,8 @@ module.exports = class extends Generator {
             console.log(chalk.yellow.bold('Successfully added Test project'));
             console.log('');
             console.log(
-              'Your ' +
-              self.options.moduleType +
-              ' module ' +
-              chalk.green.bold(
-                self.options.solutionName + '.' + self.options.moduleType + '.' + self.options.moduleName
-              ) +
-              ' has been created and added to ' +
-              chalk.green.bold(self.options.solutionName)
+              'Your ' + self.options.moduleType + ' module ' + chalk.green.bold(self.options.solutionName + '.' + self.options.moduleType + '.' + self.options.moduleName
+              ) + ' has been created and added to ' + chalk.green.bold(self.options.solutionName)
             );
           });
       });
@@ -280,6 +232,6 @@ module.exports = class extends Generator {
       .replace(/(ModuleTypeX)/g, options.moduleType)
       .replace(/(SolutionSettingsX)/g, options.solutionSettings)
       .replace(/(SolutionX)/g, options.solutionName)
-	  .replace(/SolutionUriX/g, options.solutionNameUri);
+      .replace(/SolutionUriX/g, options.solutionNameUri);
   };
 };

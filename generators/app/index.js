@@ -53,12 +53,14 @@ module.exports = class HelixGenerator extends Generator {
         name: 'solutionName',
         message: msg.solutionName.prompt,
         default: self.appname,
+        store: true,
       },
       {
         type: 'list',
         name: 'sitecoreVersion',
         message: msg.sitecoreVersion.prompt,
         choices: versions,
+        store: true,
       },
       ])
       .then(function (answers) {
@@ -80,6 +82,7 @@ module.exports = class HelixGenerator extends Generator {
         ).vagrantBoxName;
 
         self.options.solutionNameUri = self.options.solutionName.replace(/[^a-z0-9\-]/ig, '-').toLowerCase();
+        self.config.set('solutionNameUri', self.options.solutionNameUri);
 
         self.async();
       });
@@ -87,14 +90,7 @@ module.exports = class HelixGenerator extends Generator {
 
   writing() {
     const self = this;
-
-    self.options.solutionSettings = JSON.stringify({
-      solutionName: self.options.solutionName,
-      solutionNameUri: self.options.solutionNameUri,
-      sitecoreVersion: self.options.sitecoreVersion,
-      sitecoreUpdate: self.options.sitecoreUpdate,
-    });
-
+    
     const baseGlobOptions = {
       dot: true,
       sync: true,
@@ -102,7 +98,7 @@ module.exports = class HelixGenerator extends Generator {
     };
 
     /* Copy ymls without solution and guid transforms */
-    this._copy(self.templatePath('**/*.yml'), self.destinationPath(self.options.solutionName),
+    this._copy(self.templatePath('**/*.yml'), self.destinationPath(),
       {
         solutionX: this.options.solutionName
       },
@@ -116,17 +112,16 @@ module.exports = class HelixGenerator extends Generator {
     )
 
     /* Copy dlls without any transforms */
-    this._copy(self.templatePath('**/*.dll'), self.destinationPath(self.options.solutionName), {}, baseGlobOptions, {});
+    this._copy(self.templatePath('**/*.dll'), self.destinationPath(), {}, baseGlobOptions, {});
 
     /* Copy majority of files with regular template transforms */
-    this._copyTpl(self.templatePath('**/*'), self.destinationPath(self.options.solutionName),
+    this._copyTpl(self.templatePath('**/*'), self.destinationPath(),
       {
         exactVersion: this.options.sitecoreUpdate.exactVersion,
         majorVersion: this.options.sitecoreUpdate.majorVersion,
         netFrameworkVersion: this.options.sitecoreUpdate.netFrameworkVersion,
         kernelVersion: this.options.sitecoreUpdate.kernelVersion,
         solutionX: this.options.solutionName,
-        solutionSettingsX: this.options.solutionName,
         vagrantBoxNameX: this.options.vagrantBoxName,
         solutionUriX: this.options.solutionNameUri
       },

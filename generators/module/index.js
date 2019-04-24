@@ -141,7 +141,7 @@ module.exports = class extends Generator {
     };
 
 
-    self.fs.copy(self.templatePath('**/*.*'), self.destinationPath('src/' + self.options.moduleType), {
+    self.fs.copy(self.templatePath('**/*.*'), self.destinationPath('src/' + self.options.moduleType + '/' + self.options.moduleName), {
       globOptions,
       process: function (content, path) {
         var result = self._replaceTokens(content, self.options);

@@ -115,7 +115,8 @@ module.exports = class extends BaseHelixGenerator {
   writing() {
     const self = this;
 
-    const modulePath = 'src/' + self.options.moduleType + '/' + self.options.moduleName;
+    const modulePath = `src/${self.options.moduleType}/${self.options.moduleName}`;
+    var destinationPath = self.destinationPath(modulePath);
 
     const baseGlobOptions = {
       dot: true,
@@ -124,7 +125,7 @@ module.exports = class extends BaseHelixGenerator {
     };
 
     /* Copy ymls without solution and guid transforms */
-    super._copy(self.templatePath('**/*.yml'), self.destinationPath(modulePath),
+    super._copy(self.templatePath('**/*.yml'), destinationPath,
       {
         solutionX: this.options.solutionName,
         moduleTypeX: this.options.moduleType,
@@ -140,7 +141,7 @@ module.exports = class extends BaseHelixGenerator {
     )
 
     /* Copy majority of files with regular template transforms */
-    super._copyTpl(self.templatePath('**/*'), self.destinationPath(modulePath),
+    super._copyTpl(self.templatePath('**/*'), destinationPath,
       {
         exactVersion: this.options.sitecoreUpdate.exactVersion,
         majorVersion: this.options.sitecoreUpdate.majorVersion,

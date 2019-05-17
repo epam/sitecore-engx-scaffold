@@ -146,15 +146,15 @@
       <HintPath>..\..\..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Sitecore.Kernel">
-      <HintPath>..\..\..\packages\Sitecore.Kernel.9.1.0\lib\net471\Sitecore.Kernel.dll</HintPath>
+      <HintPath>..\..\..\packages\Sitecore.Kernel.12.0.0\lib\net471\Sitecore.Kernel.dll</HintPath>
     </Reference>
     <Reference Include="Sitecore.Logging">
-      <HintPath>..\..\..\packages\Sitecore.Logging.9.1.0\lib\net471\Sitecore.Logging.dll</HintPath>
+      <HintPath>..\..\..\packages\Sitecore.Logging.12.0.0\lib\net471\Sitecore.Logging.dll</HintPath>
     </Reference>
-    <Reference Include="System.Reflection, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+    <Reference Include="System.Reflection">
       <HintPath>..\..\..\packages\System.Reflection.4.1.0\lib\net462\System.Reflection.dll</HintPath>
     </Reference>
-    <Reference Include="System.Runtime.Extensions, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+    <Reference Include="System.Runtime.Extensions">
       <HintPath>..\..\..\packages\System.Runtime.Extensions.4.1.0\lib\net462\System.Runtime.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.DynamicData" />

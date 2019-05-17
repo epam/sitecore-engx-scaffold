@@ -96,8 +96,9 @@ module.exports = class HelixGenerator extends BaseHelixGenerator {
       debug: true,
     };
 
+    var destinationPath = self.destinationPath();
     /* Copy ymls without solution and guid transforms */
-    super._copy(self.templatePath('**/*.yml'), self.destinationPath(),
+    super._copy(self.templatePath('**/*.yml'), destinationPath,
       {
         solutionX: this.options.solutionName
       },
@@ -111,10 +112,10 @@ module.exports = class HelixGenerator extends BaseHelixGenerator {
     )
 
     /* Copy dlls without any transforms */
-    super._copy(self.templatePath('**/*.dll'), self.destinationPath(), {}, baseGlobOptions, {});
+    super._copy(self.templatePath('**/*.dll'), destinationPath, {}, baseGlobOptions, {});
 
     /* Copy majority of files with regular template transforms */
-    super._copyTpl(self.templatePath('**/*'), self.destinationPath(),
+    super._copyTpl(self.templatePath('**/*'), destinationPath,
       {
         exactVersion: this.options.sitecoreUpdate.exactVersion,
         majorVersion: this.options.sitecoreUpdate.majorVersion,

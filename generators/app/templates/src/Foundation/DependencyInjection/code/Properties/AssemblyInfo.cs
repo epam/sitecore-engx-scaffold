@@ -4,11 +4,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("SolutionX.Foundation.DependencyInjection")]
-[assembly: AssemblyDescription("SolutionX.Foundation.DependencyInjection")]
+[assembly: AssemblyTitle("<%= solutionX %>.Foundation.DependencyInjection")]
+[assembly: AssemblyDescription("<%= solutionX %>.Foundation.DependencyInjection")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("SolutionX")]
-[assembly: AssemblyProduct("SolutionX.Foundation.DependencyInjection")]
+[assembly: AssemblyCompany("<%= solutionX %>")]
+[assembly: AssemblyProduct("<%= solutionX %>.Foundation.DependencyInjection")]
 [assembly: AssemblyCopyright("Copyright �  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

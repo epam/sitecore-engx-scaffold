@@ -10,7 +10,7 @@ const envUrl = process.env.ENV_URL;
 
 module.exports = {
   entry: {
-    client: './Project/SolutionX/client/client.index.tsx',
+    client: './Project/<%= solutionX %>/client/client.index.tsx',
     devServer: './scripts/webpack/environments/development/devServerEntry.tsx',
   },
   output: {
@@ -41,7 +41,7 @@ module.exports = {
   resolve: {
     extensions: ['.tsx', '.ts', '.js', '.css', '.less', '.json'],
     alias: {
-      dataprovideralias: path.resolve(process.cwd(), './Project/SolutionX/client/dataProvider/DataProvider.dev'),
+      dataprovideralias: path.resolve(process.cwd(), './Project/<%= solutionX %>/client/dataProvider/DataProvider.dev'),
       Foundation: path.resolve(process.cwd(), './Foundation/'),
       Project: path.resolve(process.cwd(), './Project/'),
       Feature: path.resolve(process.cwd(), './Feature/'),

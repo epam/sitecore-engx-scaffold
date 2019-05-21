@@ -10,9 +10,9 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SolutionX.ModuleTypeX.ModuleNameX</RootNamespace>
-    <AssemblyName>SolutionX.ModuleTypeX.ModuleNameX</AssemblyName>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <RootNamespace><%= solutionX %>.<%= moduleTypeX %>.<%= moduleNameX %></RootNamespace>
+    <AssemblyName><%= solutionX %>.<%= moduleTypeX %>.<%= moduleNameX %></AssemblyName>
+    <TargetFrameworkVersion>v<%= netFrameworkVersion %></TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
@@ -32,7 +32,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <SitecoreWebUrl>http://SolutionX.local</SitecoreWebUrl>
+    <SitecoreWebUrl>http://<%= solutionX %>.local</SitecoreWebUrl>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -43,7 +43,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-<Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+<% if (majorVersion == '9.0') { -%>
+    <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Castle.Core.4.3.1\lib\net45\Castle.Core.dll</HintPath>
     </Reference>
     <Reference Include="Glass.Mapper, Version=5.0.8.0, Culture=neutral, processorArchitecture=MSIL">
@@ -121,13 +122,90 @@
       <HintPath>..\\..\\..\\packages\\Rainbow.Storage.Yaml.2.0.2\\lib\\net452\\Rainbow.Storage.Yaml.dll</HintPath>
       <Private>True</Private>
     </Reference>
+<% } else { -%>
+    <Reference Include="Castle.Core">
+      <HintPath>..\..\..\packages\Castle.Core.4.3.1\lib\net45\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Glass.Mapper">
+      <HintPath>..\..\..\packages\Glass.Mapper.Sc.91.Core.5.3.15\lib\net471\Glass.Mapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Glass.Mapper.Sc">
+      <HintPath>..\..\..\packages\Glass.Mapper.Sc.91.Core.5.3.15\lib\net471\Glass.Mapper.Sc.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\..\..\packages\SharpZipLib.1.1.0\lib\netstandard2.0\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Extensions.DependencyInjection">
+      <HintPath>..\..\..\packages\Microsoft.Extensions.DependencyInjection.2.1.1\lib\net461\Microsoft.Extensions.DependencyInjection.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions">
+      <HintPath>..\..\..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.2.1.1\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.Kernel">
+      <HintPath>..\..\..\packages\Sitecore.Kernel.12.0.0\lib\net471\Sitecore.Kernel.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.Logging">
+      <HintPath>..\..\..\packages\Sitecore.Logging.12.0.0\lib\net471\Sitecore.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reflection">
+      <HintPath>..\..\..\packages\System.Reflection.4.1.0\lib\net462\System.Reflection.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Extensions">
+      <HintPath>..\..\..\packages\System.Runtime.Extensions.4.1.0\lib\net462\System.Runtime.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Helpers">
+      <HintPath>..\..\..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http">
+      <HintPath>..\..\..\packages\Microsoft.AspNet.WebApi.Core.5.2.6\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\..\..\packages\Microsoft.AspNet.Mvc.5.2.4\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\..\..\packages\Microsoft.AspNet.Razor.3.2.6\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages">
+      <HintPath>..\..\..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment">
+      <HintPath>..\..\..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor">
+      <HintPath>..\..\..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Rainbow">
+      <HintPath>..\..\..\packages\Rainbow.Core.2.0.6\lib\net452\Rainbow.dll</HintPath>
+    </Reference>
+    <Reference Include="Rainbow.Storage.Yaml">
+      <HintPath>..\..\..\packages\Rainbow.Storage.Yaml.2.0.6\lib\net452\Rainbow.Storage.Yaml.dll</HintPath>
+    </Reference>
+<% } -%>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models.Generated.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Config\Include\ModuleTypeX\SolutionX.ModuleTypeX.ModuleNameX.Serialization.config" />
+    <Content Include="App_Config\Include\<%= moduleTypeX %>\<%= solutionX %>.<%= moduleTypeX %>.<%= moduleNameX %>.Serialization.config" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
@@ -136,7 +214,7 @@
     <Folder Include="Controllers\" />
     <Folder Include="dist\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\ModuleNameX\" />
+    <Folder Include="Views\<%= moduleNameX %>\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Views\Web.config" />
@@ -154,12 +232,12 @@
     <Content Include="dist/**/*.*" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data/unicorn-SolutionUriX/**/*.*" />
+    <Content Include="App_Data/unicorn-<%= solutionUriX %>/**/*.*" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Foundation\GlassMapper\code\SolutionX.Foundation.GlassMapper.csproj">
+    <ProjectReference Include="..\..\..\Foundation\GlassMapper\code\<%= solutionX %>.Foundation.GlassMapper.csproj">
       <Project>{0044B0CA-ABE2-4365-B1B2-1E347993B4AA}</Project>
-      <Name>SolutionX.Foundation.GlassMapper</Name>
+      <Name><%= solutionX %>.Foundation.GlassMapper</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

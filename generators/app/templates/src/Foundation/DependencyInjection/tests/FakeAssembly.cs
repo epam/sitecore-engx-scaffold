@@ -1,4 +1,4 @@
-﻿namespace SolutionX.Foundation.DependencyInjection.Tests
+﻿namespace <%= solutionX %>.Foundation.DependencyInjection.Tests
 {
     using System.Reflection;
     using System.Runtime.Serialization;

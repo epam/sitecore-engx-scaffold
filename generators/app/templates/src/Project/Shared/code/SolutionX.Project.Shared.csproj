@@ -10,9 +10,9 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SolutionX.Project.Shared</RootNamespace>
-    <AssemblyName>SolutionX.Project.Shared</AssemblyName>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <RootNamespace><%= solutionX %>.Project.Shared</RootNamespace>
+    <AssemblyName><%= solutionX %>.Project.Shared</AssemblyName>
+    <TargetFrameworkVersion>v<%= netFrameworkVersion %></TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
@@ -51,7 +51,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <SitecoreWebUrl>http://SolutionX.local</SitecoreWebUrl>
+    <SitecoreWebUrl>http://<%= solutionX %>.local</SitecoreWebUrl>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -66,7 +66,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="App_Config\Include\Project\SolutionX.Project.Shared.Serialization.config" />
+    <Content Include="App_Config\Include\Project\<%= solutionX %>.Project.Shared.Serialization.config" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\LocalDev.pubxml">
       <SubType>Designer</SubType>
@@ -79,7 +79,7 @@
     <Content Include="dist/**/*.*" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data/unicorn-SolutionUriX/**/*.*" />
+    <Content Include="App_Data/unicorn-<%= solutionUriX %>/**/*.*" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

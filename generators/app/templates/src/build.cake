@@ -17,9 +17,9 @@ Sitecore.Constants.SetNames();
 Sitecore.Parameters.InitParams(
     context: Context,
     msBuildToolVersion: MSBuildToolVersion.Default,
-    solutionName: "SolutionX",
+    solutionName: "<%= solutionX %>",
     scSiteUrl: "https://sc9.local", // default URL exposed from the box
-    unicornSerializationRoot: "unicorn-SolutionUriX"
+    unicornSerializationRoot: "unicorn-<%= solutionUriX %>"
 );
 
 // //////////////////////////////////////////////////

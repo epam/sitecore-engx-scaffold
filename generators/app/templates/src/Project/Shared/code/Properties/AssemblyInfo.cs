@@ -4,11 +4,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("SolutionX.Foundation.Shared")]
-[assembly: AssemblyDescription("SolutionX.Foundation.Shared")]
+[assembly: AssemblyTitle("<%= solutionX %>.Foundation.Shared")]
+[assembly: AssemblyDescription("<%= solutionX %>.Foundation.Shared")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("SolutionX")]
-[assembly: AssemblyProduct("SolutionX.Foundation.Shared")]
+[assembly: AssemblyCompany("<%= solutionX %>")]
+[assembly: AssemblyProduct("<%= solutionX %>.Foundation.Shared")]
 [assembly: AssemblyCopyright("Copyright � 2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

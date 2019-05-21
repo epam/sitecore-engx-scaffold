@@ -1,4 +1,4 @@
-﻿namespace SolutionX.Foundation.DependencyInjection
+﻿namespace <%= solutionX %>.Foundation.DependencyInjection
 {
     using System;
 

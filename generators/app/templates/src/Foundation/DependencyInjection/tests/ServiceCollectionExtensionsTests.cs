@@ -1,10 +1,10 @@
-namespace SolutionX.Foundation.DependencyInjection.Tests
+namespace <%= solutionX %>.Foundation.DependencyInjection.Tests
 {
     using Microsoft.Extensions.DependencyInjection;
 
     using NSubstitute;
 
-    using SolutionX.Foundation.DependencyInjection;
+    using <%= solutionX %>.Foundation.DependencyInjection;
 
     using Xunit;
 
@@ -38,7 +38,7 @@ namespace SolutionX.Foundation.DependencyInjection.Tests
         [Theory]
         [InlineData("*AnotherSimpleTestClass")]
         [InlineData("*Another*")]
-        [InlineData("SolutionX.*Another*")]
+        [InlineData("<%= solutionX %>.*Another*")]
         public void AddByWildcard_ValidTypes_ServicesCollectionWihtMathingType(string pattern)
         {
             IServiceCollection serviceCollection = new ServiceCollection();

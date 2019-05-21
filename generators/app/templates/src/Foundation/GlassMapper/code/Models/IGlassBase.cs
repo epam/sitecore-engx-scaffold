@@ -6,7 +6,7 @@ using Sitecore.Data;
 using Sitecore.Data.Items;
 using Sitecore.Globalization;
 
-namespace SolutionX.Foundation.GlassMapper.Models
+namespace <%= solutionX %>.Foundation.GlassMapper.Models
 {
     public interface IGlassBase
     {

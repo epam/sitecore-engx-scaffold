@@ -1,4 +1,4 @@
-﻿namespace SolutionX.Foundation.DependencyInjection.Infrastructure
+﻿namespace <%= solutionX %>.Foundation.DependencyInjection.Infrastructure
 {
     using System.Web.Http.Controllers;
     using System.Web.Mvc;

@@ -1,70 +1,55 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-project = 'SolutionX'
-vagrant_root = File.dirname(__FILE__)
-host_serialization_root = "#{vagrant_root}/src" # host opprating system, which is hosting Vagrant and VirtualBox
-guest_serialization_root = '/inetpub/wwwroot/sc9.local/App_Data/unicorn-SolutionUriX' # VM that you creating
+#
+#	- place your license.xml file same folder as this one
+#	- install vagrant hostmanager plugin
+#	- you might want to install SitecoreRootCert.pfx certificate to your host TrustedRootCertificationAuthorities from "c:\certificates\SitecoreRootCert.pfx" to get rid of SSL warnings in browser (may require reboot)
+#	- you may also want to navigate to your box file system - you can do that by opening "\\<private_network_ip>\c$" using explorer
+#
+
+sitecore_prefix = 'sc9'                        # sc9 used by default for boxes with Sitecore 9.x.x
+vagrant_box_name = '<%= vagrantBoxNameX %>'    # box name added to vagrant for example 'w16s-sc911'
+project_name = '<%= solutionX %>'              # your project name
+vm_hostname = "#{ENV['COMPUTERNAME']}T#{project_name}"
+private_network_ip = '192.168.50.4'
+vb_name = "#{project_name}"
+
+vagrant_root = File.dirname(__FILE__)           # folder with current Vagrantfile
+host_serialization_root = "#{vagrant_root}/src" # path on host opprating system, which is hosting Vagrant and VirtualBox
+guest_serialization_root = "/inetpub/wwwroot/#{sitecore_prefix}.local/App_Data/unicorn-#{project_name}" # path inside VM that you creating
 
 Vagrant.configure('2') do |config|
-  config.vm.box = 'VagrantBoxNameX'
+  config.vm.box = "#{vagrant_box_name}"
+  config.vm.hostname = "#{vm_hostname}"
+  config.vm.synced_folder "#{host_serialization_root}", "#{guest_serialization_root}"
 
-  # Disable automatic box update checking. If you disable this, then
-  # boxes will only be checked for updates when the user runs
-  # `vagrant box outdated`. This is not recommended.
-  # config.vm.box_check_update = false
-
+  # Create a private network, which allows host-only access to the machine using a specific IP.
+  config.vm.network 'private_network', ip: "#{private_network_ip}", auto_config: true
+  
   # Create a forwarded port mapping which allows access to a specific port
-  # within the machine from a port on the host machine. In the example below,
-  # accessing 'localhost:8080' will access port 80 on the guest machine.
-  # NOTE: This will enable public access to the opened port
-  # config.vm.network 'forwarded_port', guest: 80, host: 8080
-
-  # Create a forwarded port mapping which allows access to a specific port
-  # within the machine from a port on the host machine and only allow access
-  # via 127.0.0.1 to disable public access
-  # config.vm.network 'forwarded_port', guest: 80, host: 8080, host_ip: '127.0.0.1'
-  config.vm.network :forwarded_port, guest: 80, host: 80, auto_correct: true # http
-  config.vm.network :forwarded_port, guest: 443, host: 443, auto_correct: true # https
+  config.vm.network :forwarded_port, guest: 80,   host: 80,   auto_correct: true # http
+  config.vm.network :forwarded_port, guest: 443,  host: 443,  auto_correct: true # https
   config.vm.network :forwarded_port, guest: 1433, host: 1433, auto_correct: true # sql
   config.vm.network :forwarded_port, guest: 8983, host: 8983, auto_correct: true # solr
-  config.vm.network :forwarded_port, guest: 4020, host: 4020, auto_correct: true # vs remote debugger
-
-  # Create a private network, which allows host-only access to the machine
-  # using a specific IP.
-  config.vm.network 'private_network', ip: '192.168.50.4', auto_config: true
-  config.vm.hostname = "#{ENV['COMPUTERNAME']}T#{project}"
-  config.hostmanager.aliases = %w(sc9.local SolutionX.local SolutionX.sc9.local SolutionX-local.azurewebsites.net)
-
+  config.vm.network :forwarded_port, guest: 8172, host: 8172, auto_correct: true # webdeploy
+  config.vm.network :forwarded_port, guest: 4020, host: 4020, auto_correct: true # vs 2015 remote debugger
+  config.vm.network :forwarded_port, guest: 4022, host: 4022, auto_correct: true # vs 2017 remote debugger
+  config.vm.network :forwarded_port, guest: 4024, host: 4024, auto_correct: true # vs 2019 remote debugger
+  
   config.hostmanager.enabled = true
   config.hostmanager.manage_host = true
   config.hostmanager.ignore_private_ip = false
-
-  config.vm.synced_folder "#{host_serialization_root}", "#{guest_serialization_root}"
+  config.hostmanager.aliases = %W(#{sitecore_prefix}.local #{sitecore_prefix}.identityserver #{sitecore_prefix}.xconnect)
 
   config.vm.provider 'virtualbox' do |vb|
-    vb.name = 'SolutionX'
-
-    # Display the VirtualBox GUI when booting the machine
+    vb.name = "#{vb_name}"
     vb.gui = false
-    vb.customize ['modifyvm', :id, '--vram', '100']
-
-    # reduce size in case of multiple VMs
-    vb.linked_clone = true
-
-    # Customize the amount of memory on the VM:
-    vb.cpus = 4
+	vb.cpus = 4
     vb.memory = '8192'
-
-    # clipboard
-    vb.customize ['modifyvm', :id, '--clipboard', 'bidirectional']
-    vb.customize ['modifyvm', :id, '--draganddrop', 'bidirectional']
-
-    # network
-    vb.customize ['modifyvm', :id, '--natdnshostresolver1', 'on']
-
-    # resolution
-    # vb.customize ['setextradata', :id, 'GUI/ScaleFactor', '1.5']
-    # vb.customize ['setextradata', :id, 'GUI/MaxGuestResolution', '1920,1080']
+	
+	vb.customize ['modifyvm', :id, '--natdnshostresolver1', 'on']
   end
+  
+  config.vm.box_check_update = false
 end

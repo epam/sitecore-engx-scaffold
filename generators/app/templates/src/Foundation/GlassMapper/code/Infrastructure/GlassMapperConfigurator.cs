@@ -1,4 +1,4 @@
-﻿namespace SolutionX.Foundation.GlassMapper.Infrastructure
+﻿namespace <%= solutionX %>.Foundation.GlassMapper.Infrastructure
 {
     using Glass.Mapper.Sc;
     using Glass.Mapper.Sc.Web;

@@ -1,7 +1,7 @@
 {
-  "name": "SolutionX",
+  "name": "<%= solutionX %>",
   "version": "0.1.0",
-  "description": "SolutionX",
+  "description": "<%= solutionX %>",
   "bin": {
     "cross-env": "./node_modules/cross-env/bin/cross-env.js",
     "webpack": "./node_modules/webpack/bin/webpack.js",
@@ -10,10 +10,10 @@
   "scripts": {
     "build:Debug": "cross-env NODE_ENV=production webpack",
     "build:Release": "cross-env NODE_ENV=production webpack -p",
-    "dev:static-content": "cross-env NODE_ENV=development ENV_URL=https://SolutionX-dev-cd.azurewebsites.net STATIC_CONTENT=true webpack-dev-server --open --",
-    "dev:local": "cross-env NODE_ENV=development ENV_URL=http://SolutionX-local.azurewebsites.net webpack-dev-server --open",
-    "dev:dev": "cross-env NODE_ENV=development ENV_URL=https://SolutionX-int-cd.azurewebsites.net webpack-dev-server --progress --bail --open",
-    "dev:qat": "cross-env NODE_ENV=development ENV_URL=https://SolutionX-qat-cd.azurewebsites.net webpack-dev-server --progress --bail --open",
+    "dev:static-content": "cross-env NODE_ENV=development ENV_URL=https://<%= solutionX %>-dev-cd.azurewebsites.net STATIC_CONTENT=true webpack-dev-server --open --",
+    "dev:local": "cross-env NODE_ENV=development ENV_URL=http://<%= solutionX %>-local.azurewebsites.net webpack-dev-server --open",
+    "dev:dev": "cross-env NODE_ENV=development ENV_URL=https://<%= solutionX %>-int-cd.azurewebsites.net webpack-dev-server --progress --bail --open",
+    "dev:qat": "cross-env NODE_ENV=development ENV_URL=https://<%= solutionX %>-qat-cd.azurewebsites.net webpack-dev-server --progress --bail --open",
     "sc:codegen": "gulp --gulpfile ./scripts/code-generation/codeGen.js",
     "test": "jest --no-cache --config ./scripts/jest/jest.config.js || exit 0",
     "test-watch": "jest --watch --notify --config ./scripts/jest/jest.config.js",

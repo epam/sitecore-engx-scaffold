@@ -1,4 +1,4 @@
-﻿namespace SolutionX.Foundation.DependencyInjection.Infrastructure
+﻿namespace <%= solutionX %>.Foundation.DependencyInjection.Infrastructure
 {
     using Glass.Mapper.Sc;
 

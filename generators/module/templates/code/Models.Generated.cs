@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 // ReSharper disable InconsistentNaming
-namespace SolutionX.ModuleTypeX.ModuleNameX.Models
+namespace <%= solutionX %>.<%= moduleTypeX %>.<%= moduleNameX %>.Models
 {
     using System;
     using System.Collections.Generic;
@@ -21,5 +21,5 @@ namespace SolutionX.ModuleTypeX.ModuleNameX.Models
     using Sitecore.Data;
     using Sitecore.Data.Items;
     using System.CodeDom.Compiler;
-    using SolutionX.Foundation.GlassMapper.Models;
+    using <%= solutionX %>.Foundation.GlassMapper.Models;
 }

@@ -7,7 +7,7 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Yeoman sitecore-engx-scaffold",
+            "name": "Solution scaffold",
             "program": "${env:APPDATA}\\npm\\node_modules\\yo\\lib\\cli.js",
             "args": [
                 "sitecore-engx-scaffold"
@@ -17,7 +17,7 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Yeoman module",
+            "name": "Module scaffold",
             "program": "${env:APPDATA}\\npm\\node_modules\\yo\\lib\\cli.js",
             "args": [
                 "sitecore-engx-scaffold:module"

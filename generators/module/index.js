@@ -121,7 +121,7 @@ module.exports = class extends BaseHelixGenerator {
     const baseGlobOptions = {
       dot: true,
       sync: true,
-      debug: true,
+      debug: false,
     };
 
     /* Copy ymls without solution and guid transforms */

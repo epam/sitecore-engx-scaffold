@@ -93,7 +93,7 @@ module.exports = class HelixGenerator extends BaseHelixGenerator {
     const baseGlobOptions = {
       dot: true,
       sync: true,
-      debug: true,
+      debug: false,
     };
 
     var destinationPath = self.destinationPath();

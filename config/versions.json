@@ -7,7 +7,6 @@
         "name": "9.0 Update-1",
         "value": {
           "name": "Sitecore Experience Platform 9.0 rev. 171219.zip (9.0 Update-1)",
-          "nugetVersion": "9.0.171219",
           "vagrantBoxName": "w16s-sc901",
           "majorVersion": "9.0",
           "exactVersion": "9.0.1",
@@ -19,7 +18,6 @@
         "name": "9.0 Update-2",
         "value": {
           "name": "Sitecore Experience Platform 9.0 rev. 180604 (9.0 Update-2)",
-          "nugetVersion": "9.0.180604",
           "vagrantBoxName": "w16s-sc902",
           "majorVersion": "9.0",
           "exactVersion": "9.0.2",
@@ -37,11 +35,21 @@
         "name": "Sitecore.NET 9.1.0",
         "value": {
           "name": "Sitecore.NET 9.1.0 (rev. 001564)",
-          "nugetVersion": "",
-          "vagrantBoxName": "w16s-sc91",
+          "vagrantBoxName": "w16s-sc910",
           "majorVersion": "9.1",
           "exactVersion": "9.1",
           "kernelVersion": "12.0.0",
+          "netFrameworkVersion": "4.7.1"
+        }
+      },
+      {
+        "name": "Sitecore.NET 9.1.1",
+        "value": {
+          "name": "Sitecore.NET 9.1.1",
+          "vagrantBoxName": "w16s-sc911",
+          "majorVersion": "9.1.1",
+          "exactVersion": "9.1.1",
+          "kernelVersion": "9.1.1",
           "netFrameworkVersion": "4.7.1"
         }
       }

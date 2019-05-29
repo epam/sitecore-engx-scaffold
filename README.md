@@ -1,5 +1,8 @@
 # Sitecore EngX Scaffold
 
+##when a problems with npm link:
+https://catalin.me/how-to-fix-node-js-gyp-err-cant-find-python-executable-python-on-windows/
+
 [![npm version](https://badge.fury.io/js/generator-sitecore-engx-scaffold.svg)](https://badge.fury.io/js/generator-sitecore-engx-scaffold)
 [![Build status](https://ci.appveyor.com/api/projects/status/a7qjl56tmurpn7qq?svg=true)](https://ci.appveyor.com/project/asmagin/sitecore-engx-scaffold)
 

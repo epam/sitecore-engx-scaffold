@@ -37,7 +37,7 @@
           "name": "Sitecore.NET 9.1.0 (rev. 001564)",
           "vagrantBoxName": "w16s-sc910",
           "majorVersion": "9.1",
-          "exactVersion": "9.1",
+          "exactVersion": "9.1.0",
           "kernelVersion": "12.0.0",
           "netFrameworkVersion": "4.7.1"
         }
@@ -47,7 +47,7 @@
         "value": {
           "name": "Sitecore.NET 9.1.1",
           "vagrantBoxName": "w16s-sc911",
-          "majorVersion": "9.1.1",
+          "majorVersion": "9.1",
           "exactVersion": "9.1.1",
           "kernelVersion": "9.1.1",
           "netFrameworkVersion": "4.7.1"

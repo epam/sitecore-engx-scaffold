@@ -149,7 +149,7 @@ module.exports = class HelixGenerator extends BaseHelixGenerator {
   }
 
   _processPathSolutionToken(destPath) {
-    return destPath.replace('SolutionX', '<%= solutionX %>')
+    return destPath.replace(/SolutionX/g, '<%= solutionX %>')
   };
   
   end() {

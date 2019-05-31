@@ -176,9 +176,9 @@ module.exports = class extends BaseHelixGenerator {
 
   _processPathModuleTokens(destPath) {
     return destPath
-      .replace('SolutionX', '<%= solutionX %>')
-      .replace('ModuleNameX', '<%= moduleNameX %>')
-      .replace('ModuleTypeX', '<%= moduleTypeX %>');
+      .replace(/SolutionX/g, '<%= solutionX %>')
+      .replace(/ModuleNameX/g, '<%= moduleNameX %>')
+      .replace(/ModuleTypeX/g, '<%= moduleTypeX %>');
   };
 
   end() {

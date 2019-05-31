@@ -72,7 +72,7 @@ Task("Default") // LocalDev
     .IsDependentOn("000-Clean")
     .IsDependentOn("001-Restore")
     .IsDependentOn("002-Build")
-<% if (majorVersion != '9.1.1') { -%>
+<% if (exactVersion != '9.1.1') { -%>
      .IsDependentOn("003-Tests")
 <% } -%>
     .IsDependentOn("004-Packages")

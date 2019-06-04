@@ -8,7 +8,8 @@ import * as {{this.Name}} from '{{this.Path}}';
 
 // Path: {{this.Path}}
 // ID: {{this.ID}}
-export interface {{this.AsClass}}DataSource{ // extends ReactJssModule.BaseDataSourceItem {
+// extends SitecoreJssModule.BaseDataSourceItem {
+export interface {{this.AsClass}}DataSource {
 
     {{#each this.Fields}}
     /// The {{this.Name}} field.
@@ -21,7 +22,8 @@ export interface {{this.AsClass}}DataSource{ // extends ReactJssModule.BaseDataS
 
 // Path: {{this.Path}}
 // ID: {{this.ID}}
-export interface {{this.AsClass}}RenderingParams{ // extends ReactJssModule.BaseRenderingParam {
+// extends SitecoreJssModule.BaseRenderingParam {
+export interface {{this.AsClass}}RenderingParams {
 
     {{#each this.Fields}}
     /// The {{this.Name}} field.

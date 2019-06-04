@@ -3,9 +3,9 @@ var codeGenTsUtils = require('../../../scripts/code-generation/codeGenTsUtils');
 
 module.exports = {
   cwd: path.join(__dirname, '..'),
-  pattern: '**/serialization/Templates/**/*.yml',
+  pattern: '**/serialization/Templates/**/*.yml',  
   modules: [
-    //{ Name: 'ReactJssModule', Path: 'Foundation/ReactJss/client'}
+    { Name: 'SitecoreJssModule', Path: 'Foundation/SitecoreJss/client'}
   ],
   templatePath: path.join(__dirname, 'codegenerationts.tmpl'),
   ToClass: codeGenTsUtils.toClass,

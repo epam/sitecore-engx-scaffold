@@ -1,17 +1,16 @@
 'use strict';
-//const Generator = require('yeoman-generator');
-const BaseHelixGenerator = require('../../lib/base-helix-generator');
+const BaseGenerator = require('../../lib/base-generator');
 
 const chalk = require('chalk');
 const yosay = require('yosay');
 
 const utils = require('../../lib/utils.js');
-
 const baseIgnore = require('../../config/ignore.json');
 const msg = require('../../config/messages.json');
 const versions = require('../../config/versions.json');
 
-module.exports = class HelixGenerator extends BaseHelixGenerator {
+module.exports = class HelixGenerator extends BaseGenerator {
+
   constructor(args, opts) {
     // Calling the super constructor is important so our generator is correctly set up
     super(args, opts);
@@ -88,34 +87,38 @@ module.exports = class HelixGenerator extends BaseHelixGenerator {
   }
 
   writing() {
-    const self = this;
-    
-    const baseGlobOptions = {
-      dot: true,
-      sync: true,
-      debug: false,
-    };
+    super._runPipeline(this.options.sitecoreUpdate.exactVersion, this.destinationPath(),
+      [
+        this._copyYmls,
+        this._copyDlls,
+        this._copyAll,
+      ]);
+  }
 
-    var destinationPath = self.destinationPath();
-    /* Copy ymls without solution and guid transforms */
-    super._copy(self.templatePath('**/*.yml'), destinationPath,
+  /* Copy ymls with solution and guid transforms */
+  _copyYmls(rootPath, destinationPath) {
+    super._copy(this.templatePath(`${rootPath}/**/*.yml`), destinationPath,
       {
         solutionX: this.options.solutionName
       },
       {
-        ...baseGlobOptions,
+        ...super._baseGlobOptions(),
         process: this._processYmlFile.bind(this)
       },
       {
         preProcessPath: this._processPathSolutionToken
       }
-    )
+    );
+  }
 
-    /* Copy dlls without any transforms */
-    super._copy(self.templatePath('**/*.dll'), destinationPath, {}, baseGlobOptions, {});
+  /* Copy dlls without any transforms */
+  _copyDlls(rootPath, destinationPath) {
+    super._copy(this.templatePath(`${rootPath}/**/*.dll`), destinationPath, {}, super._baseGlobOptions(), {});
+  }
 
-    /* Copy majority of files with regular template transforms */
-    super._copyTpl(self.templatePath('**/*'), destinationPath,
+  /* Copy majority of files with regular template transforms */
+  _copyAll(rootPath, destinationPath) {
+    super._copyTpl(this.templatePath(`${rootPath}/**/*`), destinationPath,
       {
         exactVersion: this.options.sitecoreUpdate.exactVersion,
         majorVersion: this.options.sitecoreUpdate.majorVersion,
@@ -126,13 +129,13 @@ module.exports = class HelixGenerator extends BaseHelixGenerator {
         solutionUriX: this.options.solutionNameUri
       },
       {
-        ...baseGlobOptions,
+        ...super._baseGlobOptions(),
         ignore: [...baseIgnore, ...['**/*.dll', '**/*.yml']]
       },
       {
         preProcessPath: this._processPathSolutionToken
       }
-    )
+    );
   }
 
   _processYmlFile(content, path) {
@@ -151,7 +154,7 @@ module.exports = class HelixGenerator extends BaseHelixGenerator {
   _processPathSolutionToken(destPath) {
     return destPath.replace(/SolutionX/g, '<%= solutionX %>')
   };
-  
+
   end() {
     const self = this;
 

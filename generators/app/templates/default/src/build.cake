@@ -49,7 +49,9 @@ Task("003-Tests")
     ;
 
 Task("004-Packages")
+<% if (exactVersion != '9.1.1') { -%>
     .IsDependentOn(Sitecore.Tasks.CopyShipFilesTaskName)
+<% } -%>
     .IsDependentOn(Sitecore.Tasks.CopySpeRemotingFilesTaskName)
     .IsDependentOn(Sitecore.Tasks.RunPackagesInstallationTask)
     ;

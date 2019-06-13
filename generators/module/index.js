@@ -133,7 +133,8 @@ module.exports = class extends BaseGenerator {
           solutionX: this.options.solutionName,
           moduleTypeX: this.options.moduleType,
           moduleNameX: this.options.moduleName,
-          solutionUriX: this.options.solutionNameUri
+          solutionUriX: this.options.solutionNameUri,
+          unicornSerializationDependenciesX: this.options.unicornSerializationDependenciesX,
         },
         {
           ...super._baseGlobOptions(),
@@ -148,7 +149,7 @@ module.exports = class extends BaseGenerator {
 
    /* Copy ymls with solution and guid transforms */
    _copyYmls(rootPath, destinationPath) {
-    super._copy(this.templatePath(`${rootPath}**/*.yml`), destinationPath,
+    super._copy(this.templatePath(`${rootPath}/**/*.yml`), destinationPath,
     {
       solutionX: this.options.solutionName,
       moduleTypeX: this.options.moduleType,

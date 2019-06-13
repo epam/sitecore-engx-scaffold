@@ -37,7 +37,9 @@ Task("001-Restore")
     ;
 
 Task("002-Build")
+<% if (majorVersion != '9.1') { -%>
     .IsDependentOn(Sitecore.Tasks.GenerateCodeTaskName)
+<% } -%>    
     .IsDependentOn(Sitecore.Tasks.BuildClientCodeTaskName)
     .IsDependentOn(Sitecore.Tasks.BuildServerCodeTaskName)
     ;
@@ -49,10 +51,10 @@ Task("003-Tests")
     ;
 
 Task("004-Packages")
-<% if (exactVersion != '9.1.1') { -%>
+<% if (majorVersion != '9.1') { -%>
     .IsDependentOn(Sitecore.Tasks.CopyShipFilesTaskName)
-<% } -%>
     .IsDependentOn(Sitecore.Tasks.CopySpeRemotingFilesTaskName)
+<% } -%>
     .IsDependentOn(Sitecore.Tasks.RunPackagesInstallationTask)
     ;
 
@@ -74,9 +76,7 @@ Task("Default") // LocalDev
     .IsDependentOn("000-Clean")
     .IsDependentOn("001-Restore")
     .IsDependentOn("002-Build")
-<% if (exactVersion != '9.1.1') { -%>
-     .IsDependentOn("003-Tests")
-<% } -%>
+    .IsDependentOn("003-Tests")
     .IsDependentOn("004-Packages")
     .IsDependentOn("005-Publish")
     .IsDependentOn("006-Sync-Content");

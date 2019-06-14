@@ -1,6 +1,6 @@
 'use strict';
 const chalk = require('chalk');
-const BaseHelixGenerator = require('../../lib/base-helix-generator');
+const BaseGenerator = require('../../lib/base-generator');
 const uuidv4 = require('uuid/v4');
 
 const utils = require('../../lib/utils.js');
@@ -12,7 +12,7 @@ const settings = require('../../config/projectSettings.json');
 
 const baseIgnore = require('../../config/ignore.json');
 
-module.exports = class extends BaseHelixGenerator {
+module.exports = class extends BaseGenerator {
   constructor(args, opts) {
     // Calling the super constructor is important so our generator is correctly set up
     super(args, opts);
@@ -113,54 +113,57 @@ module.exports = class extends BaseHelixGenerator {
   }
 
   writing() {
-    const self = this;
+    var destinationPath = this.destinationPath(`src/${this.options.moduleType}/${this.options.moduleName}`);
 
-    const modulePath = `src/${self.options.moduleType}/${self.options.moduleName}`;
-    var destinationPath = self.destinationPath(modulePath);
-
-    const baseGlobOptions = {
-      dot: true,
-      sync: true,
-      debug: true,
-    };
-
-    /* Copy ymls without solution and guid transforms */
-    super._copy(self.templatePath('**/*.yml'), destinationPath,
-      {
-        solutionX: this.options.solutionName,
-        moduleTypeX: this.options.moduleType,
-        moduleNameX: this.options.moduleName,
-      },
-      {
-        ...baseGlobOptions,
-        process: this._processYmlFile.bind(this)
-      },
-      {
-        preProcessPath: this._processPathModuleTokens
-      }
-    )
-
-    /* Copy majority of files with regular template transforms */
-    super._copyTpl(self.templatePath('**/*'), destinationPath,
-      {
-        exactVersion: this.options.sitecoreUpdate.exactVersion,
-        majorVersion: this.options.sitecoreUpdate.majorVersion,
-        netFrameworkVersion: this.options.sitecoreUpdate.netFrameworkVersion,
-        kernelVersion: this.options.sitecoreUpdate.kernelVersion,
-        solutionX: this.options.solutionName,
-        moduleTypeX: this.options.moduleType,
-        moduleNameX: this.options.moduleName,
-        solutionUriX: this.options.solutionNameUri
-      },
-      {
-        ...baseGlobOptions,
-        ignore: [...baseIgnore, ...['**/*.yml']]
-      },
-      {
-        preProcessPath: this._processPathModuleTokens
-      }
-    )
+    super._runPipeline(this.options.sitecoreUpdate.exactVersion, destinationPath,
+      [
+        this._copyYmls,
+        this._copyAll,
+      ]);
   }
+
+   /* Copy majority of files with regular template transforms */
+   _copyAll(rootPath, destinationPath) {
+        super._copyTpl(this.templatePath(`${rootPath}/**/*`), destinationPath,
+        {
+          exactVersion: this.options.sitecoreUpdate.exactVersion,
+          majorVersion: this.options.sitecoreUpdate.majorVersion,
+          netFrameworkVersion: this.options.sitecoreUpdate.netFrameworkVersion,
+          kernelVersion: this.options.sitecoreUpdate.kernelVersion,
+          solutionX: this.options.solutionName,
+          moduleTypeX: this.options.moduleType,
+          moduleNameX: this.options.moduleName,
+          solutionUriX: this.options.solutionNameUri,
+          unicornSerializationDependenciesX: this.options.unicornSerializationDependenciesX,
+        },
+        {
+          ...super._baseGlobOptions(),
+          ignore: [...baseIgnore, ...['**/*.yml']]
+        },
+        {
+          preProcessPath: this._processPathModuleTokens
+        }
+      )
+   }
+
+
+   /* Copy ymls with solution and guid transforms */
+   _copyYmls(rootPath, destinationPath) {
+    super._copy(this.templatePath(`${rootPath}/**/*.yml`), destinationPath,
+    {
+      solutionX: this.options.solutionName,
+      moduleTypeX: this.options.moduleType,
+      moduleNameX: this.options.moduleName,
+    },
+    {
+      ...super._baseGlobOptions(),
+      process: this._processYmlFile.bind(this)
+    },
+    {
+      preProcessPath: this._processPathModuleTokens
+    }
+  )
+ }
 
   _processYmlFile(content, path) {
     var result = this._replaceTokens(content, this.options);
@@ -176,9 +179,9 @@ module.exports = class extends BaseHelixGenerator {
 
   _processPathModuleTokens(destPath) {
     return destPath
-      .replace('SolutionX', '<%= solutionX %>')
-      .replace('ModuleNameX', '<%= moduleNameX %>')
-      .replace('ModuleTypeX', '<%= moduleTypeX %>');
+      .replace(/SolutionX/g, '<%= solutionX %>')
+      .replace(/ModuleNameX/g, '<%= moduleNameX %>')
+      .replace(/ModuleTypeX/g, '<%= moduleTypeX %>');
   };
 
   end() {
@@ -208,10 +211,7 @@ module.exports = class extends BaseHelixGenerator {
       .then(() => {
         console.log(chalk.yellow.bold('Successfully added code project'));
 
-        /* Test project packages and references are yet not adopted. Coming soon */
-
-
-        /*Add the test project
+        /*Add the test project */
         utils
           .addProject(
             self.options.solutionName,
@@ -234,7 +234,7 @@ module.exports = class extends BaseHelixGenerator {
               'Your ' + self.options.moduleType + ' module ' + chalk.green.bold(self.options.solutionName + '.' + self.options.moduleType + '.' + self.options.moduleName
               ) + ' has been created and added to ' + chalk.green.bold(self.options.solutionName)
             );
-          });*/
+          });
       });
   }
 

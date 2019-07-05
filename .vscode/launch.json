@@ -7,22 +7,24 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Solution scaffold",
+            "name": "Sitecore solution scaffold",
             "program": "${env:APPDATA}\\npm\\node_modules\\yo\\lib\\cli.js",
             "args": [
                 "sitecore-engx-scaffold"
             ],
             "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/output",
         },
         {
             "type": "node",
             "request": "launch",
-            "name": "Module scaffold",
+            "name": "Sitecore project scaffold",
             "program": "${env:APPDATA}\\npm\\node_modules\\yo\\lib\\cli.js",
             "args": [
                 "sitecore-engx-scaffold:module"
             ],
             "console": "integratedTerminal",
-        }
+            "cwd": "${workspaceFolder}/output",
+        },
     ]
 }

@@ -8,6 +8,7 @@ const utils = require('../../lib/utils.js');
 const baseIgnore = require('../../config/ignore.json');
 const msg = require('../../config/messages.json');
 const versions = require('../../config/versions.json');
+const settings = require('../../config/settings.json');
 
 module.exports = class HelixGenerator extends BaseGenerator {
 
@@ -43,47 +44,38 @@ module.exports = class HelixGenerator extends BaseGenerator {
     this.log('');
   }
 
-  prompting() {
-    const self = this;
-
-    return self
-      .prompt([{
+  async prompting() {
+    var answers = await this.prompt([{
         name: 'solutionName',
         message: msg.solutionName.prompt,
-        default: self.appname,
+        default: this.appname,
         store: true,
-      },
-      {
+      }, {
         type: 'list',
         name: 'sitecoreVersion',
         message: msg.sitecoreVersion.prompt,
         choices: versions,
         store: true,
-      },
-      ])
-      .then(function (answers) {
-        self.options = Object.assign({}, self.options, answers);
-        return self.prompt([{
-          type: 'list',
-          name: 'sitecoreUpdate',
-          message: msg.sitecoreUpdate.prompt,
-          choices: self.options.sitecoreVersion.value ? self.options.sitecoreVersion.value : self.options.sitecoreVersion,
-          store: true,
-        },]);
-      })
-      .then(function (answers) {
-        self.options = Object.assign({}, self.options, answers);
+      }
+    ]);
 
-        self.options.vagrantBoxName = (self.options.sitecoreUpdate.value ?
-          self.options.sitecoreUpdate.value :
-          self.options.sitecoreUpdate
-        ).vagrantBoxName;
+    this.options = { ...this.options, ...answers };
 
-        self.options.solutionNameUri = self.options.solutionName.replace(/[^a-z0-9\-]/ig, '-').toLowerCase();
-        self.config.set('solutionNameUri', self.options.solutionNameUri);
+    answers = await this.prompt([{
+      type: 'list',
+      name: 'sitecoreUpdate',
+      message: msg.sitecoreUpdate.prompt,
+      choices: this.options.sitecoreVersion.value ? this.options.sitecoreVersion.value : this.options.sitecoreVersion,
+      store: true,
+    }]);
 
-        self.async();
-      });
+    this.options = { ...this.options, ...answers };
+
+    this.options.vagrantBoxName = (this.options.sitecoreUpdate.value || this.options.sitecoreUpdate).vagrantBoxName;
+    this.options.hostNames = settings.hostNames;
+
+    this.options.solutionNameUri = this.options.solutionName.replace(/[^a-z0-9\-]/ig, '-').toLowerCase();
+    this.config.set('solutionNameUri', this.options.solutionNameUri);
   }
 
   writing() {
@@ -126,7 +118,8 @@ module.exports = class HelixGenerator extends BaseGenerator {
         kernelVersion: this.options.sitecoreUpdate.kernelVersion,
         solutionX: this.options.solutionName,
         vagrantBoxNameX: this.options.vagrantBoxName,
-        solutionUriX: this.options.solutionNameUri
+        solutionUriX: this.options.solutionNameUri,
+        hostNamesX: this.options.hostNames && this.options.hostNames.length ? this.options.hostNames.join(" ") : null
       },
       {
         ...super._baseGlobOptions(),
@@ -155,12 +148,10 @@ module.exports = class HelixGenerator extends BaseGenerator {
     return destPath.replace(/SolutionX/g, '<%= solutionX %>')
   };
 
-  end() {
-    const self = this;
+  async end() {
+    await utils.addCredentialsToWindowsVault('sc9.local', 'vagrant', 'vagrant');
 
-    utils.addCredentialsToWindowsVault('sc9.local', 'vagrant', 'vagrant').then(() => {
-      console.log('');
-      console.log('Solution name ' + chalk.green.bold(self.options.solutionName) + ' has been created.');
-    });
+    console.log('');
+    console.log('Solution name ' + chalk.green.bold(this.options.solutionName) + ' has been created.');
   }
 };

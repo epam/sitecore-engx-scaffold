@@ -20,3 +20,6 @@ generators/**/tools/**/*
 .npm
 .eslintcache
 .vs*
+
+# Local development
+/output

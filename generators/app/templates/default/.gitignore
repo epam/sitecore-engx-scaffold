@@ -104,4 +104,12 @@ Code Generation Templates/*.tt
 /src/license.xml
 /license.xml
 
+#Build
+/src/tools/**
+/output/**
+
+#FE
+/src/Project/*/client/build/**
+/src/Project/*/code/dist/**
+
 # libs

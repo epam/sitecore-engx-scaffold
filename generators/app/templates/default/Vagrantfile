@@ -1,12 +1,7 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-#
-#	- place your license.xml file same folder as this one
-#	- install vagrant hostmanager plugin
-#	- you might want to install SitecoreRootCert.pfx certificate to your host TrustedRootCertificationAuthorities from "c:\certificates\SitecoreRootCert.pfx" to get rid of SSL warnings in browser (may require reboot)
-#	- you may also want to navigate to your box file system - you can do that by opening "\\<private_network_ip>\c$" using explorer
-#
+# Find more details about vagrant boxes creation here: https://github.com/asmagin/sitecore-packer
 
 sitecore_prefix = 'sc9'                        # sc9 used by default for boxes with Sitecore 9.x.x
 vagrant_box_name = '<%= vagrantBoxNameX %>'    # box name added to vagrant for example 'w16s-sc911'
@@ -40,15 +35,15 @@ Vagrant.configure('2') do |config|
   config.hostmanager.enabled = true
   config.hostmanager.manage_host = true
   config.hostmanager.ignore_private_ip = false
-  config.hostmanager.aliases = %W(#{sitecore_prefix}.local #{sitecore_prefix}.identityserver #{sitecore_prefix}.xconnect)
+  config.hostmanager.aliases = %W(<%= hostNamesX %>)
 
   config.vm.provider 'virtualbox' do |vb|
     vb.name = "#{vb_name}"
     vb.gui = false
-	vb.cpus = 4
+    vb.cpus = 4
     vb.memory = '8192'
-	
-	vb.customize ['modifyvm', :id, '--natdnshostresolver1', 'on']
+    
+    vb.customize ['modifyvm', :id, '--natdnshostresolver1', 'on']
   end
   
   config.vm.box_check_update = false

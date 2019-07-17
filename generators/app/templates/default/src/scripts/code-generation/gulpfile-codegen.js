@@ -1,10 +1,7 @@
 var gulp = require("gulp");
-var debug = require("gulp-debug");
 var foreach = require("gulp-foreach");
 var rename = require("gulp-rename");
 var codeGen = require('rainbow-js-codegeneration').generationPlugin;
-
-gulp.task("default", ['generate-cs', 'generate-ts']);
 
 gulp.task("generate-cs", function (callback) {
   gulp.src('../../**/codegeneration.config.js', { base: "./" })
@@ -41,3 +38,5 @@ gulp.task("generate-ts", function (callback) {
             callback();
         });
 });
+
+gulp.task("default", gulp.series("generate-cs", "generate-ts"));

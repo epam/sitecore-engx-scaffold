@@ -2,42 +2,48 @@
 
 ## Prerequisites
 
+### Environment
+* VirtualBox 5.2.4+ - [here](https://www.virtualbox.org/wiki/Downloads)
+* VirtualBox Extension Pack
+* Vagrant 2.0.1+ - [here](https://www.vagrantup.com/downloads.html)
+* Vagrant plugin vagrant-hostmanager
+* at least 30gb free space on C: drive and 10 gb for downloaded box file
+
+### Development
+* NodeJS / npm - [here](https://nodejs.org/en/)
 * Visual Studio 2017 or/and VS Code
-* Vagrant 2.0.1+
-* VirtualBox 5.2.4+
+* *(optional)* Visual Studio plugin Cake for Visual Studio - [here](https://marketplace.visualstudio.com/items?itemName=vs-publisher-1392591.CakeforVisualStudio)
+* *(optional)* Resharper
+* *(optional)* Resharper plugin StyleCop for ReSharper - [here](https://github.com/StyleCop/StyleCop.ReSharper)
 
 ## Installation
 
 1.  Download source code
 1.  Install VirtualBox
 1.  Install Vargant
-1.  Add Sitecore 9.0 box and install plugin for vagrant. (Find more details about vagrant boxes creation [here](https://github.com/asmagin/sitecore-packer))
-
-```powershell
-vagrant box add w16s-sc901 <local path to box file>
-vagrant plugin install vagrant-hostsupdater # this plugin will automatically set hosts entries
-```
-
-5.  Start vagrant (as administrator).
+1.  Add Sitecore box and install plugin for vagrant.
+    ```powershell
+    vagrant box add <%= vagrantBoxNameX %> <local path to box file>
+    vagrant plugin install vagrant-hostmanager # this plugin will automatically set hosts entries
+    ```
+1.  Start vagrant (as administrator).
     This will create a VM with IP address `192.168.50.4` which could be accessed with `vagrant/vagrant` account/password.
-
-```powershell
-vagrant up
-```
-
-6.  Run cake build
-
-```powershell
-cd ./src
-./build.ps1
-```
-
-7.  Login into Sitecore and republish the site.
+    ```powershell
+    vagrant up
+    ```
+1.  Place your license.xml file to *(gitroot)* and *(gitroot)*/src folders.
+1.  Install SitecoreRootCert.pfx certificate to your host TrustedRootCertificationAuthorities from "c:\certificates\SitecoreRootCert.pfx" to get rid of SSL warnings in browser (may require reboot). Default password is `vagrant`.
+1.  Run cake build
+    ```powershell
+    cd ./src
+    ./build.ps1
+    ```
+1.  Login into Sitecore `http://sc9.local/sitecore` and republish the site.
 
 _\*\*\* NOTE: You might need to manually install some packages in case of errors with automation. Do following steps and restart step 6 above._
 
 1.  Download package
-1.  Log in to a site http://<%= solutionX %>-local.azurewebsites.net/sitecore/shell or http://<%= solutionX %>.local and install the package.
+1.  Log in to a site http://<%= solutionX %>.local/sitecore or http://<%= solutionX %>-local.azurewebsites.net/sitecore and install the package.
     _Note: after installation, you might need to manually update `web.config` with package specific assembly redirects._
 
 #### Using vagrant box
@@ -48,19 +54,24 @@ _\*\*\* NOTE: You might need to manually install some packages in case of errors
 
 #### Credentials
 
-##### GUI & WinRM
+1. Website:
+    * address: http://sc9.local
 
-```powershell
-vagrant # User
-vagrant # Password
-```
+1. Sitecore Admin:
+    * address: http://sc9.local/sitecore
+    * creds: admin/b
 
-##### SQL Server
+1. Remote Desktop Connection
+    * ip: sc9.local
+    * creds: vagrant/vagrant
 
-```powershell
-sa # User
-Vagrant42 # SQL SA password
-```
+1. Network file share
+    * address: \\sc9.local\c$\inetpub\wwwroot\
+    * creds: vagrant/vagrant
+
+1. SQL connection
+    * ip: sc9.local
+    * creds: sa/Vagrant42
 
 ## Build
 

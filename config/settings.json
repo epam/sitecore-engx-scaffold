@@ -1,0 +1,7 @@
+{
+    "hostNames": [
+        "#{sitecore_prefix}.local",
+        "#{sitecore_prefix}.identityserver",
+        "#{sitecore_prefix}.xconnect"
+    ]
+}

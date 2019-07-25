@@ -210,7 +210,9 @@ module.exports = class extends BaseGenerator {
         helixLayerType: this.options.moduleType,
         projectNameSuffix: settings.testPrefixExtension
       }),
-    ]);
+    ], {
+      force: true
+    });
   }
 
   async end() {

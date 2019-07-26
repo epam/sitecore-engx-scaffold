@@ -31,7 +31,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp />
     <TargetFrameworkProfile />
-    <ProjectGuid></ProjectGuid>
+    <ProjectGuid><%= `{${testProjectGuidX.toUpperCase()}}` %></ProjectGuid>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>

@@ -21,7 +21,7 @@
     <NuGetPackageImportStamp />
     <TargetFrameworkProfile />
     <MvcBuildViews>true</MvcBuildViews>
-    <ProjectGuid></ProjectGuid>
+    <ProjectGuid><%= `{${codeProjectGuidX.toUpperCase()}}` %></ProjectGuid>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>

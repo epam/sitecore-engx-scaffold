@@ -101,8 +101,10 @@ module.exports = class extends BaseGenerator {
 
     this.options = { ...this.options, ...answers };
 
-    this.options.guidSeed = this.options.solutionName + '.' + this.options.moduleType + '.' + this.options.moduleName;
-    this.options.codeGuid = utils.guid(this.options.guidSeed);
+    this.options.codeGuidSeed = `${this.options.solutionName}.${this.options.moduleType}.${this.options.moduleName}`;
+    this.options.codeGuid = utils.guid(this.options.codeGuidSeed);
+    this.options.testGuidSeed = `${this.options.codeGuidSeed}.Tests`;
+    this.options.testGuid = utils.guid(this.options.testGuidSeed);
 
     if (this.options.moduleType == 'Project') {
       this.options.unicornSerializationDependenciesX = this.options.solutionName + '.Feature.*';
@@ -134,6 +136,8 @@ module.exports = class extends BaseGenerator {
       moduleNameX: this.options.moduleName,
       solutionUriX: this.options.solutionNameUri,
       unicornSerializationDependenciesX: this.options.unicornSerializationDependenciesX,
+      codeProjectGuidX: this.options.codeGuid,
+      testProjectGuidX: this.options.testGuid,
     }, {
       ...super._baseGlobOptions(),
       ignore: [...baseIgnore, ...['**/*.yml']]
@@ -205,7 +209,7 @@ module.exports = class extends BaseGenerator {
         projectFolderGuid,
         projectTypeGuid: settings.codeProject,
         projectFileExtension: settings.codeProjectExtension,
-        projectGuid: utils.guid(this.options.guidSeed + '.Tests'),
+        projectGuid: this.options.testGuid,
         fsFolder: settings.testCodeProjectFolder,
         helixLayerType: this.options.moduleType,
         projectNameSuffix: settings.testPrefixExtension

@@ -191,27 +191,26 @@ module.exports = class extends BaseGenerator {
     const projectFolderGuid = uuidv4();
     const destinationPath = this.destinationPath();
 
+    const baseOptions = {
+      solutionName: this.options.solutionName,
+      projectName: this.options.moduleName,
+      projectFolderGuid,
+      helixLayerType: this.options.moduleType,
+      projectTypeGuid: settings.codeProject,
+      projectFileExtension: settings.codeProjectExtension,
+    };
+
     super._updateFileContent(`${destinationPath}\\src\\${this.options.solutionName}.sln`, [
       c => solutionUtils.addHelixBasedProject(c, {
-        solutionName: this.options.solutionName,
-        projectName: this.options.moduleName,
-        projectFolderGuid,
-        projectTypeGuid: settings.codeProject,
-        projectFileExtension: settings.codeProjectExtension,
+        ...baseOptions,
         projectGuid: this.options.codeGuid,
         fsFolder: settings.codeProjectFolder,
-        helixLayerType: this.options.moduleType,
         projectNameSuffix: settings.codePrefixExtension
       }),
       c => solutionUtils.addHelixBasedProject(c, {
-        solutionName: this.options.solutionName,
-        projectName: this.options.moduleName,
-        projectFolderGuid,
-        projectTypeGuid: settings.codeProject,
-        projectFileExtension: settings.codeProjectExtension,
+        ...baseOptions,
         projectGuid: this.options.testGuid,
         fsFolder: settings.testCodeProjectFolder,
-        helixLayerType: this.options.moduleType,
         projectNameSuffix: settings.testPrefixExtension
       }),
     ], {

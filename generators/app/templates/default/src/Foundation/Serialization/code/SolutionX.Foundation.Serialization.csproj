@@ -4,8 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>
-    </ProductVersion>
+    <ProductVersion />
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{BA492296-6396-413B-900B-AA9904768EF1}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
@@ -20,8 +19,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
+    <NuGetPackageImportStamp />
     <TargetFrameworkProfile />
     <Use64BitIISExpress />
   </PropertyGroup>
@@ -162,7 +160,7 @@
   <ItemGroup>
     <None Include="Web.config" />
   </ItemGroup>
-    <ItemGroup>
+  <ItemGroup>
     <Content Include="App_Data/unicorn-<%= solutionUriX %>/**/*.*" />
   </ItemGroup>
   <ItemGroup>
@@ -194,8 +192,4 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
-  <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
-  </PropertyGroup>
 </Project>

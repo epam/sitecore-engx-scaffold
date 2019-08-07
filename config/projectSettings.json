@@ -1,0 +1,21 @@
+{
+  "codeProject": "FAE04EC0-301F-11D3-BF4B-00C04F79EFBC",
+  "coreCodeProject": "9A19103F-16F7-4668-BE54-9A1E7A4F7556",
+  "folderProject": "2150E333-8FDC-42A3-9474-1A3956D46DE8",
+
+  "glassMapperProject": "0044B0CA-ABE2-4365-B1B2-1E347993B4AA",
+  "unicornSerializationProject": "BA492296-6396-413B-900B-AA9904768EF1",
+
+  "codeProjectExtension": ".csproj",
+
+  "codeProjectFolder": "code",
+  "testCodeProjectFolder": "tests",
+
+  "codePrefixExtension": "",
+  "testPrefixExtension": ".Tests",
+
+  "buildConfiguration": [
+    "Debug|Any CPU",
+    "Release|Any CPU"
+  ]
+}

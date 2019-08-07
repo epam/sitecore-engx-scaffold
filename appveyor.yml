@@ -20,7 +20,7 @@ build_script:
     npm install --loglevel=error
 
     npm version %APPVEYOR_BUILD_VERSION% --no-git-tag-version --force
-        
+
     npm pack --loglevel=error
 test: off
 artifacts:

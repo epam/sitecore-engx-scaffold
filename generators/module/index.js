@@ -1,8 +1,9 @@
 'use strict';
 const chalk = require('chalk');
-const BaseGenerator = require('../../lib/base-generator');
 const uuidv4 = require('uuid/v4');
 
+const BaseGenerator = require('../../lib/base-generator');
+const solutionUtils = require('../../lib/solution-utils.js');
 const utils = require('../../lib/utils.js');
 
 const msg = require('../../config/messages.json');
@@ -16,7 +17,7 @@ module.exports = class extends BaseGenerator {
   constructor(args, opts) {
     // Calling the super constructor is important so our generator is correctly set up
     super(args, opts);
-    
+
     this.option('solutionName', {
       type: String,
       required: false,
@@ -43,7 +44,7 @@ module.exports = class extends BaseGenerator {
       desc: 'The version of sitecore to use.',
     });
 
-    var config = this.config.getAll();
+    const config = this.config.getAll();
 
     if (config && config.promptValues) {
       this.options.solutionName = config.promptValues.solutionName;
@@ -56,7 +57,7 @@ module.exports = class extends BaseGenerator {
   }
 
   async prompting() {
-    var answers = await this.prompt([
+    let answers = await this.prompt([
       {
         name: 'solutionName',
         message: msg.solutionName.prompt,
@@ -88,16 +89,8 @@ module.exports = class extends BaseGenerator {
 
     this.options = { ...this.options, ...answers };
 
-    this.options.guidSeed = this.options.solutionName + '.' + this.options.moduleType + '.' + this.options.moduleName;
-    this.options.codeGuid = utils.guid(this.options.guidSeed);
-
-    if (this.options.moduleType == 'Project') {
-      this.options.unicornSerializationDependenciesX = this.options.solutionName + '.Feature.*';
-    } else if (this.options.moduleType == 'Feature') {
-      this.options.unicornSerializationDependenciesX = this.options.solutionName + '.Foundation.*';
-    }
-
-    var sitecoreUpdateAnswers = await this.prompt([{
+    answers = await this.prompt([
+      {
         type: 'list',
         name: 'sitecoreUpdate',
         message: msg.sitecoreUpdate.prompt,
@@ -105,62 +98,70 @@ module.exports = class extends BaseGenerator {
         when: !this.options.sitecoreVersion,
       },
     ]);
+
+    this.options = { ...this.options, ...answers };
+
+    this.options.codeGuidSeed = `${this.options.solutionName}.${this.options.moduleType}.${this.options.moduleName}`;
+    this.options.codeGuid = utils.guid(this.options.codeGuidSeed);
+    this.options.testGuidSeed = `${this.options.codeGuidSeed}.Tests`;
+    this.options.testGuid = utils.guid(this.options.testGuidSeed);
+
+    if (this.options.moduleType == 'Project') {
+      this.options.unicornSerializationDependenciesX = this.options.solutionName + '.Feature.*';
+    } else if (this.options.moduleType == 'Feature') {
+      this.options.unicornSerializationDependenciesX = this.options.solutionName + '.Foundation.*';
+    }
   }
 
   writing() {
-    var destinationPath = this.destinationPath(`src/${this.options.moduleType}/${this.options.moduleName}`);
+    const destinationPath = this.destinationPath(`src/${this.options.moduleType}/${this.options.moduleName}`);
 
-    super._runPipeline(this.options.sitecoreUpdate.exactVersion, destinationPath,
-      [
-        this._copyYmls,
-        this._copyAll,
-      ]);
+    super._runPipeline(this.options.sitecoreUpdate.exactVersion, destinationPath, [
+      this._copyYmls,
+      this._copyAll,
+    ]);
+
+    this._addProjectsToSolutionFile();
   }
 
   /* Copy majority of files with regular template transforms */
   _copyAll(rootPath, destinationPath) {
-    super._copyTpl(this.templatePath(`${rootPath}/**/*`), destinationPath,
-      {
-        exactVersion: this.options.sitecoreUpdate.exactVersion,
-        majorVersion: this.options.sitecoreUpdate.majorVersion,
-        netFrameworkVersion: this.options.sitecoreUpdate.netFrameworkVersion,
-        kernelVersion: this.options.sitecoreUpdate.kernelVersion,
-        solutionX: this.options.solutionName,
-        moduleTypeX: this.options.moduleType,
-        moduleNameX: this.options.moduleName,
-        solutionUriX: this.options.solutionNameUri,
-        unicornSerializationDependenciesX: this.options.unicornSerializationDependenciesX,
-      },
-      {
-        ...super._baseGlobOptions(),
-        ignore: [...baseIgnore, ...['**/*.yml']]
-      },
-      {
-        preProcessPath: this._processPathModuleTokens
-      }
-    );
+    super._copyTpl(this.templatePath(`${rootPath}/**/*`), destinationPath, {
+      exactVersion: this.options.sitecoreUpdate.exactVersion,
+      majorVersion: this.options.sitecoreUpdate.majorVersion,
+      netFrameworkVersion: this.options.sitecoreUpdate.netFrameworkVersion,
+      kernelVersion: this.options.sitecoreUpdate.kernelVersion,
+      solutionX: this.options.solutionName,
+      moduleTypeX: this.options.moduleType,
+      moduleNameX: this.options.moduleName,
+      solutionUriX: this.options.solutionNameUri,
+      unicornSerializationDependenciesX: this.options.unicornSerializationDependenciesX,
+      codeProjectGuidX: this.options.codeGuid,
+      testProjectGuidX: this.options.testGuid,
+    }, {
+      ...super._baseGlobOptions(),
+      ignore: [...baseIgnore, ...['**/*.yml']]
+    }, {
+      preProcessPath: this._processPathModuleTokens
+    });
   }
 
    /* Copy ymls with solution and guid transforms */
    _copyYmls(rootPath, destinationPath) {
-    super._copy(this.templatePath(`${rootPath}/**/*.yml`), destinationPath,
-    {
+    super._copy(this.templatePath(`${rootPath}/**/*.yml`), destinationPath, {
       solutionX: this.options.solutionName,
       moduleTypeX: this.options.moduleType,
       moduleNameX: this.options.moduleName,
-    },
-    {
+    }, {
       ...super._baseGlobOptions(),
       process: this._processYmlFile.bind(this)
-    },
-    {
+    }, {
       preProcessPath: this._processPathModuleTokens
-    }
-  )
- }
+    });
+  }
 
   _processYmlFile(content, path) {
-    var result = this._replaceTokens(content, this.options);
+    let result = this._replaceTokens(content, this.options);
     result = result.replace(/(UnicornSerializationDependenciesX)/g, this.options.unicornSerializationDependenciesX);
 
     // scope to modifications of rainbow YAML fils only
@@ -176,62 +177,52 @@ module.exports = class extends BaseGenerator {
       .replace(/SolutionX/g, '<%= solutionX %>')
       .replace(/ModuleNameX/g, '<%= moduleNameX %>')
       .replace(/ModuleTypeX/g, '<%= moduleTypeX %>');
-  };
+  }
+
+  _replaceTokens(input, options) {
+    const content = input instanceof Buffer ? input.toString('utf8') : input;
+    return content
+      .replace(/(ModuleNameX)/g, options.moduleName)
+      .replace(/(ModuleTypeX)/g, options.moduleType)
+      .replace(/(SolutionX)/g, options.solutionName);
+  }
+
+  _addProjectsToSolutionFile() {
+    const projectFolderGuid = uuidv4();
+    const destinationPath = this.destinationPath();
+
+    const baseOptions = {
+      solutionName: this.options.solutionName,
+      projectName: this.options.moduleName,
+      projectFolderGuid,
+      helixLayerType: this.options.moduleType,
+      projectTypeGuid: settings.codeProject,
+      projectFileExtension: settings.codeProjectExtension,
+    };
+
+    super._updateFileContent(`${destinationPath}\\src\\${this.options.solutionName}.sln`, [
+      c => solutionUtils.addHelixBasedProject(c, {
+        ...baseOptions,
+        projectGuid: this.options.codeGuid,
+        fsFolder: settings.codeProjectFolder,
+        projectNameSuffix: settings.codePrefixExtension
+      }),
+      c => solutionUtils.addHelixBasedProject(c, {
+        ...baseOptions,
+        projectGuid: this.options.testGuid,
+        fsFolder: settings.testCodeProjectFolder,
+        projectNameSuffix: settings.testPrefixExtension
+      }),
+    ], {
+      force: true
+    });
+  }
 
   async end() {
-    var projectFolderGuid = uuidv4();
-    var destinationPath = this.destinationPath();
-    var sourceRoot = this._sourceRoot;
-    var solutionFilePath = `${destinationPath}\\src\\${this.options.solutionName}.sln`;
-
-    // Add the main code project
-    console.log(this.options.codeGuid);
-    await utils.addHelixBasedProject({
-      sourceRoot,
-      solutionFilePath,
-      solutionName: this.options.solutionName,
-      projectName: this.options.moduleName, 
-      projectFolderGuid,
-      projectTypeGuid: settings.codeProject,
-      projectFileExtension: settings.codeProjectExtension, 
-      projectGuid: this.options.codeGuid,
-      fsFolder: settings.codeProjectFolder,
-      helixLayerType: this.options.moduleType, 
-      projectNameSuffix: settings.codePrefixExtension,
-      isNewProjectSolutionFolder: 1
-    });
-
-    console.log(chalk.yellow.bold('Successfully added code project'));
-
-    // Add the test project
-    await utils.addHelixBasedProject({
-      sourceRoot,
-      solutionFilePath,
-      solutionName: this.options.solutionName,
-      projectName: this.options.moduleName, 
-      projectFolderGuid,
-      projectTypeGuid: settings.codeProject,
-      projectFileExtension: settings.codeProjectExtension, 
-      projectGuid: utils.guid(this.options.guidSeed + '.Tests'),
-      fsFolder: settings.testCodeProjectFolder,
-      helixLayerType: this.options.moduleType, 
-      projectNameSuffix: settings.testPrefixExtension,
-      isNewProjectSolutionFolder: 0
-    });
-
-    console.log(chalk.yellow.bold('Successfully added Test project'));
     console.log('');
     console.log('Your ' + this.options.moduleType + ' module '
       + chalk.green.bold(this.options.solutionName + '.' + this.options.moduleType + '.' + this.options.moduleName)
       + ' has been created and added to ' + chalk.green.bold(this.options.solutionName)
     );
   }
-
-  _replaceTokens(input, options) {
-    var content = input instanceof Buffer ? input.toString('utf8') : input;
-    return content
-      .replace(/(ModuleNameX)/g, options.moduleName)
-      .replace(/(ModuleTypeX)/g, options.moduleType)
-      .replace(/(SolutionX)/g, options.solutionName)
-  };
 };

@@ -1,5 +1,2 @@
-
-
-
 # Do not adjust line endings on Sitecore .item files
 *.item -text

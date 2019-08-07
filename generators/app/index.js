@@ -1,10 +1,10 @@
 'use strict';
-const BaseGenerator = require('../../lib/base-generator');
-
 const chalk = require('chalk');
 const yosay = require('yosay');
 
+const BaseGenerator = require('../../lib/base-generator');
 const utils = require('../../lib/utils.js');
+
 const baseIgnore = require('../../config/ignore.json');
 const msg = require('../../config/messages.json');
 const versions = require('../../config/versions.json');
@@ -15,6 +15,7 @@ module.exports = class HelixGenerator extends BaseGenerator {
   constructor(args, opts) {
     // Calling the super constructor is important so our generator is correctly set up
     super(args, opts);
+
     this.option('solutionName', {
       type: String,
       required: false,
@@ -45,7 +46,8 @@ module.exports = class HelixGenerator extends BaseGenerator {
   }
 
   async prompting() {
-    var answers = await this.prompt([{
+    let answers = await this.prompt([
+      {
         name: 'solutionName',
         message: msg.solutionName.prompt,
         default: this.appname,
@@ -61,13 +63,15 @@ module.exports = class HelixGenerator extends BaseGenerator {
 
     this.options = { ...this.options, ...answers };
 
-    answers = await this.prompt([{
-      type: 'list',
-      name: 'sitecoreUpdate',
-      message: msg.sitecoreUpdate.prompt,
-      choices: this.options.sitecoreVersion.value ? this.options.sitecoreVersion.value : this.options.sitecoreVersion,
-      store: true,
-    }]);
+    answers = await this.prompt([
+      {
+        type: 'list',
+        name: 'sitecoreUpdate',
+        message: msg.sitecoreUpdate.prompt,
+        choices: this.options.sitecoreVersion.value ? this.options.sitecoreVersion.value : this.options.sitecoreVersion,
+        store: true,
+      }
+    ]);
 
     this.options = { ...this.options, ...answers };
 
@@ -79,28 +83,23 @@ module.exports = class HelixGenerator extends BaseGenerator {
   }
 
   writing() {
-    super._runPipeline(this.options.sitecoreUpdate.exactVersion, this.destinationPath(),
-      [
-        this._copyYmls,
-        this._copyDlls,
-        this._copyAll,
-      ]);
+    super._runPipeline(this.options.sitecoreUpdate.exactVersion, this.destinationPath(), [
+      this._copyYmls,
+      this._copyDlls,
+      this._copyAll,
+    ]);
   }
 
   /* Copy ymls with solution and guid transforms */
   _copyYmls(rootPath, destinationPath) {
-    super._copy(this.templatePath(`${rootPath}/**/*.yml`), destinationPath,
-      {
-        solutionX: this.options.solutionName
-      },
-      {
-        ...super._baseGlobOptions(),
-        process: this._processYmlFile.bind(this)
-      },
-      {
-        preProcessPath: this._processPathSolutionToken
-      }
-    );
+    super._copy(this.templatePath(`${rootPath}/**/*.yml`), destinationPath, {
+      solutionX: this.options.solutionName
+    }, {
+      ...super._baseGlobOptions(),
+      process: this._processYmlFile.bind(this)
+    }, {
+      preProcessPath: this._processPathSolutionToken
+    });
   }
 
   /* Copy dlls without any transforms */
@@ -110,25 +109,21 @@ module.exports = class HelixGenerator extends BaseGenerator {
 
   /* Copy majority of files with regular template transforms */
   _copyAll(rootPath, destinationPath) {
-    super._copyTpl(this.templatePath(`${rootPath}/**/*`), destinationPath,
-      {
-        exactVersion: this.options.sitecoreUpdate.exactVersion,
-        majorVersion: this.options.sitecoreUpdate.majorVersion,
-        netFrameworkVersion: this.options.sitecoreUpdate.netFrameworkVersion,
-        kernelVersion: this.options.sitecoreUpdate.kernelVersion,
-        solutionX: this.options.solutionName,
-        vagrantBoxNameX: this.options.vagrantBoxName,
-        solutionUriX: this.options.solutionNameUri,
-        hostNamesX: this.options.hostNames && this.options.hostNames.length ? this.options.hostNames.join(" ") : null
-      },
-      {
-        ...super._baseGlobOptions(),
-        ignore: [...baseIgnore, ...['**/*.dll', '**/*.yml']]
-      },
-      {
-        preProcessPath: this._processPathSolutionToken
-      }
-    );
+    super._copyTpl(this.templatePath(`${rootPath}/**/*`), destinationPath, {
+      exactVersion: this.options.sitecoreUpdate.exactVersion,
+      majorVersion: this.options.sitecoreUpdate.majorVersion,
+      netFrameworkVersion: this.options.sitecoreUpdate.netFrameworkVersion,
+      kernelVersion: this.options.sitecoreUpdate.kernelVersion,
+      solutionX: this.options.solutionName,
+      vagrantBoxNameX: this.options.vagrantBoxName,
+      solutionUriX: this.options.solutionNameUri,
+      hostNamesX: this.options.hostNames || []
+    }, {
+      ...super._baseGlobOptions(),
+      ignore: [...baseIgnore, ...['**/*.dll', '**/*.yml']]
+    }, {
+      preProcessPath: this._processPathSolutionToken
+    });
   }
 
   _processYmlFile(content, path) {
@@ -145,8 +140,8 @@ module.exports = class HelixGenerator extends BaseGenerator {
   }
 
   _processPathSolutionToken(destPath) {
-    return destPath.replace(/SolutionX/g, '<%= solutionX %>')
-  };
+    return destPath.replace(/SolutionX/g, '<%= solutionX %>');
+  }
 
   async end() {
     await utils.addCredentialsToWindowsVault('sc9.local', 'vagrant', 'vagrant');

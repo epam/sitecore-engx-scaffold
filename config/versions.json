@@ -54,5 +54,22 @@
         }
       }
     ]
+  },
+    {
+    "key": "c",
+    "name": "Sitecore 9.2",
+    "value": [
+      {
+        "name": "Sitecore.NET 9.2.0",
+        "value": {
+          "name": "Sitecore.NET 9.2.0 Initial Release",
+          "vagrantBoxName": "w16s-sc920",
+          "majorVersion": "9.2",
+          "exactVersion": "9.2.0",
+          "kernelVersion": "9.2.0",
+          "netFrameworkVersion": "4.7.1"
+        }
+      }
+    ]
   }
 ]

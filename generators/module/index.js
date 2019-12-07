@@ -94,8 +94,8 @@ module.exports = class extends BaseGenerator {
         type: 'list',
         name: 'sitecoreUpdate',
         message: msg.sitecoreUpdate.prompt,
-        choices: this.options.sitecoreVersion.value && this.options.sitecoreVersion.value,
-        when: !this.options.sitecoreVersion,
+        choices: this.options.sitecoreVersion && this.options.sitecoreVersion,
+        when: !this.options.sitecoreUpdate,
       },
     ]);
 
@@ -146,8 +146,8 @@ module.exports = class extends BaseGenerator {
     });
   }
 
-   /* Copy ymls with solution and guid transforms */
-   _copyYmls(rootPath, destinationPath) {
+  /* Copy ymls with solution and guid transforms */
+  _copyYmls(rootPath, destinationPath) {
     super._copy(this.templatePath(`${rootPath}/**/*.yml`), destinationPath, {
       solutionX: this.options.solutionName,
       moduleTypeX: this.options.moduleType,

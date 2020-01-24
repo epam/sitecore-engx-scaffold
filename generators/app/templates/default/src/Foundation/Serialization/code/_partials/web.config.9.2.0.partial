@@ -1,3 +1,17 @@
+<?xml version="1.0"?>
+<configuration>
+  <!--
+    For a description of web.config changes see http://go.microsoft.com/fwlink/?LinkId=235367.
+
+    The following attributes can be set on the <httpRuntime> tag.
+      <system.Web>
+        <httpRuntime targetFramework="<%= netFrameworkVersion %>" />
+      </system.Web>
+  -->
+  <system.web>
+    <compilation debug="true" targetFramework="<%= netFrameworkVersion %>"/>
+    <httpRuntime targetFramework="<%= netFrameworkVersion %>"/>
+  </system.web>
   <runtime>
     <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
       <dependentAssembly>
@@ -6,3 +20,4 @@
       </dependentAssembly>
     </assemblyBinding>
   </runtime>
+</configuration>  

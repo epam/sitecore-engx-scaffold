@@ -1,3 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<packages>
   <package id="Configy" version="1.0.0" targetFramework="net471" />
   <package id="Kamsar.WebConsole" version="2.0.1" targetFramework="net471" />
   <package id="MicroCHAP" version="1.2.2.2" targetFramework="net471" />
@@ -7,3 +9,4 @@
   <package id="Rainbow.Storage.Sc" version="2.0.6" targetFramework="net471" />
   <package id="Rainbow.Storage.Yaml" version="2.0.6" targetFramework="net471" />
   <package id="Unicorn.Core" version="4.0.8" targetFramework="net471" />
+</packages>  

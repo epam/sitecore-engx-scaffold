@@ -10,6 +10,7 @@ The scaffold is a generator based on [Yeoman](http://yeoman.io/). It is designed
 * 9.0 Update 2
 * 9.1 Update 0
 * 9.1 Update 1
+* 9.2 Initial Release
 
 ## FEATURES
 * Generate a repository with a standard file structure.

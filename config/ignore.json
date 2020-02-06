@@ -6,5 +6,6 @@
     "**/src/packages/**/*",
     "**/src/node_modules/**/*",
 
-    "**/.vs*/**/*"
+    "**/.vs*/**/*",
+	"**/*/*.partial"
 ]

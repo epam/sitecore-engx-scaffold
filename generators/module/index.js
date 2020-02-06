@@ -10,7 +10,6 @@ const msg = require('../../config/messages.json');
 const versions = require('../../config/versions.json');
 const moduleTypes = require('../../config/moduleTypes.json');
 const settings = require('../../config/projectSettings.json');
-
 const baseIgnore = require('../../config/ignore.json');
 
 module.exports = class extends BaseGenerator {
@@ -138,6 +137,7 @@ module.exports = class extends BaseGenerator {
       unicornSerializationDependenciesX: this.options.unicornSerializationDependenciesX,
       codeProjectGuidX: this.options.codeGuid,
       testProjectGuidX: this.options.testGuid,
+	  utils: utils
     }, {
       ...super._baseGlobOptions(),
       ignore: [...baseIgnore, ...['**/*.yml']]

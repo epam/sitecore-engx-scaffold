@@ -117,7 +117,8 @@ module.exports = class HelixGenerator extends BaseGenerator {
       solutionX: this.options.solutionName,
       vagrantBoxNameX: this.options.vagrantBoxName,
       solutionUriX: this.options.solutionNameUri,
-      hostNamesX: this.options.hostNames || []
+      hostNamesX: this.options.hostNames || [],
+	  utils: utils
     }, {
       ...super._baseGlobOptions(),
       ignore: [...baseIgnore, ...['**/*.dll', '**/*.yml']]

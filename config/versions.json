@@ -71,5 +71,22 @@
         }
       }
     ]
+  },
+   {
+    "key": "d",
+    "name": "Sitecore 9.3",
+    "value": [
+      {
+        "name": "Sitecore.NET 9.3.0",
+        "value": {
+          "name": "Sitecore.NET 9.3.0 Initial Release",
+          "vagrantBoxName": "w16s-sc930",
+          "majorVersion": "9.3",
+          "exactVersion": "9.3.0",
+          "kernelVersion": "9.3.0",
+          "netFrameworkVersion": "4.8"
+        }
+      }
+    ]
   }
 ]

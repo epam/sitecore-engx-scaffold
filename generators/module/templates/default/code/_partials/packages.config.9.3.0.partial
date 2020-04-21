@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <packages>
   <package id="Castle.Core" version="4.4.0" targetFramework="net471" />
-  <package id="Glass.Mapper.Sc.92" version="5.5.28" targetFramework="net471" />
-  <package id="Glass.Mapper.Sc.92.Core" version="5.5.28" targetFramework="net471" />
-  <package id="Glass.Mapper.Sc.92.Mvc" version="5.5.28" targetFramework="net471" />
+  <package id="Glass.Mapper.Sc.93" version="5.6.160" targetFramework="net471" />
+  <package id="Glass.Mapper.Sc.93.Core" version="5.6.160" targetFramework="net471" />
+  <package id="Glass.Mapper.Sc.93.Mvc" version="5.6.160" targetFramework="net471" />
   <package id="GraphQL" version="2.0.0" targetFramework="net471" />
   <package id="GraphQL-Parser" version="3.0.0" targetFramework="net471" />
   <package id="HtmlAgilityPack" version="1.4.9.5" targetFramework="net471" />
@@ -26,7 +26,6 @@
   <package id="Rainbow.Storage.Yaml" version="2.0.6" targetFramework="net471" />
   <package id="RainbowCodeGeneration" version="0.3.0" targetFramework="net471" />
   <package id="SharpZipLib" version="0.86.0" targetFramework="net471" />
-  <package id="Sitecore.Abstractions" version="9.3.0" targetFramework="net471" />
   <package id="Sitecore.Analytics" version="9.3.0" targetFramework="net471" />
   <package id="Sitecore.ContentSearch" version="9.3.0" targetFramework="net471" />
   <package id="Sitecore.ContentSearch.Linq" version="9.3.0" targetFramework="net471" />
@@ -35,7 +34,6 @@
   <package id="Sitecore.Logging" version="9.3.0" targetFramework="net471" />
   <package id="Sitecore.Logging.Client" version="9.3.0" targetFramework="net471" />
   <package id="Sitecore.Mvc" version="9.3.0" targetFramework="net471" />
-  <package id="Sitecore.NVelocity" version="9.3.0" targetFramework="net471" />
   <package id="Sitecore.Update" version="9.3.0" targetFramework="net471" />
   <package id="Sitecore.Zip" version="9.3.0" targetFramework="net471" />
   <package id="System.Buffers" version="4.5.0" targetFramework="net471" />

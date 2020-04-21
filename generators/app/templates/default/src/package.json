@@ -47,7 +47,7 @@
   },
   "devDependencies": {
     "@types/classnames": "^2.2.3",
-    "@types/googlemaps": "^3.30.5",
+    "@types/googlemaps": "3.38.0",
     "@types/jest": "^22.1.1",
     "@types/markerclustererplus": "^2.1.33",
     "@types/node": "^9.3.0",

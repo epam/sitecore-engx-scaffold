@@ -7,7 +7,7 @@
   <package id="Castle.Core" version="4.4.0" targetFramework="net471" />
   <package id="EnterpriseLibrary.Common" version="6.0.1304.0" targetFramework="net471" />
   <package id="FluentAssertions" version="4.19.4" targetFramework="net471" />
-  <package id="Glass.Mapper.Sc.92.Core" version="5.5.28" targetFramework="net471" />
+  <package id="Glass.Mapper.Sc.93.Core" version="5.6.160" targetFramework="net471" />
   <package id="HtmlAgilityPack" version="1.4.9.5" targetFramework="net471" />
   <package id="Lucene.Net" version="3.0.3" targetFramework="net471" />
   <package id="Microsoft.AspNet.Mvc" version="5.2.4" targetFramework="net471" />
@@ -22,7 +22,6 @@
   <package id="NSubstitute" version="1.10.0.0" targetFramework="net471" />
   <package id="RazorGenerator.Mvc" version="2.4.9" targetFramework="net471" />
   <package id="SharpZipLib" version="0.86.0" targetFramework="net471" />
-  <package id="Sitecore.Abstractions" version="9.3.0" targetFramework="net471" />
   <package id="Sitecore.Analytics" version="9.3.0" targetFramework="net471" />
   <package id="Sitecore.Analytics.Core" version="9.3.0" targetFramework="net471" />
   <package id="Sitecore.Analytics.DataAccess" version="9.3.0" targetFramework="net471" />
@@ -37,7 +36,6 @@
   <package id="Sitecore.Logging.Client" version="9.3.0" targetFramework="net471" />
   <package id="Sitecore.Mvc" version="9.3.0" targetFramework="net471" />
   <package id="Sitecore.Nexus.NoReferences" version="9.0.180604" targetFramework="net471" developmentDependency="true" />
-  <package id="Sitecore.NVelocity" version="9.3.0" targetFramework="net471" />
   <package id="Sitecore.Zip" version="9.3.0" targetFramework="net471" />
   <package id="System.Collections" version="4.3.0" targetFramework="net471" />
   <package id="System.Collections.Concurrent" version="4.3.0" targetFramework="net471" />
@@ -62,4 +60,8 @@
   <package id="xunit.runner.msbuild" version="2.4.1" targetFramework="net471" developmentDependency="true" />
   <package id="xunit.runner.console" version="2.4.1" targetFramework="net471" developmentDependency="true" />
   <package id="xunit.runner.visualstudio" version="2.4.1" targetFramework="net471" developmentDependency="true" />
+  <package id="Microsoft.Extensions.Logging" version="2.1.1" targetFramework="net471" />
+  <package id="Microsoft.Extensions.Logging.Abstractions" version="2.1.1" targetFramework="net471" />
+  <package id="Microsoft.Extensions.Options" version="2.1.1" targetFramework="net471" />
+  <package id="Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions" version="2.2.0" targetFramework="net471" />
 </packages>  

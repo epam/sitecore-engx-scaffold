@@ -82,14 +82,14 @@
     <Reference Include="Castle.Core">
       <HintPath>..\..\..\packages\Castle.Core.4.4.0\lib\net45\Castle.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Glass.Mapper, Version=5.5.28.0">
+    <Reference Include="Glass.Mapper, Version=5.6.160.0">
       <HintPath>..\..\..\packages\Glass.Mapper.Sc.93.Core.5.6.160\lib\net471\Glass.Mapper.dll</HintPath>
     </Reference>
-    <Reference Include="Glass.Mapper.Sc, Version=5.5.28.0">
+    <Reference Include="Glass.Mapper.Sc, Version=5.6.160.0">
       <HintPath>..\..\..\packages\Glass.Mapper.Sc.93.Core.5.6.160\lib\net471\Glass.Mapper.Sc.dll</HintPath>
     </Reference>
     <Reference Include="Glass.Mapper.Sc.Mvc">
-      <HintPath>..\..\..\packages\Glass.Mapper.Sc.92.Mvc.5.5.28\lib\net471\Glass.Mapper.Sc.Mvc.dll</HintPath>
+      <HintPath>..\..\..\packages\Glass.Mapper.Sc.93.Mvc.5.6.160\lib\net471\Glass.Mapper.Sc.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="HtmlAgilityPack, Version=1.4.9.5, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a">
       <HintPath>..\..\..\packages\HtmlAgilityPack.1.4.9.5\lib\Net45\HtmlAgilityPack.dll</HintPath>
@@ -114,16 +114,12 @@
       <HintPath>..\..\..\packages\Sitecore.Kernel.9.3.0\lib\net471\Sitecore.Kernel.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Sitecore.Logging, Version=14.0.0.0, Culture=neutral">
+    <Reference Include="Sitecore.Logging, Version=13.0.0.0, Culture=neutral">
       <HintPath>..\..\..\packages\Sitecore.Logging.9.3.0\lib\net471\Sitecore.Logging.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Sitecore.Logging.Client, Version=14.0.0.0, Culture=neutral">
+    <Reference Include="Sitecore.Logging.Client, Version=13.0.0.0, Culture=neutral">
       <HintPath>..\..\..\packages\Sitecore.Logging.Client.9.3.0\lib\net471\Sitecore.Logging.Client.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Sitecore.NVelocity, Version=10.0.0.0, Culture=neutral">
-      <HintPath>..\..\..\packages\Sitecore.NVelocity.9.3.0\lib\net471\Sitecore.NVelocity.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Sitecore.Zip, Version=12.1.0.0, Culture=neutral">

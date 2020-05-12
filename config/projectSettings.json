@@ -8,7 +8,7 @@
 
   "codeProjectExtension": ".csproj",
 
-  "codeProjectFolder": "code",
+  "codeProjectFolder": "website",
   "testCodeProjectFolder": "tests",
 
   "codePrefixExtension": "",

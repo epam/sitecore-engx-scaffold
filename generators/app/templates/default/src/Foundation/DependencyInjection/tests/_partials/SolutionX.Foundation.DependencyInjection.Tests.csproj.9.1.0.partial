@@ -207,7 +207,7 @@
   <Analyzer Include="..\..\..\packages\xunit.analyzers.0.8.0\analyzers\dotnet\cs\xunit.analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\code\<%= solutionX %>.Foundation.DependencyInjection.csproj">
+    <ProjectReference Include="..\website\<%= solutionX %>.Foundation.DependencyInjection.csproj">
       <Project>{a5a4dceb-88ed-4b5f-a06d-dbcbc828d45f}</Project>
       <Name><%= solutionX %>.Foundation.DependencyInjection</Name>
     </ProjectReference>

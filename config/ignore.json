@@ -1,6 +1,6 @@
 [
-    "**/code/bin/**/*.*",
-    "**/code/obj/**/*.*",
+    "**/website/bin/**/*.*",
+    "**/website/obj/**/*.*",
     "**/*.user",
 
     "**/src/packages/**/*",

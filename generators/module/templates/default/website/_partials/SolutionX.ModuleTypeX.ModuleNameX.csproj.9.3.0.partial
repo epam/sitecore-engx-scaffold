@@ -258,7 +258,7 @@
     <Content Include="App_Data/unicorn-<%= solutionUriX %>/**/*.*" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Foundation\GlassMapper\code\<%= solutionX %>.Foundation.GlassMapper.csproj">
+    <ProjectReference Include="..\..\..\Foundation\GlassMapper\website\<%= solutionX %>.Foundation.GlassMapper.csproj">
       <Project>{0044B0CA-ABE2-4365-B1B2-1E347993B4AA}</Project>
       <Name><%= solutionX %>.Foundation.GlassMapper</Name>
     </ProjectReference>

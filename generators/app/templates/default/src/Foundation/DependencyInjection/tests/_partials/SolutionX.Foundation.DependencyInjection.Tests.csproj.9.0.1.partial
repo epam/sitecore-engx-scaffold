@@ -219,7 +219,7 @@
   <Import Project="..\..\..\packages\xunit.runner.msbuild.2.3.1\build\net452\xunit.runner.msbuild.targets" Condition="Exists('..\..\..\packages\xunit.runner.msbuild.2.3.1\build\net452\xunit.runner.msbuild.targets')" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\code\<%= solutionX %>.Foundation.DependencyInjection.csproj">
+    <ProjectReference Include="..\website\<%= solutionX %>.Foundation.DependencyInjection.csproj">
       <Project>{a5a4dceb-88ed-4b5f-a06d-dbcbc828d45f}</Project>
       <Name><%= solutionX %>.Foundation.DependencyInjection</Name>
     </ProjectReference>

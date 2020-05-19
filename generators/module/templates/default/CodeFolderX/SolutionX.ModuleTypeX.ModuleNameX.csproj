@@ -1,0 +1,2 @@
+﻿<% var partialPath = `_partials/${utils.getFileName(__filename)}.${exactVersion}.partial` -%>
+<%- include(partialPath, {netFrameworkVersion: netFrameworkVersion, solutionUriX: solutionUriX, solutionX: solutionX, moduleNameX: moduleNameX, moduleTypeX: moduleTypeX, codeProjectGuidX: codeProjectGuidX, codeFolderX: codeFolderX}) %>

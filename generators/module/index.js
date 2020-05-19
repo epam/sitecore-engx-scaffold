@@ -110,6 +110,10 @@ module.exports = class extends BaseGenerator {
     } else if (this.options.moduleType == 'Feature') {
       this.options.unicornSerializationDependenciesX = this.options.solutionName + '.Foundation.*';
     }
+
+    // setup name of code folder
+    var scVersion = this.options.sitecoreUpdate.majorVersion && Number(this.options.sitecoreUpdate.majorVersion) >= 9.3;
+    this.options.codeFolderName = scVersion ? settings.websiteProjectFolder : settings.codeProjectFolder;
   }
 
   writing() {
@@ -137,7 +141,8 @@ module.exports = class extends BaseGenerator {
       unicornSerializationDependenciesX: this.options.unicornSerializationDependenciesX,
       codeProjectGuidX: this.options.codeGuid,
       testProjectGuidX: this.options.testGuid,
-	  utils: utils
+      codeFolderX: this.options.codeFolderName,
+	    utils: utils
     }, {
       ...super._baseGlobOptions(),
       ignore: [...baseIgnore, ...['**/*.yml']]
@@ -152,6 +157,7 @@ module.exports = class extends BaseGenerator {
       solutionX: this.options.solutionName,
       moduleTypeX: this.options.moduleType,
       moduleNameX: this.options.moduleName,
+      codeFolderX: this.options.codeFolderName,
     }, {
       ...super._baseGlobOptions(),
       process: this._processYmlFile.bind(this)
@@ -176,7 +182,8 @@ module.exports = class extends BaseGenerator {
     return destPath
       .replace(/SolutionX/g, '<%= solutionX %>')
       .replace(/ModuleNameX/g, '<%= moduleNameX %>')
-      .replace(/ModuleTypeX/g, '<%= moduleTypeX %>');
+      .replace(/ModuleTypeX/g, '<%= moduleTypeX %>')
+      .replace(/CodeFolderX/g, '<%= codeFolderX %>');
   }
 
   _replaceTokens(input, options) {
@@ -184,7 +191,8 @@ module.exports = class extends BaseGenerator {
     return content
       .replace(/(ModuleNameX)/g, options.moduleName)
       .replace(/(ModuleTypeX)/g, options.moduleType)
-      .replace(/(SolutionX)/g, options.solutionName);
+      .replace(/(SolutionX)/g, options.solutionName)
+      .replace(/(CodeFolderX)/g, options.codeFolderName);
   }
 
   _addProjectsToSolutionFile() {
@@ -204,7 +212,7 @@ module.exports = class extends BaseGenerator {
       c => solutionUtils.addHelixBasedProject(c, {
         ...baseOptions,
         projectGuid: this.options.codeGuid,
-        fsFolder: settings.codeProjectFolder,
+        fsFolder: this.options.codeFolderName,
         projectNameSuffix: settings.codePrefixExtension
       }),
       c => solutionUtils.addHelixBasedProject(c, {

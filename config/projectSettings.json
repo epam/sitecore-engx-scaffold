@@ -9,6 +9,7 @@
   "codeProjectExtension": ".csproj",
 
   "codeProjectFolder": "code",
+  "websiteProjectFolder": "website",
   "testCodeProjectFolder": "tests",
 
   "codePrefixExtension": "",

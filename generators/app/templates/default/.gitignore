@@ -110,6 +110,6 @@ Code Generation Templates/*.tt
 
 #FE
 /src/Project/*/client/build/**
-/src/Project/*/code/dist/**
+/src/Project/*/<%= codeFolderX %>/dist/**
 
 # libs

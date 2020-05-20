@@ -17,6 +17,7 @@ Sitecore.Constants.SetNames();
 Sitecore.Parameters.InitParams(
     context: Context,
     msBuildToolVersion: MSBuildToolVersion.Default,
+    supportHelix20: "<%= supportHelix20X %>",
     solutionName: "<%= solutionX %>",
     scSiteUrl: "http://sc9.local", // default URL exposed from the box
     unicornSerializationRoot: "unicorn-<%= solutionUriX %>"

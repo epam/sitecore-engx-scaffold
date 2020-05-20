@@ -53,6 +53,7 @@ module.exports = class extends BaseGenerator {
 
     this.options.solutionNameUri = config && config.solutionNameUri;
     this.options.unicornSerializationDependenciesX = '';
+    this.options.supportHelix20 = config && config.supportHelix20;
   }
 
   async prompting() {
@@ -112,8 +113,12 @@ module.exports = class extends BaseGenerator {
     }
 
     // setup name of code folder
-    var scVersion = this.options.sitecoreUpdate.majorVersion && Number(this.options.sitecoreUpdate.majorVersion) >= 9.3;
-    this.options.codeFolderName = scVersion ? settings.websiteProjectFolder : settings.codeProjectFolder;
+    if(this.options.supportHelix20) {
+      this.options.codeFolderName = settings.websiteProjectFolder;
+    } else {
+      var scVersion = this.options.sitecoreUpdate.majorVersion && Number(this.options.sitecoreUpdate.majorVersion) >= 9.3;
+      this.options.codeFolderName = scVersion ? settings.websiteProjectFolder : settings.codeProjectFolder;
+    }
   }
 
   writing() {

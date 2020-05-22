@@ -83,8 +83,8 @@ module.exports = class HelixGenerator extends BaseGenerator {
     this.config.set('solutionNameUri', this.options.solutionNameUri);
 
     // setup name of code folder
-    var scVersion = this.options.sitecoreUpdate.majorVersion && Number(this.options.sitecoreUpdate.majorVersion) >= 9.3;
-    this.options.supportHelix20 = scVersion ? true : false;
+    var isRequiredScVersion = this.options.sitecoreUpdate.majorVersion && Number(this.options.sitecoreUpdate.majorVersion) >= 9.3;
+    this.options.supportHelix20 = !!isRequiredScVersion;
     this.config.set('supportHelix20', this.options.supportHelix20);
     this.options.codeFolderName = this.options.supportHelix20 ? projectSettings.websiteProjectFolder : projectSettings.codeProjectFolder;
   }
@@ -141,8 +141,7 @@ module.exports = class HelixGenerator extends BaseGenerator {
   _processYmlFile(content, path) {
     let result = content instanceof Buffer ? content.toString('utf8') : content;
     result = result.replace(/SolutionX/g, this.options.solutionName)
-      .replace(/CodeFolderX/g, this.options.codeFolderName)
-      .replace(/SupportHelix20X/g, this.options.supportHelix20);
+      .replace(/CodeFolderX/g, this.options.codeFolderName);
 
     if (path.match(/.*SolutionRoots.*\.yml/gi) || path.match(/.*serialization\.content.*\.yml/gi)) {
       result = utils.generateHashBasedItemIdsInYamlFile(result, path);
@@ -155,8 +154,7 @@ module.exports = class HelixGenerator extends BaseGenerator {
 
   _processPathSolutionToken(destPath) {
     return destPath.replace(/SolutionX/g, '<%= solutionX %>')
-      .replace(/CodeFolderX/g, '<%= codeFolderX %>')
-      .replace(/SupportHelix20X/g, '<%= supportHelix20X %>');
+      .replace(/CodeFolderX/g, '<%= codeFolderX %>');
   }
 
   async end() {

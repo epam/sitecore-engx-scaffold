@@ -269,7 +269,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="packages.config">
-      <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>
@@ -280,12 +279,6 @@
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\..\..\packages\xunit.analyzers.0.10.0\analyzers\dotnet\cs\xunit.analyzers.dll" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\code\<%= solutionX %>.<%= moduleTypeX %>.<%= moduleNameX %>.csproj">
-      <Project>{a5a4dceb-88ed-4b5f-a06d-dbcbc828d45f}</Project>
-      <Name><%= solutionX %>.<%= moduleTypeX %>.<%= moduleNameX %></Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

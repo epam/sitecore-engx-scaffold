@@ -9,6 +9,7 @@ const baseIgnore = require('../../config/ignore.json');
 const msg = require('../../config/messages.json');
 const versions = require('../../config/versions.json');
 const settings = require('../../config/settings.json');
+const projectSettings = require('../../config/projectSettings.json');
 
 module.exports = class HelixGenerator extends BaseGenerator {
 
@@ -80,6 +81,12 @@ module.exports = class HelixGenerator extends BaseGenerator {
 
     this.options.solutionNameUri = this.options.solutionName.replace(/[^a-z0-9\-]/ig, '-').toLowerCase();
     this.config.set('solutionNameUri', this.options.solutionNameUri);
+
+    // setup name of code folder
+    var isRequiredScVersion = this.options.sitecoreUpdate.majorVersion && Number(this.options.sitecoreUpdate.majorVersion) >= 9.3;
+    this.options.supportHelix20 = !!isRequiredScVersion;
+    this.config.set('supportHelix20', this.options.supportHelix20);
+    this.options.codeFolderName = this.options.supportHelix20 ? projectSettings.websiteProjectFolder : projectSettings.codeProjectFolder;
   }
 
   writing() {
@@ -93,7 +100,9 @@ module.exports = class HelixGenerator extends BaseGenerator {
   /* Copy ymls with solution and guid transforms */
   _copyYmls(rootPath, destinationPath) {
     super._copy(this.templatePath(`${rootPath}/**/*.yml`), destinationPath, {
-      solutionX: this.options.solutionName
+      solutionX: this.options.solutionName,
+      codeFolderX: this.options.codeFolderName,
+      supportHelix20X: this.options.supportHelix20
     }, {
       ...super._baseGlobOptions(),
       process: this._processYmlFile.bind(this)
@@ -118,7 +127,9 @@ module.exports = class HelixGenerator extends BaseGenerator {
       vagrantBoxNameX: this.options.vagrantBoxName,
       solutionUriX: this.options.solutionNameUri,
       hostNamesX: this.options.hostNames || [],
-	  utils: utils
+      supportHelix20X: this.options.supportHelix20,
+      codeFolderX: this.options.codeFolderName,
+	    utils: utils
     }, {
       ...super._baseGlobOptions(),
       ignore: [...baseIgnore, ...['**/*.dll', '**/*.yml']]
@@ -129,7 +140,8 @@ module.exports = class HelixGenerator extends BaseGenerator {
 
   _processYmlFile(content, path) {
     let result = content instanceof Buffer ? content.toString('utf8') : content;
-    result = result.replace(/SolutionX/g, this.options.solutionName);
+    result = result.replace(/SolutionX/g, this.options.solutionName)
+      .replace(/CodeFolderX/g, this.options.codeFolderName);
 
     if (path.match(/.*SolutionRoots.*\.yml/gi) || path.match(/.*serialization\.content.*\.yml/gi)) {
       result = utils.generateHashBasedItemIdsInYamlFile(result, path);
@@ -141,7 +153,8 @@ module.exports = class HelixGenerator extends BaseGenerator {
   }
 
   _processPathSolutionToken(destPath) {
-    return destPath.replace(/SolutionX/g, '<%= solutionX %>');
+    return destPath.replace(/SolutionX/g, '<%= solutionX %>')
+      .replace(/CodeFolderX/g, '<%= codeFolderX %>');
   }
 
   async end() {

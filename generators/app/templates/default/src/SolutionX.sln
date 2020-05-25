@@ -14,7 +14,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Feature", "Feature", "{8B6B
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Project", "Project", "{D7471233-EE41-4080-8C58-12D5033C644A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "<%= solutionX %>.Foundation.Serialization", "Foundation\Serialization\code\<%= solutionX %>.Foundation.Serialization.csproj", "{BA492296-6396-413B-900B-AA9904768EF1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "<%= solutionX %>.Foundation.Serialization", "Foundation\Serialization\<%= codeFolderX %>\<%= solutionX %>.Foundation.Serialization.csproj", "{BA492296-6396-413B-900B-AA9904768EF1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DependencyInjection", "DependencyInjection", "{655BAECA-6D12-436C-BCAF-91A2F8EEEF25}"
 EndProject
@@ -22,15 +22,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Serialization", "Serializat
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GlassMapper", "GlassMapper", "{859BF338-D2DE-405E-BCB5-08125EB6E465}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "<%= solutionX %>.Foundation.DependencyInjection", "Foundation\DependencyInjection\code\<%= solutionX %>.Foundation.DependencyInjection.csproj", "{A5A4DCEB-88ED-4B5F-A06D-DBCBC828D45F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "<%= solutionX %>.Foundation.DependencyInjection", "Foundation\DependencyInjection\<%= codeFolderX %>\<%= solutionX %>.Foundation.DependencyInjection.csproj", "{A5A4DCEB-88ED-4B5F-A06D-DBCBC828D45F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "<%= solutionX %>.Foundation.DependencyInjection.Tests", "Foundation\DependencyInjection\tests\<%= solutionX %>.Foundation.DependencyInjection.Tests.csproj", "{DA098052-8409-40B0-8B31-640B2400AAB8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "<%= solutionX %>.Foundation.GlassMapper", "Foundation\GlassMapper\code\<%= solutionX %>.Foundation.GlassMapper.csproj", "{0044B0CA-ABE2-4365-B1B2-1E347993B4AA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "<%= solutionX %>.Foundation.GlassMapper", "Foundation\GlassMapper\<%= codeFolderX %>\<%= solutionX %>.Foundation.GlassMapper.csproj", "{0044B0CA-ABE2-4365-B1B2-1E347993B4AA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{7F113E29-7E16-4F09-B23D-DBD653AA62D9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "<%= solutionX %>.Project.Shared", "Project\Shared\code\<%= solutionX %>.Project.Shared.csproj", "{63DDE5EF-8C69-4897-90B6-504CBEE698FD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "<%= solutionX %>.Project.Shared", "Project\Shared\<%= codeFolderX %>\<%= solutionX %>.Project.Shared.csproj", "{63DDE5EF-8C69-4897-90B6-504CBEE698FD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

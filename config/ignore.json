@@ -1,6 +1,8 @@
 [
     "**/code/bin/**/*.*",
+    "**/website/bin/**/*.*",
     "**/code/obj/**/*.*",
+    "**/website/obj/**/*.*",
     "**/*.user",
 
     "**/src/packages/**/*",

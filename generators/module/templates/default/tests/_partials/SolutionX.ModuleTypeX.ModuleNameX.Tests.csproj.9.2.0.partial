@@ -226,8 +226,9 @@
     <Content Include="$(SolutionDir)\..\license.xml">
       <Link>license.xml</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>    
+    <Content Include="packages.config">
     </Content>
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />

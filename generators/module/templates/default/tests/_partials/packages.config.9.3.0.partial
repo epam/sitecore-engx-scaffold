@@ -71,5 +71,4 @@
   <package id="xunit.runner.console" version="2.4.1" targetFramework="net471" developmentDependency="true" />
   <package id="xunit.runner.msbuild" version="2.4.1" targetFramework="net471" developmentDependency="true" />
   <package id="xunit.runner.visualstudio" version="2.4.1" targetFramework="net471" developmentDependency="true" />
-  <package id="xunit.analyzers" version="0.8.0" targetFramework="net471" />
 </packages>  

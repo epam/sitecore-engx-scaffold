@@ -4,6 +4,7 @@ VisualStudioVersion = 15.0.27130.2024
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configuration", "Configuration", "{DF3B36CF-6D1C-415A-8115-C806AAE79DB9}"
 	ProjectSection(SolutionItems) = preProject
+		nuget.config = nuget.config
 		package.json = package.json
 		readme.md = readme.md
 	EndProjectSection

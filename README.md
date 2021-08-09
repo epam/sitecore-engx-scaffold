@@ -1,7 +1,7 @@
 # Sitecore EngX Scaffold
 
 [![npm version](https://badge.fury.io/js/generator-sitecore-engx-scaffold.svg)](https://badge.fury.io/js/generator-sitecore-engx-scaffold)
-[![CI](https://github.com/epam/sitecore-engx-scaffold/actions/workflows/ci.yaml/badge.svg)](https://github.com/epam/sitecore-engx-scaffold/actions/workflows/ci.yaml)
+[![CI](https://github.com/epam/sitecore-engx-scaffold/actions/workflows/release.yaml/badge.svg?branch=master)](https://github.com/epam/sitecore-engx-scaffold/actions/workflows/release.yaml)
 
 ## OVERVIEW
 The scaffold is a generator based on [Yeoman](http://yeoman.io/). It is designed to simplify and unify initial solution setup. It can save you time on configuration on early stages of the project.

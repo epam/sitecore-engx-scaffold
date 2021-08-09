@@ -1,11 +1,19 @@
 # This is a basic workflow to help you get started with Actions
-name: "Pre-release"
+name: CI
 
 # Controls when the workflow will run
 on:
-  release:
-    types: # This configuration does not affect the page_build event above
-      - prereleased
+  # Triggers the workflow on push to any branch except master, ignore all version tags
+  push:
+    branches:
+      - "**"
+      - "!master"
+    tags-ignore:
+      - "v**"
+  # Triggers the workflow on PRs to master branch
+  pull_request:
+    branches:
+      - "master"
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -22,6 +30,11 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
+      # - name: Dump GitHub context
+      #   env:
+      #     GITHUB_CONTEXT: ${{ toJson(github) }}
+      #   run: echo "$GITHUB_CONTEXT"
+
       - uses: actions/setup-node@v2
         with:
           node-version: "8.x"
@@ -35,9 +48,10 @@ jobs:
         name: Set package version
         id: set-version
         run: |
-          $version = "${{ github.event.release.tag_name }}"
-          npm version "$version" --no-git-tag-version --force
+          $gitVersion = ((git describe --abbrev=0 --match v*.* --tags) -replace "(v\d+.\d+.\d+).*", '$1') 
+          $version = "$gitVersion-rc.${{github.run_id}}"
           echo "VERSION::${version}" >> $GITHUB_ENV
+          npm --no-git-tag-version version "$version" -f
 
       - shell: pwsh
         name: Pack the package
@@ -49,9 +63,3 @@ jobs:
           name: generator-sitecore-engx-scaffold.tgz
           path: |
             generator-sitecore-engx-scaffold-*.tgz
-
-      - shell: pwsh
-        name: Publish the package
-        run: npm publish --loglevel=error
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}

@@ -1,0 +1,31 @@
+# This is a basic workflow to help you get started with Actions
+name: "Unpublish"
+
+# Controls when the workflow will run
+on:
+  release:
+    types: # This configuration does not affect the page_build event above
+      - deleted
+      - unpublished
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  unpublish:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "8.x"
+          registry-url: "https://registry.npmjs.org"
+
+      - shell: pwsh
+        name: Unpublish the package
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+        run: |
+          npm deprecate "generator-sitecore-engx-scaffold@${{ github.event.release.tag_name }}" "Deprecated via GitHub Actions" 
+          npm unpublish "generator-sitecore-engx-scaffold@${{ github.event.release.tag_name }}"

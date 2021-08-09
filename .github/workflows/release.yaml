@@ -5,6 +5,7 @@ name: "Release"
 on:
   release:
     types: # This configuration does not affect the page_build event above
+      - prereleased
       - released
 
   # Allows you to run this workflow manually from the Actions tab
@@ -36,8 +37,8 @@ jobs:
         id: set-version
         run: |
           $version = "${{ github.event.release.tag_name }}"
-          npm version "$version" --no-git-tag-version --force
           echo "VERSION::${version}" >> $GITHUB_ENV
+          npm version "$version" --no-git-tag-version
 
       - shell: pwsh
         name: Pack the package

@@ -16,5 +16,11 @@
   },
   "sitecoreUpdate": {
     "prompt": "Select an update:"
+  },
+  "virtualization": {
+    "prompt": "Select virtual environment:"
+  },
+  "topology": {
+    "prompt": "Select topology:"
   }
 }

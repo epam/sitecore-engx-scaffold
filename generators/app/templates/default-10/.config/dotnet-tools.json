@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "isRoot": true,
+  "tools": {
+    "sitecore.cli": {
+      "version": "4.0.0",
+      "commands": [
+        "sitecore"
+      ]
+    },
+    "cake.tool": {
+      "version": "1.3.0",
+      "commands": [
+        "dotnet-cake"
+      ]
+    }
+  }
+}

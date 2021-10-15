@@ -8,6 +8,7 @@
         "value": {
           "name": "Sitecore Experience Platform 9.0 rev. 171219.zip (9.0 Update-1)",
           "vagrantBoxName": "w16s-sc901",
+          "major": "9",
           "majorVersion": "9.0",
           "exactVersion": "9.0.1",
           "kernelVersion": "9.0.171219",
@@ -19,6 +20,7 @@
         "value": {
           "name": "Sitecore Experience Platform 9.0 rev. 180604 (9.0 Update-2)",
           "vagrantBoxName": "w16s-sc902",
+          "major": "9",
           "majorVersion": "9.0",
           "exactVersion": "9.0.2",
           "kernelVersion": "9.0.180604",
@@ -36,6 +38,7 @@
         "value": {
           "name": "Sitecore.NET 9.1.0 (rev. 001564)",
           "vagrantBoxName": "w16s-sc910",
+          "major": "9",
           "majorVersion": "9.1",
           "exactVersion": "9.1.0",
           "kernelVersion": "9.1.0",
@@ -47,6 +50,7 @@
         "value": {
           "name": "Sitecore.NET 9.1.1",
           "vagrantBoxName": "w16s-sc911",
+          "major": "9",
           "majorVersion": "9.1",
           "exactVersion": "9.1.1",
           "kernelVersion": "9.1.1",
@@ -64,6 +68,7 @@
         "value": {
           "name": "Sitecore.NET 9.2.0 Initial Release",
           "vagrantBoxName": "w16s-sc920",
+          "major": "9",
           "majorVersion": "9.2",
           "exactVersion": "9.2.0",
           "kernelVersion": "9.2.0",
@@ -81,10 +86,40 @@
         "value": {
           "name": "Sitecore.NET 9.3.0 Initial Release",
           "vagrantBoxName": "w16s-sc930",
+          "major": "9",
           "majorVersion": "9.3",
           "exactVersion": "9.3.0",
           "kernelVersion": "9.3.0",
           "netFrameworkVersion": "4.8"
+        }
+      }
+    ]
+  },
+  {
+    "key": "e",
+    "name": "Sitecore 10.1",
+    "value": [
+      {
+        "name": "Sitecore.NET 10.1.1",
+        "value": {
+          "name":"Sitecore.NET 10.1 Update-1",
+          "major": "10",
+          "majorVersion": "10.1",
+          "exactVersion": "10.1.1",
+          "kernelVersion": "10.1.1",
+          "netFrameworkVersion": "4.8",
+          "value": [
+            {
+              "name": "Docker",
+              "value":{
+                "vm": "Docker",
+                "value":[
+                  {"name": "XP Single", "value": "xp0"},
+                  {"name": "XM Scaled", "value": "xm1"}
+                ]
+              }
+            }
+          ]
         }
       }
     ]

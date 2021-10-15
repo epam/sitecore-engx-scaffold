@@ -1,0 +1,14 @@
+{
+  "namespace": "<%= solutionX %>.Foundation",
+  "references": "",
+  "items": {
+    "includes": [
+      {
+        "name": "Settings.<%= solutionX %>",
+        "path": "/sitecore/system/Settings/<%= solutionX %>",
+        "allowedPushOperations": "createUpdateAndDelete",
+        "scope": "SingleItem"
+      }
+    ]
+  }
+}

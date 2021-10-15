@@ -1,0 +1,13 @@
+<Project ToolsVersion="4.0" 
+  xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <DeleteExistingFiles>False</DeleteExistingFiles>
+    <ExcludeApp_Data>False</ExcludeApp_Data>
+    <LaunchSiteAfterPublish>False</LaunchSiteAfterPublish>
+    <LastUsedBuildConfiguration>Debug</LastUsedBuildConfiguration>
+    <LastUsedPlatform>Any CPU</LastUsedPlatform>
+    <PublishProvider>FileSystem</PublishProvider>
+    <PublishUrl>..\..\..\..\docker\<%= dockerX %>\deploy</PublishUrl>
+    <WebPublishMethod>FileSystem</WebPublishMethod>
+  </PropertyGroup>
+</Project>

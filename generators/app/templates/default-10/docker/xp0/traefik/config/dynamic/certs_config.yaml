@@ -1,0 +1,6 @@
+tls:
+  certificates:
+    - certFile: C:\etc\traefik\certs\<%= solutionX %>-cm.localhost.crt
+      keyFile: C:\etc\traefik\certs\<%= solutionX %>-cm.localhost.key
+    - certFile: C:\etc\traefik\certs\<%= solutionX %>-id.localhost.crt
+      keyFile: C:\etc\traefik\certs\<%= solutionX %>-id.localhost.key

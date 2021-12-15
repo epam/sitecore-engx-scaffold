@@ -126,7 +126,7 @@ module.exports = class extends BaseGenerator {
   writing() {
     const destinationPath = this.destinationPath(`src/${this.options.moduleType}/${this.options.moduleName}`);
 
-    super._runPipeline(this.options.sitecoreUpdate.exactVersion, destinationPath, [
+    super._runPipeline(this.options.sitecoreUpdate, destinationPath, [
       this._copyYmls,
       this._copyAll,
     ]);

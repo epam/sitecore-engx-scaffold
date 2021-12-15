@@ -1,0 +1,5 @@
+Add TLS certificates for <%= solutionX %>-cm.localhost and <%= solutionX %>-id.localhost hosts to this folder:
+    <%= solutionX %>-cm.localhost.crt
+    <%= solutionX %>-cm.localhost.key
+    <%= solutionX %>-id.localhost.crt
+    <%= solutionX %>-id.localhost.key

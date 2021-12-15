@@ -35,6 +35,16 @@ module.exports = class HelixGenerator extends BaseGenerator {
       desc: 'The version of sitecore to use.',
       default: versions[0].value[0].value,
     });
+    this.option('virtualization', {
+      type: String,
+      required: false,
+      desc: 'Virtualization to use.',
+    });
+    this.option('topology', {
+      type: String,
+      required: false,
+      desc: 'Topology to use.',
+    });
   }
 
   // yeoman events
@@ -76,6 +86,32 @@ module.exports = class HelixGenerator extends BaseGenerator {
 
     this.options = { ...this.options, ...answers };
 
+    if (this.options.sitecoreUpdate.major === "10") {
+      answers = await this.prompt([
+        {
+          type: 'list',
+          name: 'virtualization',
+          message: msg.virtualization.prompt,
+          choices: this.options.sitecoreUpdate.value || this.options.sitecoreUpdate,
+          store: true,
+        }        
+      ]);
+  
+      this.options = { ...this.options, ...answers };
+
+      answers = await this.prompt([
+        {
+          type: 'list',
+          name: 'topology',
+          message: msg.topology.prompt,
+          choices: this.options.virtualization.value || this.options.virtualization,
+          store: true,
+        }
+      ]);
+  
+      this.options = { ...this.options, ...answers };
+    }
+
     this.options.vagrantBoxName = (this.options.sitecoreUpdate.value || this.options.sitecoreUpdate).vagrantBoxName;
     this.options.hostNames = settings.hostNames;
 
@@ -90,7 +126,7 @@ module.exports = class HelixGenerator extends BaseGenerator {
   }
 
   writing() {
-    super._runPipeline(this.options.sitecoreUpdate.exactVersion, this.destinationPath(), [
+    super._runPipeline(this.options.sitecoreUpdate, this.destinationPath(), [
       this._copyYmls,
       this._copyDlls,
       this._copyAll,
@@ -124,6 +160,7 @@ module.exports = class HelixGenerator extends BaseGenerator {
       netFrameworkVersion: this.options.sitecoreUpdate.netFrameworkVersion,
       kernelVersion: this.options.sitecoreUpdate.kernelVersion,
       solutionX: this.options.solutionName,
+      dockerX: this.options.topology,
       vagrantBoxNameX: this.options.vagrantBoxName,
       solutionUriX: this.options.solutionNameUri,
       hostNamesX: this.options.hostNames || [],
@@ -132,7 +169,7 @@ module.exports = class HelixGenerator extends BaseGenerator {
 	    utils: utils
     }, {
       ...super._baseGlobOptions(),
-      ignore: [...baseIgnore, ...['**/*.dll', '**/*.yml']]
+      ignore: [...baseIgnore, ...(this.options.sitecoreUpdate.major == "9" ? ['**/*.dll', '**/*.yml']: ['**/*.dll'])]
     }, {
       preProcessPath: this._processPathSolutionToken
     });
@@ -158,7 +195,7 @@ module.exports = class HelixGenerator extends BaseGenerator {
   }
 
   async end() {
-    await utils.addCredentialsToWindowsVault('sc9.local', 'vagrant', 'vagrant');
+    this.options.virtualization.vm === "Vagrant" && await utils.addCredentialsToWindowsVault('sc9.local', 'vagrant', 'vagrant');
 
     console.log('');
     console.log('Solution name ' + chalk.green.bold(this.options.solutionName) + ' has been created.');

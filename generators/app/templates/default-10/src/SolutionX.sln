@@ -1,0 +1,66 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31727.386
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configuration", "Configuration", "{DF3B36CF-6D1C-415A-8115-C806AAE79DB9}"
+	ProjectSection(SolutionItems) = preProject
+		build.cake = build.cake
+		publishsettings.targets = publishsettings.targets
+		readme.md = readme.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Foundation", "Foundation", "{D70DA070-FACF-45F0-B63F-22766D1E1D3E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Feature", "Feature", "{8B6B8128-AD7B-4331-9DC0-0AFE37FC45E1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Project", "Project", "{D7471233-EE41-4080-8C58-12D5033C644A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DependencyInjection", "DependencyInjection", "{655BAECA-6D12-436C-BCAF-91A2F8EEEF25}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Serialization", "Serialization", "{3217684E-948F-4CF1-8727-0A3E497DEA19}"
+	ProjectSection(SolutionItems) = preProject
+		Foundation\Serialization\feature.module.json = Foundation\Serialization\feature.module.json
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GlassMapper", "GlassMapper", "{859BF338-D2DE-405E-BCB5-08125EB6E465}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "<%= solutionX %>.Foundation.DependencyInjection", "Foundation\DependencyInjection\website\<%= solutionX %>.Foundation.DependencyInjection.csproj", "{A5A4DCEB-88ED-4B5F-A06D-DBCBC828D45F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "<%= solutionX %>.Foundation.DependencyInjection.Tests", "Foundation\DependencyInjection\tests\<%= solutionX %>.Foundation.DependencyInjection.Tests.csproj", "{DA098052-8409-40B0-8B31-640B2400AAB8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "<%= solutionX %>.Foundation.GlassMapper", "Foundation\GlassMapper\website\<%= solutionX %>.Foundation.GlassMapper.csproj", "{0044B0CA-ABE2-4365-B1B2-1E347993B4AA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A5A4DCEB-88ED-4B5F-A06D-DBCBC828D45F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5A4DCEB-88ED-4B5F-A06D-DBCBC828D45F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5A4DCEB-88ED-4B5F-A06D-DBCBC828D45F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5A4DCEB-88ED-4B5F-A06D-DBCBC828D45F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA098052-8409-40B0-8B31-640B2400AAB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA098052-8409-40B0-8B31-640B2400AAB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA098052-8409-40B0-8B31-640B2400AAB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA098052-8409-40B0-8B31-640B2400AAB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0044B0CA-ABE2-4365-B1B2-1E347993B4AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0044B0CA-ABE2-4365-B1B2-1E347993B4AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0044B0CA-ABE2-4365-B1B2-1E347993B4AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0044B0CA-ABE2-4365-B1B2-1E347993B4AA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{655BAECA-6D12-436C-BCAF-91A2F8EEEF25} = {D70DA070-FACF-45F0-B63F-22766D1E1D3E}
+		{3217684E-948F-4CF1-8727-0A3E497DEA19} = {D70DA070-FACF-45F0-B63F-22766D1E1D3E}
+		{859BF338-D2DE-405E-BCB5-08125EB6E465} = {D70DA070-FACF-45F0-B63F-22766D1E1D3E}
+		{A5A4DCEB-88ED-4B5F-A06D-DBCBC828D45F} = {655BAECA-6D12-436C-BCAF-91A2F8EEEF25}
+		{DA098052-8409-40B0-8B31-640B2400AAB8} = {655BAECA-6D12-436C-BCAF-91A2F8EEEF25}
+		{0044B0CA-ABE2-4365-B1B2-1E347993B4AA} = {859BF338-D2DE-405E-BCB5-08125EB6E465}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {95FD0DB7-903B-4B29-9409-FDAEB8BE8F71}
+	EndGlobalSection
+EndGlobal
